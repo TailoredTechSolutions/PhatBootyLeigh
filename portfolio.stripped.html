@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Host Leigh — Portfolio Walkthrough</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:    #C9A84C;
+    --gold-lt: #E8C97A;
+    --ivory:   #F5F0E8;
+    --ink:     #0E0B07;
+    --slate:   #1A1510;
+    --muted:   #8A7D6A;
+    --accent:  #D4A853;
+    --bg:      #0A0806;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ivory);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+
+  /* ── LIGHTFALL CANVAS ── */
+  #lf-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  /* ── LAYOUT ── */
+  #app {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 18px 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-monogram {
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ivory);
+  }
+  .brand-sub {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .section-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .section-counter span {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    width: 120px;
+    height: 2px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 28px 0;
+    overflow: hidden;
+  }
+
+  /* Phone mockup side */
+  .phone-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .phone-frame {
+    position: relative;
+    width: 260px;
+    background: #1A1510;
+    border-radius: 36px;
+    border: 2px solid rgba(201,168,76,0.35);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.5),
+      0 30px 80px rgba(0,0,0,0.7),
+      inset 0 1px 0 rgba(255,255,255,0.04),
+      0 0 40px rgba(201,168,76,0.08);
+    overflow: hidden;
+    padding: 8px;
+  }
+
+  .phone-screen {
+    border-radius: 28px;
+    overflow: hidden;
+    background: #111;
+    position: relative;
+    height: 480px;
+  }
+
+  .phone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Section label pill */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .section-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Script / right side */
+  .script-side {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: none;
+  }
+  .script-side::-webkit-scrollbar { display: none; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--ivory);
+    margin-bottom: 6px;
+    transition: all 0.4s ease;
+  }
+  .timestamp {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .voiceover-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .voiceover-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  .voiceover-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.82);
+    font-weight: 300;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .callouts-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .callouts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .callout-item {
+    display: grid;
+    grid-template-columns: 16px 1fr;
+    gap: 10px;
+    align-items: start;
+    font-size: 13px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.5;
+  }
+  .callout-arrow {
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .transition-block {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding-top: 14px;
+  }
+  .transition-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .transition-text {
+    font-size: 13px;
+    color: rgba(201,168,76,0.7);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* ── NAVIGATION FOOTER ── */
+  footer {
+    padding: 14px 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--ivory);
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    color: var(--gold-lt);
+    box-shadow: 0 0 16px rgba(201,168,76,0.15);
+  }
+  .nav-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
+
+  .section-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  .nav-dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 8px rgba(201,168,76,0.5);
+    width: 20px;
+    border-radius: 3px;
+  }
+  .nav-dot:hover:not(.active) {
+    background: rgba(201,168,76,0.5);
+  }
+
+  /* ── SLIDE TRANSITION ── */
+  .slide-enter { opacity: 0; transform: translateY(8px); }
+  .slide-visible { opacity: 1; transform: translateY(0); transition: opacity 0.35s ease, transform 0.35s ease; }
+  .slide-exit { opacity: 0; transform: translateY(-8px); transition: opacity 0.2s ease, transform 0.2s ease; }
+
+  /* ── KEYBOARD HINT ── */
+  .kbd-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(138,125,106,0.5);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .kbd {
+    display: inline-block;
+    border: 1px solid rgba(138,125,106,0.3);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 10px;
+    color: rgba(138,125,106,0.5);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 780px) {
+    main { grid-template-columns: 1fr; gap: 20px; }
+    .phone-frame { width: 220px; }
+    .phone-screen { height: 400px; }
+    .section-title { font-size: 20px; }
+    header { padding: 12px 0 10px; }
+    .kbd-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Lightfall WebGL canvas -->
+<canvas id="lf-canvas"></canvas>
+
+<div id="app">
+  <header>
+    <div class="brand">
+      <div class="brand-monogram">HL</div>
+      <div>
+        <div class="brand-name">Host Leigh</div>
+        <div class="brand-sub">Portfolio Walkthrough</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="section-counter">
+        Section <span id="cur-num">1</span> of <span id="tot-num">7</span>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="prog-bar" style="width:14%"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="phone-side">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <img id="slide-img" src="" alt="Portfolio screenshot" />
+        </div>
+      </div>
+      <div class="section-label">
+        <div class="section-dot"></div>
+        <span id="label-text">Section 0:00</span>
+      </div>
+    </div>
+
+    <div class="script-side" id="script-side">
+      <div id="slide-content" class="slide-visible"></div>
+    </div>
+  </main>
+
+  <footer>
+    <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">
+      ← Prev
+    </button>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div class="section-dots" id="dots"></div>
+      <div class="kbd-hint">
+        <kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> arrow keys
+      </div>
+    </div>
+
+    <button class="nav-btn" id="btn-next" onclick="navigate(1)">
+      Next →
+    </button>
+  </footer>
+</div>
+
+<script>
+// ─── SLIDE DATA ───────────────────────────────────────────────────────────────
+const IMAGES = {
+  IMG1237: 'DATAURI',
+  IMG1238: 'DATAURI',
+  IMG1239: 'DATAURI',
+  IMG1240: 'DATAURI',
+  IMG1241: 'DATAURI',
+  IMG1242: 'DATAURI',
+  IMG1243: 'DATAURI',
+  IMG1244: 'DATAURI',,
+  IMG_1252: 'DATAURI',
+  IMG_1253: 'DATAURI',
+  IMG_1254: 'DATAURI',
+  IMG_1256: 'DATAURI',
+  IMG_1257: 'DATAURI',
+  IMG_1258: 'DATAURI'
+};
+
+const slides = [
+  {
+    label: '0:00 – Hook',
+    title: 'Meet Your Host, Leigh',
+    timestamp: '0:00 – 0:30',
+    img: 'IMG1237',
+    voiceover: `Hi — I'm Leigh Estella, your professional event host based right here in Metro Manila. If you're looking for someone who doesn't just read a script but actually carries the room, you're in the right place. Let me take you on a quick tour of my work and show you exactly why over 8,000 people follow this journey.`,
+    callouts: [
+      ['Int\'l Female Host for Advocacy & Public Impact', 'Sets immediate positioning — this isn\'t just MC work, it\'s advocacy-level hosting'],
+      ['8,218 followers · 393 posts', 'Active, consistent content presence built over years of real events'],
+    ],
+    transition: '"Let\'s start with who I am and what I bring to your event..."'
+  },
+  {
+    label: '0:30 – Profile',
+    title: 'Host Leigh on Facebook',
+    timestamp: '0:30 – 1:15',
+    img: 'IMG1241',
+    voiceover: `On Facebook, you'll find me as Host Leigh — with over 378 followers and a perfect 100% recommend rate from every client I've worked with. That last number matters to me personally. I've been doing this for over 14 years, and every single client who left a review would book me again. I hold a Bachelor's degree in Communication Arts and completed training at ABS-CBN, one of the country's leading broadcast networks.`,
+    callouts: [
+      ['100% recommend (7 Reviews)', 'Zero dissatisfied clients — peer-verified trust you can rely on'],
+      ['10+ yrs hosting | Comm Arts + ABS-CBN Rated', 'Industry credentials visible right in the bio'],
+      ['work.leighestella@gmail.com', 'Direct booking contact — no gatekeeping'],
+    ],
+    transition: '"Now let me show you the range of events I\'ve covered..."'
+  },
+  {
+    label: '1:15 – Credibility',
+    title: 'The Bio That Books Gigs',
+    timestamp: '1:15 – 2:00',
+    img: 'IMG1242',
+    voiceover: `This is the professional snapshot I share with clients before a booking call. With 14 years of experience, I've built a strong foundation in public speaking, networking, and personal branding. Since transitioning from corporate training to full-time hosting, I've handled everything from corporate functions and game shows, to campaign rallies, weddings, and international advocacy events. I'm also completing a certification in Rhetoric and Public Speaking from HarvardX — because I believe in constantly leveling up.`,
+    callouts: [
+      ['"From corporate functions, game shows, campaign rallies to weddings"', 'Genuine range — not a niche host, a versatile one'],
+      ['"Ready to elevate your event?"', 'Client-facing CTA that\'s confident, not pushy'],
+    ],
+    transition: '"Let me show you some of the stages I\'ve stood on..."'
+  },
+  {
+    label: '2:00 – Awards',
+    title: 'Galas, Stages & Recognition',
+    timestamp: '2:00 – 2:45',
+    img: 'IMG1238',
+    voiceover: `You'll see from my feed that I've hosted at some of Metro Manila's most prestigious events — from the grand ballroom of Okada Manila to open-air stages. That Nation Builders Award recognition is not just a trophy. It validates the advocacy work I bring into every hosting engagement, and it positions me as more than an emcee — as a public figure with real impact.`,
+    callouts: [
+      ['Nation Builders "Int\'l Female Host for Advocacy & Public Impact"', 'National recognition — the kind clients mention when they refer you'],
+      ['Okada Manila grand ballroom', 'Top-tier venue credibility visible in pinned Facebook post'],
+      ['Indoor gala + outdoor stage + corporate formats', 'Versatility you can see, not just read about'],
+    ],
+    transition: '"Beyond galas, let me show you the corporate side of my work..."'
+  },
+  {
+    label: '2:45 – Corporate',
+    title: 'Corporate Events Portfolio',
+    timestamp: '2:45 – 3:30',
+    img: 'IMG1240',
+    voiceover: `Corporate clients trust me to represent their brand professionally on stage. Here you'll see events like a TP-Link partnership launch, an AI Summit on Accelerating Safe AI at Scale, the Commonwealth Annual CORE Doctors' Recognition, and PIEPCO's 1st National Convention. Each of these required a completely different energy, a different script, a different relationship with the audience — and I delivered all of them.`,
+    callouts: [
+      ['TP-Link launch', 'Tech brand corporate tie-up — professional, branded presentation'],
+      ['AI Summit "Accelerating Safe AI at Scale"', 'Positions Leigh as relevant in the future-forward corporate space'],
+      ['Commonwealth Healthcare + PIEPCO', 'Government, medical, and advocacy sector credibility in one grid'],
+    ],
+    transition: '"And it\'s not just corporate — here\'s how I show up at lifestyle and entertainment events..."'
+  },
+  {
+    label: '3:30 – Lifestyle',
+    title: 'Lifestyle, Entertainment & Brand Activations',
+    timestamp: '3:30 – 4:15',
+    img: 'IMG1244',
+    voiceover: `From brand activations to entertainment galas, I can match any event's aesthetic. You'll notice the Air Supply 50th Anniversary celebration — I was on stage with a global music act. Then there's Manila Elegance & Society, where formal gown hosting meets high-end lifestyle branding. I've also hosted for Chemist Shea and Global Inspirational Women for Impact 2025. The look, the energy, the script — everything adapts.`,
+    callouts: [
+      ['Air Supply 50th Anniversary', 'International entertainment event experience — global acts, high-stakes staging'],
+      ['Manila Elegance Society', 'Formal gown-level presentation — the most demanding aesthetic hosting'],
+      ['Consistent wardrobe versatility', 'Red power suit · white formal · silver gown · black casual — every look intentional'],
+    ],
+    transition: '"Let me also show you my community presence and how clients experience working with me..."'
+  },
+  {
+    label: '4:15 – Closing',
+    title: 'Book Leigh for Your Next Event',
+    timestamp: '4:15 – 5:30',
+    img: 'IMG1243',
+    voiceover: `What I love about this work is its range — Jollibee's Year End Party 2025, a KIA automobile launch, the 20th Pizarro Cup international golf tournament, and Life Fitness wellness events. Each of these clients came through referrals, repeat bookings, or through seeing my content online. Whether you're planning a corporate awards night, a product launch in BGC, a convention in Pasay, or an intimate brand activation — I show up prepared, professional, and ready to carry your event from start to finish.`,
+    callouts: [
+      ['work.leighestella@gmail.com', 'Primary booking email — respond within 24 hours'],
+      ['FB: Host Leigh  |  IG: @yourhostleigh', 'Dual-platform presence — message wherever you are'],
+      ['"Book today and let\'s bring your vision to life!"', 'Her own tagline — own it'],
+    ],
+    transition: '"Let\'s build something memorable together."'
+  },
+,
+  // ─── NEW SLIDES: 2025 Updates ──────────────────────────────────────────────
+  {
+    label: 'COO Role — New',
+    title: 'COO for Asia: Andre Norman',
+    timestamp: 'New Addition',
+    img: 'IMG_1252',
+    voiceover: `Beyond the stage, I bring executive-level presence. I'm stepping into a new role as COO for Asia for Andre Norman, the Ambassador of Hope — a globally recognized thought leader. This appointment is proof that what I build on stage translates directly into the boardroom, and it gives corporate clients even more confidence that I understand their world from the inside.`,
+    callouts: [
+      ['COO for Asia — Andre Norman, Ambassador of Hope', 'Executive appointment — brings boardroom credibility to every hosting engagement'],
+      ['Stepped up from hosting to organizational leadership', 'Shows a host who truly understands the business she's in'],
+      ['Seen at Fiesta Pavilion, Manila Hotel', 'Top-tier venue presence continues'],
+    ],
+    transition: '"Now let me show you what it looks like when I bring that energy to a national celebration..."'
+  },
+  {
+    label: 'Independence Day — Jollibee',
+    title: 'Independence Day at Jollibee',
+    timestamp: 'New Addition',
+    img: 'IMG_1253',
+    voiceover: `"Pagbati ng maligayang Araw ng Kalayaan, Pilipinas Kong Mahal!" — I hosted a Jollibee Independence Day event where national pride meets mass-market brand activation at its most joyful. You can see the barong, the Jollibee balloons, the smiles. This is the energy I bring to events that need to feel authentic and celebratory, not just scripted.`,
+    callouts: [
+      ['Jollibee Independence Day event', 'Mass-market brand activation — Leigh connects with all audience types'],
+      ['Red and white outfit — intentional cultural alignment', 'Wardrobe always matches the event's brand and theme'],
+      ['"Pagbati ng maligayang Araw ng Kalayaan"', 'Bilingual ease — comfortable hosting in both Filipino and English'],
+    ],
+    transition: '"Here's how I show up for the tech and corporate sector..."'
+  },
+  {
+    label: 'Veeam AI Summit',
+    title: 'Philippine Launch: Veeam v13',
+    timestamp: 'New Addition',
+    img: 'IMG_1257',
+    voiceover: `I took the stage for the Philippine launch of Veeam Data Platform v13 — an enterprise tech event headlined by "Accelerate Safe AI at Scale." This is where my ability to translate complex, technical themes into confident, audience-friendly hosting becomes invaluable. The client needed someone who could hold the room and make AI feel accessible without dumbing it down.`,
+    callouts: [
+      ['"Accelerate Safe AI at Scale" — Veeam Data Platform v13', 'Enterprise tech launch — one of the most demanding hosting formats'],
+      ['Pearl necklace + green blazer', 'Smart casual authority — right for a tech-corporate room'],
+      ['February 12 — early 2025 booking', 'Active year with major brands secured early'],
+    ],
+    transition: '"And beyond events, I show up in the rooms where ideas are exchanged..."'
+  },
+  {
+    label: 'SpeakersCon — Mark Schaefer',
+    title: 'SpeakersCon with Mark Schaefer',
+    timestamp: 'New Addition',
+    img: 'IMG_1256',
+    voiceover: `When you're in the same room as globally recognized authors and thought leaders, that says something about the network you've built. At SpeakersCon, I met Mark Schaefer live — one of the world's most cited marketing and leadership voices. I don't just host rooms. I operate in the same circles as the speakers your audience flies in to hear.`,
+    callouts: [
+      ['Mark Schaefer — globally published marketing authority', 'Leigh operates in international thought-leadership circles'],
+      ['SpeakersCon attendee and networker', 'Invested in personal growth — not just bookings'],
+      ['February 16 — consecutive high-level engagements', 'Consistent pace of professional-level events'],
+    ],
+    transition: '"Let me show you one more sector where I've made my mark..."'
+  },
+  {
+    label: 'PiFPO Convention',
+    title: 'PiFPO NCR 1st Regional Conference',
+    timestamp: 'New Addition',
+    img: 'IMG_1254',
+    voiceover: `Truly honored to have hosted Day 2 of PiFPO's first-ever NCR Regional Conference alongside Chairman Engr. Joey De Jesus at SPACE, One Ayala. Events like this — where government, industry, and advocacy intersect — are exactly where the combination of preparation, warmth, and credibility matters most. This was a milestone event and I was trusted to carry its second day.`,
+    callouts: [
+      ['PiFPO 1st NCR Regional Conference — Day 2 host', 'Government-adjacent industry events — highest-stakes hosting'],
+      ['With PiFPO Chairman Engr. Joey De Jesus', 'Photographed with leadership — part of the official record'],
+      ['SPACE at One Ayala, Makati', 'Premium Makati venue — adds geographic and prestige credibility'],
+    ],
+    transition: '"And when the event calls for elegance, here's how I show up..."'
+  },
+  {
+    label: 'Le French Gala',
+    title: 'Le French Gala — Shangri-La The Fort',
+    timestamp: 'New Addition',
+    img: 'IMG_1258',
+    voiceover: `Le French Gala at Shangri-La The Fort, Manila — a diplomatic and lifestyle event where the aesthetic bar is set at its absolute highest. Rose gown, editorial posture, and a backdrop of blooms under celestial lighting. This is Host Leigh's range in one image: from a Jollibee brand activation to the French Gala stage, the look, the energy, and the presence always match the moment perfectly.`,
+    callouts: [
+      ['Shangri-La The Fort — Makati's most prestigious international hotel', 'Top-tier luxury venue client in her portfolio'],
+      ['Le French Gala — diplomatic lifestyle event', 'International audience, formal protocol, zero margin for error'],
+      ['Rose silk gown — November 21, 2024', 'Wardrobe versatility: corporate → national → luxury gala'],
+    ],
+    transition: '"Ready to book Leigh for your next event? Reach out at work.leighestella@gmail.com"'
+  }
+
+];
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let current = 0;
+let animating = false;
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function renderSlide(idx, direction) {
+  const s = slides[idx];
+  const img = document.getElementById('slide-img');
+  const content = document.getElementById('slide-content');
+  const prog = document.getElementById('prog-bar');
+  const curNum = document.getElementById('cur-num');
+  const label = document.getElementById('label-text');
+
+  // Update image
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = IMAGES[s.img];
+    img.style.opacity = '1';
+    img.style.transition = 'opacity 0.4s ease';
+  }, 150);
+
+  // Update header
+  curNum.textContent = idx + 1;
+  label.textContent = s.label;
+  prog.style.width = ((idx + 1) / slides.length * 100) + '%';
+
+  // Build content HTML
+  const calloutsHTML = s.callouts.map(([key, val]) => `
+    <div class="callout-item">
+      <span class="callout-arrow">→</span>
+      <span><strong style="color:rgba(245,240,232,0.9)">${key}</strong> — ${val}</span>
+    </div>
+  `).join('');
+
+  // Transition animation
+  content.className = 'slide-exit';
+  setTimeout(() => {
+    content.innerHTML = `
+      <div class="section-title">${s.title}</div>
+      <div class="timestamp">${s.timestamp}</div>
+      <div class="voiceover-label">Voiceover</div>
+      <p class="voiceover-text">${s.voiceover}</p>
+      <div class="callouts-label">Key Callouts</div>
+      <div class="callouts-list">${calloutsHTML}</div>
+      <div class="transition-block">
+        <div class="transition-label">Transition</div>
+        <div class="transition-text">${s.transition}</div>
+      </div>
+    `;
+    content.className = 'slide-enter';
+    document.getElementById('script-side').scrollTop = 0;
+    requestAnimationFrame(() => {
+      content.className = 'slide-visible';
+    });
+  }, 200);
+
+  // Update dots
+  document.querySelectorAll('.nav-dot').forEach((d, i) => {
+    d.className = 'nav-dot' + (i === idx ? ' active' : '');
+  });
+
+  // Update buttons
+  document.getElementById('btn-prev').disabled = idx === 0;
+  document.getElementById('btn-next').disabled = idx === slides.length - 1;
+
+  // Update next button text on last slide
+  const nxtBtn = document.getElementById('btn-next');
+  nxtBtn.innerHTML = idx === slides.length - 1 ? '✦ Done' : 'Next →';
+}
+
+function navigate(dir) {
+  if (animating) return;
+  const next = current + dir;
+  if (next < 0 || next >= slides.length) return;
+  animating = true;
+  current = next;
+  renderSlide(current, dir);
+  setTimeout(() => { animating = false; }, 400);
+}
+
+// ─── BUILD DOTS ───────────────────────────────────────────────────────────────
+function buildDots() {
+  const wrap = document.getElementById('dots');
+  document.getElementById('tot-num').textContent = slides.length;
+  slides.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    btn.onclick = () => { if (!animating && i !== current) { animating = true; current = i; renderSlide(i, 0); setTimeout(() => { animating = false; }, 400); } };
+    wrap.appendChild(btn);
+  });
+}
+
+// ─── KEYBOARD NAV ─────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+});
+
+// ─── LIGHTFALL WEBGL ──────────────────────────────────────────────────────────
+(function initLightfall() {
+  const canvas = document.getElementById('lf-canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Vertex shader
+  const vsrc = `
+    attribute vec2 a_pos;
+    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+  `;
+
+  // Fragment shader — gold/amber streaks on dark for Host Leigh palette
+  const fsrc = `
+    precision highp float;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+
+    vec3 tanhv(vec3 x) {
+      vec3 e = exp(-2.0*x);
+      return (1.0-e)/(1.0+e);
+    }
+
+    // Gold palette: amber, champagne, rose gold
+    vec3 palette(float h) {
+      vec3 c0 = vec3(0.788, 0.659, 0.298); // gold
+      vec3 c1 = vec3(0.910, 0.788, 0.478); // champagne
+      vec3 c2 = vec3(0.827, 0.565, 0.341); // amber
+      float t = fract(h * 2.0);
+      if (h < 0.5) return mix(c0, c1, t);
+      return mix(c1, c2, t);
+    }
+
+    vec2 scene(vec2 frag, vec2 r) {
+      vec2 P = (frag+frag-r)/r.x;
+      float z = 0.0, d = 1e3;
+      vec4 O = vec4(0.0);
+      for (int k = 0; k < 35; k++) {
+        if (d <= 1e-4) break;
+        O = z * normalize(vec4(P, 3.0, 0.0)) - vec4(0.0,4.0,1.0,0.0)/4.5;
+        d = 1.0 - sqrt(dot(O,O));
+        z += d;
+      }
+      return vec2(O.x, atan(O.z, O.y));
+    }
+
+    void main() {
+      vec2 r = iResolution;
+      vec2 uv0 = (gl_FragCoord.xy * 2.0 - r) / r.x;
+      float T = 0.1 * iTime * 0.4 + 9.0;
+      float angRings = 6.0;
+      vec2 Y = vec2(5e-3, 6.28318/angRings);
+
+      vec2 C = scene(gl_FragCoord.xy, r);
+      vec2 cdx = scene(gl_FragCoord.xy + vec2(1.0,0.0), r);
+      vec2 cdy = scene(gl_FragCoord.xy + vec2(0.0,1.0), r);
+      vec2 dCx = cdx - C; vec2 dCy = cdy - C;
+      dCx.y -= 6.28318*floor(dCx.y/6.28318+0.5);
+      dCy.y -= 6.28318*floor(dCy.y/6.28318+0.5);
+      vec2 fw = abs(dCx)+abs(dCy);
+      C = scene(gl_FragCoord.xy, r);
+
+      vec2 P2 = 2.0*uv0 - (r/r.x)*vec2(0.0,1.0);
+      vec4 O = vec4(vec3(0.05,0.03,0.01) * 60.0 * 0.3 / (1e3*dot(P2,P2)+6.0), 0.0);
+
+      float zr = 5e-4 * 1.0;
+      vec2 rr = vec2(max(length(fw),1e-5));
+      float tail = 19.0 / 0.8;
+
+      for (int m = 0; m < 3; m++) {
+        float jf = float(m)+1.0;
+        float ic = fract(sin(dot(vec2(jf, floor(C.x/Y.x+0.5)), vec2(7.0,11.0))*73.0));
+        vec2 Pp = C - (T + T*ic)*vec2(0.0,1.0);
+        Pp -= floor(Pp/Y+0.5)*Y;
+        float h = fract(8663.0*ic);
+        vec3 col = palette(h);
+        float weight = mix(1.5, 1.0+sin(T+7.0*h+4.0), 0.7);
+        vec2 inner = vec2(length(max(Pp,vec2(-1.0,0.0))),length(Pp)-zr)-zr;
+        vec2 sm = 1.0-smoothstep(-rr,rr,inner);
+        O.rgb += dot(sm,vec2(exp(tail*Pp.y),3.0))*col*weight;
+        C.x += Y.x/8.0;
+      }
+
+      vec3 colr = sqrt(tanhv(max(O.rgb*0.8 - vec3(0.04,0.08,0.02),0.0)));
+      gl_FragColor = vec4(colr, 0.9);
+    }
+  `;
+
+  function compileShader(type, src) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    return sh;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes   = gl.getUniformLocation(prog, 'iResolution');
+  const uTime  = gl.getUniformLocation(prog, 'iTime');
+  const uMouse = gl.getUniformLocation(prog, 'iMouse');
+
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = window.innerHeight - e.clientY;
+  });
+
+  function loop(t) {
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, t * 0.001);
+    gl.uniform2f(uMouse, mouseX, mouseY);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+buildDots();
+renderSlide(0, 1);
+</script>
+</body>
+</html>

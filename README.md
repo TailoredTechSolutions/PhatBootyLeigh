@@ -1,37 +1,22 @@
-# Host Leigh — Empire Dashboard
+# CODING AGENTS: READ THIS FIRST
 
-**Ms. Leighza Mir J. Estella** · Professional Event Host · Metro Manila
+This is a **handoff bundle** from Claude Design (claude.ai/design).
 
-## What's in this repo
+A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
 
-| File | Description |
-|------|-------------|
-| `index.html` | **Empire Dashboard** — Full 7-page ops dashboard (Gig Pipeline, Checklist, Suppliers, Escrow, Portfolio Walkthrough, Timeline) |
-| `host-leigh-portfolio-walkthrough.html` | **Portfolio Walkthrough** — Standalone 13-slide social media portfolio with WebGL Lightfall animation |
+## What you should do — IMPORTANT
 
-## Empire Dashboard Pages
+**Find the primary design file under `host-leigh-design-system/project/` and read it top to bottom.** Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
 
-1. **Command Center** — KPI cards, today's alerts, next event
-2. **Gig Pipeline** — 4-column Kanban (Lead → Confirmed → In Prep → Done)
-3. **Event Checklist** — Phase-based checklists (T-7 / T-1 / Event Day) with clickable checkboxes
-4. **Supplier Firewall** — Vendor tracking with status pills and escalation buttons
-5. **Escrow Tracker** — Per-client payment bars and collection summary
-6. **Where to Find This Host** — Social presence, stats strip, full portfolio walkthrough embedded
-7. **2025 Timeline** — Chronological hosting journey
+**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
 
-## Tech
+## About the design files
 
-- Single-file HTML — no build step, no dependencies
-- All 13 portfolio screenshots base64-embedded (fully offline)
-- WebGL Lightfall animation (gold/amber palette)
-- Google Fonts CDN (only external dependency)
+The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
 
-## Booking
+**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
 
-📧 work.leighestella@gmail.com  
-📸 Instagram: [@yourhostleigh](https://instagram.com/yourhostleigh)  
-👤 Facebook: [Host Leigh](https://facebook.com/hostleigh)
+## Bundle contents
 
----
-*Nation Builders Awardee — International Female Host for Advocacy & Public Impact*  
-*14+ years · BA Comm · ABS-CBN trained · HarvardX Rhetoric*
+- `host-leigh-design-system/README.md` — this file
+- `host-leigh-design-system/project/` — the `Host Leigh Design System` project files (HTML prototypes, assets, components)

@@ -1,0 +1,9 @@
+/* ============================================================
+   HOST LEIGH — WEBFONTS
+   Loaded from Google Fonts. Consumers linking styles.css get these.
+   Display:  Cormorant Garamond / Playfair Display (serif)
+   Body:     DM Sans / Inter (humanist sans)
+   Mono:     JetBrains Mono / DM Mono (numerics, metadata)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');

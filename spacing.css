@@ -1,0 +1,31 @@
+/* ============================================================
+   HOST LEIGH — SPACING & RADIUS TOKENS
+   Base unit: 4px. Dashboard density is tight (14–28px gutters).
+   ============================================================ */
+:root {
+  --sp-1:  4px;
+  --sp-2:  6px;
+  --sp-3:  8px;
+  --sp-4:  10px;
+  --sp-5:  12px;
+  --sp-6:  14px;   /* card-internal gap */
+  --sp-7:  16px;   /* grid gap */
+  --sp-8:  20px;   /* card padding */
+  --sp-9:  24px;   /* section gap */
+  --sp-10: 28px;   /* page padding */
+  --sp-12: 32px;
+  --sp-16: 48px;
+
+  /* ── RADII ── */
+  --r-sm: 6px;    /* buttons, pills-square, tags */
+  --r-md: 10px;   /* inner blocks, gig cards */
+  --r-lg: 14px;   /* primary cards, KPI cards */
+  --r-xl: 20px;   /* embeds, hero panels */
+  --r-pill: 20px; /* status pills, badges */
+  --r-full: 9999px;
+
+  /* ── LAYOUT ── */
+  --sidebar-w: 220px;
+  --sidebar-w-collapsed: 60px;
+  --topbar-h: 57px;
+}

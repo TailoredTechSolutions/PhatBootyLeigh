@@ -1,0 +1,65 @@
+/* ============================================================
+   HOST LEIGH — COLOR TOKENS
+   "Obsidian · Gold · Rose" — a dark, luxury event-host palette.
+   ============================================================ */
+:root {
+  /* ── OBSIDIAN (neutral surfaces, dark → light) ── */
+  --ob-950: #0a0a14;   /* app background */
+  --ob-900: #12121f;   /* card / sidebar surface */
+  --ob-800: #1a1a2e;   /* raised surface, inputs */
+  --ob-700: #1e1e35;   /* hover surface, pills */
+  --ob-600: #25253e;
+  --ob-500: #2e2e4a;
+  --ob-400: #3d3d5c;   /* borders, dividers (strong) */
+  --ob-300: #5a5a7a;   /* tertiary text, icons */
+  --ob-200: #8888a8;   /* secondary text */
+  --ob-100: #b8b8cc;   /* primary body on dark */
+  --ob-50:  #eeeef5;   /* headings, high-emphasis text */
+
+  /* ── GOLD (brand accent — the signature) ── */
+  --gd-500: #d4a017;   /* deep gold */
+  --gd-400: #d4af37;   /* primary gold (buttons, active state) */
+  --gd-300: #e8ca6a;   /* gold text on dark — most legible */
+  --gd-200: #f0d98a;   /* light gold, gradient stop */
+  --gd-100: #f8efc0;   /* palest gold highlight */
+
+  /* Warm-gold variant used by hero / portfolio surfaces */
+  --gold:    #c9a84c;
+  --gold-lt: #e8c97a;
+  --ivory:   #f5f0e8;
+
+  /* ── ROSE (secondary accent — feminine warmth) ── */
+  --rose-600: #b4354e;
+  --rose-500: #c94560;
+  --rose-400: #d96275;
+  --rose-200: #f2b0bc;
+
+  /* ── SEMANTIC STATUS ── */
+  --success: #22c55e;
+  --success-text: #4ade80;
+  --warning: #f59e0b;
+  --warning-text: #fbbf24;
+  --danger:  #ef4444;
+  --danger-text: #f87171;
+
+  /* ── SEMANTIC ALIASES ── */
+  --bg-app:        var(--ob-950);
+  --surface-card:  var(--ob-900);
+  --surface-raised:var(--ob-800);
+  --surface-hover: var(--ob-700);
+
+  --text-heading:  var(--ob-50);
+  --text-body:     var(--ob-100);
+  --text-muted:    var(--ob-200);
+  --text-faint:    var(--ob-300);
+
+  --accent:        var(--gd-400);
+  --accent-text:   var(--gd-300);
+  --accent-rose:   var(--rose-500);
+
+  /* Hairline borders are always gold at low alpha — the house signature */
+  --border-hair:   rgba(212, 175, 55, 0.10);
+  --border-soft:   rgba(212, 175, 55, 0.20);
+  --border-strong: rgba(212, 175, 55, 0.35);
+  --border-divider:rgba(255, 255, 255, 0.04);
+}

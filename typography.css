@@ -1,0 +1,45 @@
+/* ============================================================
+   HOST LEIGH — TYPOGRAPHY TOKENS
+   ============================================================ */
+:root {
+  /* ── FONT FAMILIES ── */
+  --font-display: "Cormorant Garamond", Georgia, serif;  /* page/card titles, headings */
+  --font-display-alt: "Playfair Display", Georgia, serif; /* hero, portfolio, editorial */
+  --font-body:    "DM Sans", "Inter", system-ui, sans-serif; /* dashboard body/UI */
+  --font-body-alt:"Inter", system-ui, sans-serif;          /* hero/portfolio body */
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace; /* KPI numbers, $, contacts */
+  --font-mono-alt:"DM Mono", ui-monospace, monospace;        /* timestamps, counters, labels */
+
+  /* ── TYPE SCALE (px) ── */
+  --fs-display:  32px;  /* hero / page hero headline */
+  --fs-h1:       28px;  /* section heading */
+  --fs-h2:       20px;  /* page title / card group title */
+  --fs-h3:       16px;  /* card title */
+  --fs-kpi:      26px;  /* mono KPI value */
+  --fs-body:     14px;  /* base body */
+  --fs-sm:       13px;  /* dense rows, table cells */
+  --fs-xs:       12px;  /* meta */
+  --fs-2xs:      11px;  /* sub-labels */
+  --fs-3xs:      10px;  /* uppercase eyebrows */
+  --fs-micro:    9px;   /* nav section labels, badges */
+
+  /* ── WEIGHTS ── */
+  --fw-light:    300; /* @kind font */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-black:    900; /* @kind font */
+
+  /* ── LINE HEIGHTS ── */
+  --lh-tight:   1.1; /* @kind font */
+  --lh-snug:    1.25; /* @kind font */
+  --lh-body:    1.6; /* @kind font */
+  --lh-loose:   1.75; /* @kind font */
+
+  /* ── TRACKING (letter-spacing) — uppercase labels run WIDE ── */
+  --tr-tight:   0.5px; /* @kind font */
+  --tr-label:   2px;     /* @kind font */
+  --tr-wide:    2.5px;   /* @kind font */
+  --tr-eyebrow: 3px;     /* @kind font */
+}
