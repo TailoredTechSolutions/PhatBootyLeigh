@@ -16,8 +16,10 @@
         "patterns": [
           {
             "group": [
-              "components/core/**",
-              "dashboard/**"
+              "border-glow.js",
+              "components/**",
+              "dashboard/**",
+              "galaxy-bg.js"
             ],
             "message": "Import design-system components from 'index.js', not component internals."
           }
@@ -37,6 +39,74 @@
       {
         "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Cormorant Garamond|Playfair Display|DM Sans|Inter|JetBrains Mono|DM Mono))/i]",
         "message": "Font not provided by the design system. Available: Cormorant Garamond, Playfair Display, DM Sans, Inter, JetBrains Mono, DM Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|name|size|ring|key|ref|className|style|children)$/]",
+        "message": "<Avatar> doesn't accept that prop. Declared props: src, name, size, ring."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg|xl)$/]",
+        "message": "<Avatar> size must be one of 'sm' | 'md' | 'lg' | 'xl'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:tone|dot|solid|children|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: tone, dot, solid, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:gold|rose|success|warning|danger|neutral)$/]",
+        "message": "<Badge> tone must be one of 'gold' | 'rose' | 'success' | 'warning' | 'danger' | 'neutral'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BorderGlow'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|className|edgeSensitivity|glowColor|backgroundColor|borderRadius|glowRadius|glowIntensity|coneSpread|fillOpacity|animated|colors|key|ref|className|style|children)$/]",
+        "message": "<BorderGlow> doesn't accept that prop. Declared props: children, className, edgeSensitivity, glowColor, backgroundColor, borderRadius, glowRadius, glowIntensity, coneSpread, fillOpacity, animated, colors."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|icon|disabled|fullWidth|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, icon, disabled, fullWidth, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost|danger)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|eyebrow|action|padding|hover|children|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: title, eyebrow, action, padding, hover, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GigCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|client|date|venue|fee|status|thumbnail|glow|onClick|key|ref|className|style|children)$/]",
+        "message": "<GigCard> doesn't accept that prop. Declared props: title, client, date, venue, fee, status, thumbnail, glow, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GigCard'] > JSXAttribute[name.name='status'] > Literal[value!=/^(?:confirmed|pending|inquiry|completed)$/]",
+        "message": "<GigCard> status must be one of 'confirmed' | 'pending' | 'inquiry' | 'completed'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KpiCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|prefix|suffix|delta|icon|accent|key|ref|className|style|children)$/]",
+        "message": "<KpiCard> doesn't accept that prop. Declared props: label, value, prefix, suffix, delta, icon, accent."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='KpiCard'] > JSXAttribute[name.name='accent'] > Literal[value!=/^(?:gold|rose|success|neutral)$/]",
+        "message": "<KpiCard> accent must be one of 'gold' | 'rose' | 'success' | 'neutral'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|showPercent|tone|height|key|ref|className|style|children)$/]",
+        "message": "<ProgressBar> doesn't accept that prop. Declared props: value, label, showPercent, tone, height."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressBar'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:gold|rose|success)$/]",
+        "message": "<ProgressBar> tone must be one of 'gold' | 'rose' | 'success'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionTitle'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|rule|align|key|ref|className|style|children)$/]",
+        "message": "<SectionTitle> doesn't accept that prop. Declared props: eyebrow, title, rule, align."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionTitle'] > JSXAttribute[name.name='align'] > Literal[value!=/^(?:left|center)$/]",
+        "message": "<SectionTitle> align must be one of 'left' | 'center'."
       }
     ]
   },
@@ -51,7 +121,35 @@
     }
   ],
   "x-omelette": {
-    "components": {},
+    "components": {
+      "Avatar": {
+        "replaces": []
+      },
+      "Badge": {
+        "replaces": []
+      },
+      "BorderGlow": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "GigCard": {
+        "replaces": []
+      },
+      "KpiCard": {
+        "replaces": []
+      },
+      "ProgressBar": {
+        "replaces": []
+      },
+      "SectionTitle": {
+        "replaces": []
+      }
+    },
     "tokens": [
       "--accent",
       "--accent-rose",
@@ -60,14 +158,22 @@
       "--blur-glass",
       "--border-divider",
       "--border-hair",
+      "--border-radius",
       "--border-soft",
       "--border-strong",
+      "--card-bg",
+      "--color-sensitivity",
+      "--cone-spread",
+      "--cursor-angle",
       "--danger",
       "--danger-text",
       "--dur-fast",
       "--dur-med",
       "--dur-slow",
       "--ease-standard",
+      "--edge-proximity",
+      "--edge-sensitivity",
+      "--fill-opacity",
       "--font-body",
       "--font-body-alt",
       "--font-display",
@@ -97,13 +203,29 @@
       "--gd-400",
       "--gd-500",
       "--glass-bg",
+      "--glow-color",
+      "--glow-color-10",
+      "--glow-color-20",
+      "--glow-color-30",
+      "--glow-color-40",
+      "--glow-color-50",
+      "--glow-color-60",
       "--glow-gold",
+      "--glow-padding",
       "--glow-success",
       "--gold",
       "--gold-lt",
       "--grad-gold",
       "--grad-gold-soft",
       "--grad-rail",
+      "--gradient-base",
+      "--gradient-five",
+      "--gradient-four",
+      "--gradient-one",
+      "--gradient-seven",
+      "--gradient-six",
+      "--gradient-three",
+      "--gradient-two",
       "--ivory",
       "--lh-body",
       "--lh-loose",
@@ -278,7 +400,31 @@
       "--dur-fast": "other",
       "--dur-med": "other",
       "--dur-slow": "other",
-      "--tr-all": "other"
+      "--tr-all": "other",
+      "--edge-proximity": "other",
+      "--cursor-angle": "other",
+      "--edge-sensitivity": "other",
+      "--color-sensitivity": "other",
+      "--border-radius": "radius",
+      "--glow-padding": "spacing",
+      "--cone-spread": "other",
+      "--fill-opacity": "other",
+      "--card-bg": "color",
+      "--glow-color": "color",
+      "--glow-color-60": "color",
+      "--glow-color-50": "color",
+      "--glow-color-40": "color",
+      "--glow-color-30": "color",
+      "--glow-color-20": "color",
+      "--glow-color-10": "color",
+      "--gradient-one": "other",
+      "--gradient-two": "other",
+      "--gradient-three": "other",
+      "--gradient-four": "other",
+      "--gradient-five": "other",
+      "--gradient-six": "other",
+      "--gradient-seven": "other",
+      "--gradient-base": "other"
     },
     "fontFamilies": [
       "Cormorant Garamond",

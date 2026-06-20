@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Host Profile — Meet Leigh" description="About-the-host page: who Leigh is and what she's about. Editable bio, stats, values and an event gallery." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script type="module" src="../../galaxy-bg.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg-app); }
+  </style>
+</helmet>
+
+<a href="../../index.html" style="position:fixed; top:16px; right:16px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+
+<main style="max-width:1080px; margin:0 auto; padding:72px 40px 96px; font-family:var(--font-body); color:var(--text-body);">
+
+  <!-- ───────── HERO ───────── -->
+  <section style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center; margin-bottom:84px;">
+    <div>
+      <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono-alt); font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent-text); margin-bottom:18px;">
+        <span style="width:28px; height:1px; background:var(--grad-gold);"></span>Meet your host
+      </div>
+      <h1 style="margin:0 0 8px; font-family:var(--font-display-alt); font-weight:700; font-size:64px; line-height:0.98; color:var(--text-heading); letter-spacing:0.3px;">Leigh.</h1>
+      <p style="margin:0 0 26px; font-family:var(--font-display); font-weight:500; font-size:26px; font-style:italic; color:var(--gd-300); line-height:1.2;">The voice that holds the room.</p>
+      <p style="margin:0 0 16px; font-size:15.5px; line-height:1.7; color:var(--text-body); max-width:52ch;">Leigh is a professional event host and emcee who turns programs into experiences — galas, product launches, conferences and weddings. She reads a room in seconds, keeps a run sheet on rails, and makes every guest feel like the night was built for them.</p>
+      <p style="margin:0 0 30px; font-size:15.5px; line-height:1.7; color:var(--text-muted); max-width:52ch;">From the first inquiry to the final encore, she hosts the whole arc: warm, precise, and impossible to look away from.</p>
+      <div style="display:flex; gap:12px;">
+        <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="primary" icon="✦" hint-size="130px,38px">Book Leigh</x-import>
+        <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="secondary" hint-size="140px,38px">See the portfolio</x-import>
+      </div>
+    </div>
+
+    <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.BorderGlow" borderRadius="20" glowRadius="48" hint-size="100%,540px" style="width:100%;">
+      <div style="width:100%; height:540px; background:center 22%/cover no-repeat url('../../assets/photos/leigh-portrait.jpeg'); border-radius:inherit;"></div>
+    </x-import>
+  </section>
+
+  <!-- ───────── STATS ───────── -->
+  <section style="display:flex; flex-wrap:wrap; gap:48px; padding:28px 0; border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); margin-bottom:84px;">
+    <div>
+      <div style="font-family:var(--font-mono); font-size:38px; font-weight:600; color:var(--gd-300); line-height:1;">8<span style="font-size:22px; color:var(--gd-400);">+</span></div>
+      <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px;">Years hosting</div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-mono); font-size:38px; font-weight:600; color:var(--gd-300); line-height:1;">200<span style="font-size:22px; color:var(--gd-400);">+</span></div>
+      <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px;">Events hosted</div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-mono); font-size:38px; font-weight:600; color:var(--gd-300); line-height:1;">4</div>
+      <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:8px;">Cities on call</div>
+    </div>
+    <div style="margin-left:auto; align-self:center; max-width:34ch;">
+      <p style="margin:0; font-family:var(--font-display); font-style:italic; font-size:18px; color:var(--text-muted); line-height:1.4;">“She didn't just run the program — she made it unforgettable.”</p>
+    </div>
+  </section>
+
+  <!-- ───────── WHAT SHE'S ABOUT ───────── -->
+  <section style="margin-bottom:84px;">
+    <div style="margin-bottom:32px;">
+      <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono-alt); font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent-text); margin-bottom:10px;">
+        <span style="width:28px; height:1px; background:var(--grad-gold);"></span>What she's about
+      </div>
+      <h2 style="margin:0; font-family:var(--font-display); font-weight:600; font-size:30px; color:var(--text-heading);">Three things, every single time.</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      <article style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); padding:26px;">
+        <div style="font-family:var(--font-display); font-size:30px; color:var(--gd-300); margin-bottom:12px;">01</div>
+        <h3 style="margin:0 0 8px; font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--text-heading);">Presence</h3>
+        <p style="margin:0; font-size:14px; line-height:1.6; color:var(--text-muted);">Calm, magnetic stage presence that anchors a program from the first cue to the last applause.</p>
+      </article>
+      <article style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); padding:26px;">
+        <div style="font-family:var(--font-display); font-size:30px; color:var(--gd-300); margin-bottom:12px;">02</div>
+        <h3 style="margin:0 0 8px; font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--text-heading);">Precision</h3>
+        <p style="margin:0; font-size:14px; line-height:1.6; color:var(--text-muted);">Run sheets, cues and timings handled to the second, so the night never drifts and nobody waits.</p>
+      </article>
+      <article style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); padding:26px;">
+        <div style="font-family:var(--font-display); font-size:30px; color:var(--gd-300); margin-bottom:12px;">03</div>
+        <h3 style="margin:0 0 8px; font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--text-heading);">Warmth</h3>
+        <p style="margin:0; font-size:14px; line-height:1.6; color:var(--text-muted);">Every guest, sponsor and couple treated like the reason the room exists in the first place.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ───────── GALLERY ───────── -->
+  <section style="margin-bottom:80px;">
+    <div style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono-alt); font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent-text); margin-bottom:22px;">
+      <span style="width:28px; height:1px; background:var(--grad-gold);"></span>On stage &amp; on the carpet
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:200px; gap:14px;">
+      <div style="grid-row:span 2; border-radius:var(--r-md); background:center/cover url('../../assets/photos/leigh-gala.jpeg'); border:1px solid var(--border-soft);"></div>
+      <div style="grid-column:span 2; border-radius:var(--r-md); background:center 30%/cover url('../../assets/photos/leigh-veeam.jpeg'); border:1px solid var(--border-soft);"></div>
+      <div style="border-radius:var(--r-md); background:center/cover url('../../assets/photos/leigh-speakerscon.jpeg'); border:1px solid var(--border-soft);"></div>
+      <div style="border-radius:var(--r-md); background:center/cover url('../../assets/photos/event-1271.jpeg'); border:1px solid var(--border-soft);"></div>
+      <div style="border-radius:var(--r-md); background:center/cover url('../../assets/photos/leigh-pifpo.jpeg'); border:1px solid var(--border-soft);"></div>
+      <div style="border-radius:var(--r-md); background:center/cover url('../../assets/photos/event-1276.jpeg'); border:1px solid var(--border-soft);"></div>
+    </div>
+  </section>
+
+  <!-- ───────── CTA ───────── -->
+  <section style="text-align:center; padding:56px 32px; background:var(--surface-card); border:1px solid var(--border-soft); border-radius:var(--r-xl); box-shadow:var(--shadow-card);">
+    <h2 style="margin:0 0 12px; font-family:var(--font-display-alt); font-weight:700; font-size:38px; color:var(--text-heading); line-height:1.05;">Have a night that deserves a host?</h2>
+    <p style="margin:0 auto 26px; font-size:15px; color:var(--text-muted); max-width:46ch; line-height:1.6;">Tell Leigh the date, the room and the feeling you're after — she'll take it from there.</p>
+    <div style="display:flex; gap:12px; justify-content:center;">
+      <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="primary" icon="✦" hint-size="150px,38px">Check her availability</x-import>
+    </div>
+  </section>
+
+</main>
+</x-dc>
+</body>
+</html>

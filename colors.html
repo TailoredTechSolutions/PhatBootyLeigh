@@ -1,0 +1,51 @@
+<!-- @dsCard group="Colors" name="Palette" subtitle="Obsidian · Gold · Rose" viewport="1100x720" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-app); color: var(--text-body); font-family: var(--font-body); padding: 40px; }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--text-heading); margin: 0 0 4px; }
+  .sub { font-family: var(--font-mono-alt); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 36px; }
+  .grp { font-family: var(--font-mono-alt); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); margin: 28px 0 12px; }
+  .row { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 12px; }
+  .sw { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border-hair); background: var(--surface-card); }
+  .chip { height: 76px; }
+  .meta { padding: 9px 11px; }
+  .nm { font-size: 12px; font-weight: 600; color: var(--text-heading); }
+  .hex { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed; top:18px; right:18px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+  <h1>Color</h1>
+  <div class="sub">Obsidian · Gold · Rose</div>
+
+  <div class="grp">Obsidian — surfaces</div>
+  <div class="row" id="ob"></div>
+  <div class="grp">Gold — brand accent</div>
+  <div class="row" id="gd"></div>
+  <div class="grp">Rose — secondary accent</div>
+  <div class="row" id="rs"></div>
+  <div class="grp">Semantic status</div>
+  <div class="row" id="se"></div>
+
+<script>
+  const sets = {
+    ob: [["--ob-950","Obsidian 950"],["--ob-900","Obsidian 900"],["--ob-800","Obsidian 800"],["--ob-700","Obsidian 700"],["--ob-400","Obsidian 400"],["--ob-300","Obsidian 300"],["--ob-200","Obsidian 200"],["--ob-100","Obsidian 100"],["--ob-50","Obsidian 50"]],
+    gd: [["--gd-500","Gold 500"],["--gd-400","Gold 400"],["--gd-300","Gold 300"],["--gd-200","Gold 200"],["--gd-100","Gold 100"],["--gold","Warm Gold"],["--ivory","Ivory"]],
+    rs: [["--rose-600","Rose 600"],["--rose-500","Rose 500"],["--rose-400","Rose 400"],["--rose-200","Rose 200"]],
+    se: [["--success","Success"],["--warning","Warning"],["--danger","Danger"]],
+  };
+  const cs = getComputedStyle(document.documentElement);
+  for (const [id, arr] of Object.entries(sets)) {
+    document.getElementById(id).innerHTML = arr.map(([v, n]) => {
+      const hex = cs.getPropertyValue(v).trim();
+      return `<div class="sw"><div class="chip" style="background:${hex}"></div><div class="meta"><div class="nm">${n}</div><div class="hex">${hex}</div></div></div>`;
+    }).join("");
+  }
+</script>
+  <script type="module" src="../galaxy-bg.js"></script>
+</body>
+</html>

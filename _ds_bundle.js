@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"HostLeighDesignSystem_02e8ee","components":[{"name":"Button","sourcePath":"components/core/Button.jsx"}],"sourceHashes":{"components/core/Button.jsx":"be8e629ca018","dashboard/app.jsx":"5efaa6538c05","dashboard/borderglow.jsx":"53e645b1b5db","dashboard/data.js":"b1135e12eeda","dashboard/domegallery.jsx":"ce692b983acf","dashboard/host.jsx":"5fddc982298f","dashboard/lightfall.jsx":"d10981f9e26a","dashboard/portals.jsx":"24027b356f87","dashboard/ui.jsx":"bd1ba96f514c"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"HostLeighDesignSystem_02e8ee","components":[{"name":"Avatar","sourcePath":"components/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge.jsx"},{"name":"BorderGlow","sourcePath":"components/BorderGlow.jsx"},{"name":"Button","sourcePath":"components/Button.jsx"},{"name":"Card","sourcePath":"components/Card.jsx"},{"name":"GigCard","sourcePath":"components/GigCard.jsx"},{"name":"KpiCard","sourcePath":"components/KpiCard.jsx"},{"name":"ProgressBar","sourcePath":"components/ProgressBar.jsx"},{"name":"SectionTitle","sourcePath":"components/SectionTitle.jsx"}],"sourceHashes":{"border-glow.js":"7972577213b3","components/Avatar.jsx":"154b5a577478","components/Badge.jsx":"4e70703ae530","components/BorderGlow.jsx":"32773fb265c3","components/Button.jsx":"0e7925572a7e","components/Card.jsx":"255ff3004f53","components/GigCard.jsx":"f6730fe293d1","components/KpiCard.jsx":"db0a52eb0e4b","components/ProgressBar.jsx":"80c0ed4f9b0a","components/SectionTitle.jsx":"332bf9b90ccd","dashboard/app.jsx":"5efaa6538c05","dashboard/borderglow.jsx":"53e645b1b5db","dashboard/data.js":"b1135e12eeda","dashboard/domegallery.jsx":"ce692b983acf","dashboard/host.jsx":"8d53516486ec","dashboard/lightfall.jsx":"d10981f9e26a","dashboard/portals.jsx":"24027b356f87","dashboard/ui.jsx":"bd1ba96f514c","galaxy-bg.js":"faacc3fb6387"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -8,14 +8,423 @@ const __ds_scope = {};
 
 (__ds_ns.__errors = __ds_ns.__errors || []);
 
-// components/core/Button.jsx
+// border-glow.js
+try { (() => {
+/* ============================================================
+   HOST LEIGH — BorderGlow initializer (vanilla)
+   Attaches pointer tracking to every `.border-glow-card` so plain
+   HTML (the home page, decks, etc.) gets the gold edge glow with no
+   React. New nodes are picked up automatically via MutationObserver.
+
+   Auto-runs on load. Call window.initBorderGlow(root) to re-scan a
+   subtree. Add `data-glow-animated` to a card for an intro sweep.
+   ============================================================ */
+(function () {
+  function centerOf(el) {
+    const r = el.getBoundingClientRect();
+    return [r.width / 2, r.height / 2];
+  }
+  function attach(card) {
+    if (card.__borderGlow) return;
+    card.__borderGlow = true;
+    card.addEventListener("pointermove", function (e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const [cx, cy] = centerOf(card);
+      const dx = x - cx;
+      const dy = y - cy;
+      let kx = Infinity,
+        ky = Infinity;
+      if (dx !== 0) kx = cx / Math.abs(dx);
+      if (dy !== 0) ky = cy / Math.abs(dy);
+      const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+      let deg = 0;
+      if (!(dx === 0 && dy === 0)) {
+        deg = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+        if (deg < 0) deg += 360;
+      }
+      card.style.setProperty("--edge-proximity", (edge * 100).toFixed(3));
+      card.style.setProperty("--cursor-angle", deg.toFixed(3) + "deg");
+    });
+    if (card.hasAttribute("data-glow-animated")) sweep(card);
+  }
+  function easeOutCubic(x) {
+    return 1 - Math.pow(1 - x, 3);
+  }
+  function easeInCubic(x) {
+    return x * x * x;
+  }
+  function animateValue(o) {
+    const start = o.start || 0,
+      end = o.end == null ? 100 : o.end;
+    const duration = o.duration || 1000,
+      delay = o.delay || 0;
+    const ease = o.ease || easeOutCubic;
+    setTimeout(function () {
+      const t0 = performance.now();
+      (function tick() {
+        const t = Math.min((performance.now() - t0) / duration, 1);
+        o.onUpdate(start + (end - start) * ease(t));
+        if (t < 1) requestAnimationFrame(tick);else if (o.onEnd) o.onEnd();
+      })();
+    }, delay);
+  }
+  function sweep(card) {
+    const a0 = 110,
+      a1 = 465;
+    card.classList.add("sweep-active");
+    card.style.setProperty("--cursor-angle", a0 + "deg");
+    const ang = v => card.style.setProperty("--cursor-angle", (a1 - a0) * (v / 100) + a0 + "deg");
+    animateValue({
+      duration: 500,
+      onUpdate: v => card.style.setProperty("--edge-proximity", v)
+    });
+    animateValue({
+      ease: easeInCubic,
+      duration: 1500,
+      end: 50,
+      onUpdate: ang
+    });
+    animateValue({
+      ease: easeOutCubic,
+      delay: 1500,
+      duration: 2250,
+      start: 50,
+      end: 100,
+      onUpdate: ang
+    });
+    animateValue({
+      ease: easeInCubic,
+      delay: 2500,
+      duration: 1500,
+      start: 100,
+      end: 0,
+      onUpdate: v => card.style.setProperty("--edge-proximity", v),
+      onEnd: () => card.classList.remove("sweep-active")
+    });
+  }
+  function initAll(root) {
+    (root || document).querySelectorAll(".border-glow-card").forEach(attach);
+  }
+  window.initBorderGlow = initAll;
+  function boot() {
+    initAll();
+    new MutationObserver(function (muts) {
+      for (const m of muts) {
+        for (const n of m.addedNodes) {
+          if (n.nodeType !== 1) continue;
+          if (n.classList && n.classList.contains("border-glow-card")) attach(n);
+          if (n.querySelectorAll) n.querySelectorAll(".border-glow-card").forEach(attach);
+        }
+      }
+    }).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+  if (document.readyState !== "loading") boot();else document.addEventListener("DOMContentLoaded", boot);
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "border-glow.js", error: String((e && e.message) || e) }); }
+
+// components/Avatar.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — Avatar
+ * Circular avatar with gold ring. Falls back to serif initials.
+ * sizes: sm 32 · md 40 · lg 56 · xl 80
+ */
+function Avatar({
+  src,
+  name = "",
+  size = "md",
+  ring = true,
+  style,
+  ...rest
+}) {
+  const dims = {
+    sm: 32,
+    md: 40,
+    lg: 56,
+    xl: 80
+  };
+  const d = dims[size] || dims.md;
+  const initials = name.split(" ").map(w => w[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
+  return /*#__PURE__*/React.createElement("div", _extends({
+    title: name,
+    style: {
+      width: `${d}px`,
+      height: `${d}px`,
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: src ? `center/cover url(${src})` : "var(--ob-800)",
+      border: ring ? "2px solid var(--gd-400)" : "1px solid var(--border-soft)",
+      boxShadow: ring ? "var(--glow-gold)" : "none",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "var(--font-display)",
+      fontWeight: 600,
+      fontSize: `${Math.round(d * 0.4)}px`,
+      color: "var(--gd-300)",
+      overflow: "hidden",
+      ...style
+    }
+  }, rest), src ? null : initials || "★");
+}
+Object.assign(__ds_scope, { Avatar });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/Avatar.jsx", error: String((e && e.message) || e) }); }
+
+// components/Badge.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — Badge / StatusPill
+ * Small rounded label. Tones map to the semantic palette.
+ * tone: gold | rose | success | warning | danger | neutral
+ * dot:  render a leading status dot (for live/active states)
+ */
+function Badge({
+  children,
+  tone = "neutral",
+  dot = false,
+  solid = false,
+  style,
+  ...rest
+}) {
+  const tones = {
+    gold: {
+      fg: "var(--gd-300)",
+      bg: "rgba(212,175,55,0.12)",
+      bd: "rgba(212,175,55,0.3)"
+    },
+    rose: {
+      fg: "var(--rose-400)",
+      bg: "rgba(201,69,96,0.12)",
+      bd: "rgba(201,69,96,0.3)"
+    },
+    success: {
+      fg: "var(--success-text)",
+      bg: "rgba(34,197,94,0.12)",
+      bd: "rgba(34,197,94,0.3)"
+    },
+    warning: {
+      fg: "var(--warning-text)",
+      bg: "rgba(245,158,11,0.12)",
+      bd: "rgba(245,158,11,0.3)"
+    },
+    danger: {
+      fg: "var(--danger-text)",
+      bg: "rgba(239,68,68,0.12)",
+      bd: "rgba(239,68,68,0.3)"
+    },
+    neutral: {
+      fg: "var(--ob-200)",
+      bg: "var(--ob-700)",
+      bd: "var(--ob-400)"
+    }
+  };
+  const t = tones[tone] || tones.neutral;
+  return /*#__PURE__*/React.createElement("span", _extends({
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "6px",
+      padding: "3px 9px",
+      borderRadius: "var(--r-pill)",
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-2xs)",
+      fontWeight: 600,
+      letterSpacing: "0.4px",
+      lineHeight: 1,
+      color: solid ? "var(--ob-950)" : t.fg,
+      background: solid ? t.fg : t.bg,
+      border: solid ? "none" : `1px solid ${t.bd}`,
+      whiteSpace: "nowrap",
+      ...style
+    }
+  }, rest), dot ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: "6px",
+      height: "6px",
+      borderRadius: "50%",
+      background: solid ? "var(--ob-950)" : t.fg,
+      boxShadow: tone === "success" ? "var(--glow-success)" : "none"
+    }
+  }) : null, children);
+}
+Object.assign(__ds_scope, { Badge });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/Badge.jsx", error: String((e && e.message) || e) }); }
+
+// components/BorderGlow.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — BorderGlow
+ * A directional gold edge-glow that tracks the pointer. Wrap any
+ * clickable box that opens or expands. Relies on the global
+ * `border-glow-card` CSS (shipped in styles.css), brand-tuned to gold;
+ * override the look per-instance via props.
+ *
+ * Adapted from React Bits "BorderGlow" (JS + CSS variant).
+ */
+function BorderGlow({
+  children,
+  className = "",
+  edgeSensitivity = 30,
+  glowColor,
+  // "H S L" e.g. "46 65 62"; omit to keep brand gold
+  backgroundColor,
+  // omit to inherit --surface-card
+  borderRadius,
+  // px; omit to inherit --r-lg
+  glowRadius = 40,
+  glowIntensity = 1.0,
+  coneSpread = 28,
+  fillOpacity = 0.5,
+  animated = false,
+  colors,
+  // [c1,c2,c3] hex mesh-gradient override
+  style,
+  ...rest
+}) {
+  const ref = React.useRef(null);
+  const handleMove = React.useCallback(e => {
+    const card = ref.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const dx = x - cx;
+    const dy = y - cy;
+    let kx = Infinity,
+      ky = Infinity;
+    if (dx !== 0) kx = cx / Math.abs(dx);
+    if (dy !== 0) ky = cy / Math.abs(dy);
+    const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+    let deg = 0;
+    if (!(dx === 0 && dy === 0)) {
+      deg = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+      if (deg < 0) deg += 360;
+    }
+    card.style.setProperty("--edge-proximity", (edge * 100).toFixed(3));
+    card.style.setProperty("--cursor-angle", deg.toFixed(3) + "deg");
+  }, []);
+  React.useEffect(() => {
+    if (!animated || !ref.current) return;
+    const card = ref.current;
+    const a0 = 110,
+      a1 = 465;
+    const easeOut = x => 1 - Math.pow(1 - x, 3);
+    const easeIn = x => x * x * x;
+    const run = o => {
+      const s = o.start || 0,
+        e = o.end == null ? 100 : o.end;
+      const d = o.duration || 1000,
+        ease = o.ease || easeOut;
+      setTimeout(() => {
+        const t0 = performance.now();
+        const tick = () => {
+          const t = Math.min((performance.now() - t0) / d, 1);
+          o.onUpdate(s + (e - s) * ease(t));
+          if (t < 1) requestAnimationFrame(tick);else if (o.onEnd) o.onEnd();
+        };
+        tick();
+      }, o.delay || 0);
+    };
+    const ang = v => card.style.setProperty("--cursor-angle", (a1 - a0) * (v / 100) + a0 + "deg");
+    card.classList.add("sweep-active");
+    card.style.setProperty("--cursor-angle", a0 + "deg");
+    run({
+      duration: 500,
+      onUpdate: v => card.style.setProperty("--edge-proximity", v)
+    });
+    run({
+      ease: easeIn,
+      duration: 1500,
+      end: 50,
+      onUpdate: ang
+    });
+    run({
+      ease: easeOut,
+      delay: 1500,
+      duration: 2250,
+      start: 50,
+      end: 100,
+      onUpdate: ang
+    });
+    run({
+      ease: easeIn,
+      delay: 2500,
+      duration: 1500,
+      start: 100,
+      end: 0,
+      onUpdate: v => card.style.setProperty("--edge-proximity", v),
+      onEnd: () => card.classList.remove("sweep-active")
+    });
+  }, [animated]);
+
+  // build per-instance overrides only for props that were supplied
+  const vars = {
+    "--edge-sensitivity": edgeSensitivity,
+    "--glow-padding": `${glowRadius}px`,
+    "--cone-spread": coneSpread,
+    "--fill-opacity": fillOpacity
+  };
+  if (backgroundColor) vars["--card-bg"] = backgroundColor;
+  if (borderRadius != null) vars["--border-radius"] = `${borderRadius}px`;
+  if (glowColor) {
+    const m = glowColor.match(/([\d.]+)\s+([\d.]+)%?\s+([\d.]+)%?/);
+    if (m) {
+      const base = `${m[1]}deg ${m[2]}% ${m[3]}%`;
+      const ops = [100, 60, 50, 40, 30, 20, 10];
+      const keys = ["", "-60", "-50", "-40", "-30", "-20", "-10"];
+      ops.forEach((o, i) => {
+        vars[`--glow-color${keys[i]}`] = `hsl(${base} / ${Math.min(o * glowIntensity, 100)}%)`;
+      });
+    }
+  }
+  if (colors && colors.length) {
+    const POS = ["80% 55%", "69% 34%", "8% 6%", "41% 38%", "86% 85%", "82% 18%", "51% 4%"];
+    const KEYS = ["one", "two", "three", "four", "five", "six", "seven"];
+    const MAP = [0, 1, 2, 0, 1, 2, 1];
+    KEYS.forEach((k, i) => {
+      const c = colors[Math.min(MAP[i], colors.length - 1)];
+      vars[`--gradient-${k}`] = `radial-gradient(at ${POS[i]}, ${c} 0px, transparent 50%)`;
+    });
+    vars["--gradient-base"] = `linear-gradient(${colors[0]} 0 100%)`;
+  }
+  return /*#__PURE__*/React.createElement("div", _extends({
+    ref: ref,
+    onPointerMove: handleMove,
+    className: `border-glow-card ${className}`.trim(),
+    style: {
+      background: "var(--card-bg)",
+      border: "1px solid var(--border-hair)",
+      boxShadow: "var(--shadow-card)",
+      ...vars,
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("span", {
+    className: "edge-light"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "border-glow-inner"
+  }, children));
+}
+Object.assign(__ds_scope, { BorderGlow });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/BorderGlow.jsx", error: String((e && e.message) || e) }); }
+
+// components/Button.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /**
  * Host Leigh — Button
- * Gold-forward button system for a dark luxury UI.
- * Variants: primary (solid gold), secondary (gold hairline outline),
- * ghost (no border), danger (red outline). Sizes: sm | md.
+ * Gold-forward buttons for a dark luxury UI.
+ * Variants: primary (solid gold) · secondary (gold hairline) · ghost · danger
+ * Sizes: sm | md
  */
 function Button({
   children,
@@ -28,7 +437,6 @@ function Button({
   ...rest
 }) {
   const [hover, setHover] = React.useState(false);
-  const [active, setActive] = React.useState(false);
   const sizes = {
     sm: {
       padding: "5px 10px",
@@ -54,7 +462,7 @@ function Button({
     },
     secondary: {
       base: {
-        background: "none",
+        background: "transparent",
         border: "1px solid var(--border-soft)",
         color: "var(--ob-100)",
         fontWeight: 500
@@ -67,68 +475,560 @@ function Button({
     },
     ghost: {
       base: {
-        background: "none",
+        background: "transparent",
         border: "1px solid transparent",
         color: "var(--ob-200)",
         fontWeight: 500
       },
       hover: {
-        background: "rgba(212,175,55,0.06)",
+        background: "var(--ob-700)",
         color: "var(--ob-50)"
       }
     },
     danger: {
       base: {
-        background: "none",
-        border: "1px solid var(--danger)",
+        background: "transparent",
+        border: "1px solid rgba(239,68,68,0.4)",
         color: "var(--danger-text)",
-        fontWeight: 600
+        fontWeight: 500
       },
       hover: {
-        background: "rgba(239,68,68,0.10)",
+        background: "rgba(239,68,68,0.12)",
         borderColor: "var(--danger)"
       }
     }
   };
-  const pal = palettes[variant] || palettes.secondary;
-  const composed = {
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "8px",
-    borderRadius: "var(--r-sm)",
-    fontFamily: "var(--font-body)",
-    lineHeight: 1.2,
-    cursor: disabled ? "not-allowed" : "pointer",
-    transition: "var(--tr-all)",
-    width: fullWidth ? "100%" : undefined,
-    opacity: disabled ? 0.4 : 1,
-    transform: active && !disabled ? "translateY(1px)" : "none",
-    ...sizes[size],
-    ...pal.base,
-    ...(hover && !disabled ? pal.hover : null),
-    ...style
-  };
+  const p = palettes[variant] || palettes.secondary;
   return /*#__PURE__*/React.createElement("button", _extends({
-    type: "button",
     disabled: disabled,
-    style: composed,
     onMouseEnter: () => setHover(true),
-    onMouseLeave: () => {
-      setHover(false);
-      setActive(false);
-    },
-    onMouseDown: () => setActive(true),
-    onMouseUp: () => setActive(false)
+    onMouseLeave: () => setHover(false),
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "7px",
+      width: fullWidth ? "100%" : "auto",
+      borderRadius: "var(--r-sm)",
+      fontFamily: "var(--font-body)",
+      letterSpacing: "0.3px",
+      cursor: disabled ? "not-allowed" : "pointer",
+      opacity: disabled ? 0.45 : 1,
+      transition: "var(--tr-all)",
+      whiteSpace: "nowrap",
+      ...sizes[size],
+      ...p.base,
+      ...(hover && !disabled ? p.hover : null),
+      ...style
+    }
   }, rest), icon ? /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: "1.1em",
-      lineHeight: 1
+      display: "inline-flex",
+      fontSize: "1.1em"
     }
   }, icon) : null, children);
 }
 Object.assign(__ds_scope, { Button });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "components/core/Button.jsx", error: String((e && e.message) || e) }); }
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/Button.jsx", error: String((e && e.message) || e) }); }
+
+// components/Card.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — Card
+ * The base surface: obsidian fill, gold hairline border, deep shadow.
+ * Optional title row with eyebrow + action slot. Set `hover` for lift.
+ */
+function Card({
+  children,
+  title,
+  eyebrow,
+  action,
+  padding,
+  hover = false,
+  style,
+  ...rest
+}) {
+  const [h, setH] = React.useState(false);
+  const pad = padding != null ? padding : "var(--sp-8)";
+  return /*#__PURE__*/React.createElement("section", _extends({
+    onMouseEnter: () => hover && setH(true),
+    onMouseLeave: () => hover && setH(false),
+    style: {
+      background: "var(--surface-card)",
+      border: `1px solid ${h ? "var(--border-strong)" : "var(--border-hair)"}`,
+      borderRadius: "var(--r-lg)",
+      boxShadow: "var(--shadow-card)",
+      padding: pad,
+      transition: "var(--tr-all)",
+      transform: h ? "translateY(-2px)" : "none",
+      ...style
+    }
+  }, rest), (title || eyebrow || action) && /*#__PURE__*/React.createElement("header", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      gap: "12px",
+      marginBottom: "var(--sp-7)"
+    }
+  }, /*#__PURE__*/React.createElement("div", null, eyebrow ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-3xs)",
+      letterSpacing: "var(--tr-label)",
+      textTransform: "uppercase",
+      color: "var(--accent-text)",
+      marginBottom: "4px"
+    }
+  }, eyebrow) : null, title ? /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: 0,
+      fontFamily: "var(--font-display)",
+      fontSize: "var(--fs-h3)",
+      fontWeight: 600,
+      color: "var(--text-heading)",
+      lineHeight: 1.2
+    }
+  }, title) : null), action ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      flexShrink: 0
+    }
+  }, action) : null), children);
+}
+Object.assign(__ds_scope, { Card });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/Card.jsx", error: String((e && e.message) || e) }); }
+
+// components/GigCard.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — GigCard
+ * Signature booking card for an event/gig: title, client, date·venue,
+ * fee, and a status pill. Clickable, so it carries the gold BorderGlow
+ * edge effect by default (set glow={false} to disable). Lifts on hover.
+ */
+function GigCard({
+  title,
+  client,
+  date,
+  venue,
+  fee,
+  status = "confirmed",
+  thumbnail,
+  onClick,
+  glow = true,
+  style,
+  ...rest
+}) {
+  const [h, setH] = React.useState(false);
+  const cardRef = React.useRef(null);
+  const handleMove = React.useCallback(e => {
+    const card = cardRef.current;
+    if (!card || !glow) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left,
+      y = e.clientY - rect.top;
+    const cx = rect.width / 2,
+      cy = rect.height / 2;
+    const dx = x - cx,
+      dy = y - cy;
+    let kx = Infinity,
+      ky = Infinity;
+    if (dx !== 0) kx = cx / Math.abs(dx);
+    if (dy !== 0) ky = cy / Math.abs(dy);
+    const edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+    let deg = 0;
+    if (!(dx === 0 && dy === 0)) {
+      deg = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
+      if (deg < 0) deg += 360;
+    }
+    card.style.setProperty("--edge-proximity", (edge * 100).toFixed(3));
+    card.style.setProperty("--cursor-angle", deg.toFixed(3) + "deg");
+  }, [glow]);
+  const statusMap = {
+    confirmed: {
+      fg: "var(--success-text)",
+      bg: "rgba(34,197,94,0.12)",
+      bd: "rgba(34,197,94,0.3)",
+      label: "Confirmed"
+    },
+    pending: {
+      fg: "var(--warning-text)",
+      bg: "rgba(245,158,11,0.12)",
+      bd: "rgba(245,158,11,0.3)",
+      label: "Pending"
+    },
+    inquiry: {
+      fg: "var(--accent-text)",
+      bg: "rgba(212,175,55,0.12)",
+      bd: "rgba(212,175,55,0.3)",
+      label: "Inquiry"
+    },
+    completed: {
+      fg: "var(--ob-200)",
+      bg: "var(--ob-700)",
+      bd: "var(--ob-400)",
+      label: "Completed"
+    }
+  };
+  const s = statusMap[status] || statusMap.confirmed;
+  return /*#__PURE__*/React.createElement("article", _extends({
+    ref: cardRef,
+    onClick: onClick,
+    onMouseEnter: () => setH(true),
+    onMouseLeave: () => setH(false),
+    onPointerMove: handleMove,
+    className: glow ? "border-glow-card" : undefined,
+    style: {
+      background: "var(--surface-card)",
+      border: `1px solid ${h ? "var(--border-strong)" : "var(--border-hair)"}`,
+      borderRadius: "var(--r-md)",
+      boxShadow: h ? "var(--shadow-pop)" : "none",
+      transform: h ? "translateY(-2px)" : "none",
+      transition: "var(--tr-all)",
+      cursor: onClick ? "pointer" : "default",
+      "--glow-padding": "26px",
+      ...style
+    }
+  }, rest), glow ? /*#__PURE__*/React.createElement("span", {
+    className: "edge-light"
+  }) : null, /*#__PURE__*/React.createElement("div", {
+    className: glow ? "border-glow-inner" : undefined,
+    style: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "14px",
+      padding: "14px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flexShrink: 0,
+      width: "56px",
+      height: "56px",
+      borderRadius: "var(--r-sm)",
+      overflow: "hidden",
+      background: thumbnail ? `center/cover url(${thumbnail})` : "var(--ob-800)",
+      border: "1px solid var(--border-soft)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "var(--font-display)",
+      fontSize: "22px",
+      color: "var(--gd-300)"
+    }
+  }, thumbnail ? null : title ? title.charAt(0) : "★"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      gap: "10px"
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: 0,
+      fontFamily: "var(--font-display)",
+      fontSize: "var(--fs-h3)",
+      fontWeight: 600,
+      color: "var(--text-heading)",
+      lineHeight: 1.2,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, title), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      padding: "3px 9px",
+      borderRadius: "var(--r-pill)",
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-2xs)",
+      fontWeight: 600,
+      color: s.fg,
+      background: s.bg,
+      border: `1px solid ${s.bd}`
+    }
+  }, s.label)), client ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-xs)",
+      color: "var(--text-muted)",
+      marginTop: "3px"
+    }
+  }, client) : null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: "14px",
+      marginTop: "10px"
+    }
+  }, date ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-xs)",
+      color: "var(--text-faint)"
+    }
+  }, date) : null, venue ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-xs)",
+      color: "var(--text-faint)",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, venue) : null, fee ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: "auto",
+      fontFamily: "var(--font-mono)",
+      fontSize: "var(--fs-sm)",
+      fontWeight: 600,
+      color: "var(--gd-300)"
+    }
+  }, fee) : null))));
+}
+Object.assign(__ds_scope, { GigCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/GigCard.jsx", error: String((e && e.message) || e) }); }
+
+// components/KpiCard.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — KpiCard
+ * Headline metric card. Mono numeral, uppercase label, optional delta.
+ * delta > 0 renders gold/up, < 0 renders rose/down.
+ */
+function KpiCard({
+  label,
+  value,
+  prefix,
+  suffix,
+  delta,
+  icon,
+  accent = "gold",
+  style,
+  ...rest
+}) {
+  const accents = {
+    gold: "var(--gd-300)",
+    rose: "var(--rose-400)",
+    success: "var(--success-text)",
+    neutral: "var(--ob-50)"
+  };
+  const valColor = accents[accent] || accents.gold;
+  const up = typeof delta === "number" && delta >= 0;
+  return /*#__PURE__*/React.createElement("section", _extends({
+    style: {
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-hair)",
+      borderRadius: "var(--r-lg)",
+      boxShadow: "var(--shadow-card)",
+      padding: "var(--sp-8)",
+      position: "relative",
+      overflow: "hidden",
+      ...style
+    }
+  }, rest), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      height: "2px",
+      background: "var(--grad-gold)",
+      opacity: 0.5
+    }
+  }), /*#__PURE__*/React.createElement("header", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: "12px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-3xs)",
+      letterSpacing: "var(--tr-label)",
+      textTransform: "uppercase",
+      color: "var(--text-muted)"
+    }
+  }, label), icon ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--text-faint)",
+      fontSize: "14px"
+    }
+  }, icon) : null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: "6px"
+    }
+  }, prefix ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: "16px",
+      color: valColor,
+      opacity: 0.7
+    }
+  }, prefix) : null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: "var(--fs-kpi)",
+      fontWeight: 600,
+      color: valColor,
+      lineHeight: 1
+    }
+  }, value), suffix ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: "13px",
+      color: "var(--text-faint)"
+    }
+  }, suffix) : null), typeof delta === "number" ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: "8px",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-xs)",
+      fontWeight: 500,
+      color: up ? "var(--success-text)" : "var(--rose-400)"
+    }
+  }, up ? "▲" : "▼", " ", Math.abs(delta), "%") : null);
+}
+Object.assign(__ds_scope, { KpiCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/KpiCard.jsx", error: String((e && e.message) || e) }); }
+
+// components/ProgressBar.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — ProgressBar
+ * Slim gold progress meter. Pass value 0–100. Optional label + percent.
+ */
+function ProgressBar({
+  value = 0,
+  label,
+  showPercent = false,
+  tone = "gold",
+  height = 6,
+  style,
+  ...rest
+}) {
+  const v = Math.max(0, Math.min(100, value));
+  const fills = {
+    gold: "var(--grad-gold)",
+    rose: "linear-gradient(90deg, var(--rose-500), var(--rose-200))",
+    success: "linear-gradient(90deg, var(--success), var(--success-text))"
+  };
+  return /*#__PURE__*/React.createElement("div", _extends({
+    style: {
+      ...style
+    }
+  }, rest), (label || showPercent) && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      marginBottom: "7px"
+    }
+  }, label ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-body)",
+      fontSize: "var(--fs-xs)",
+      color: "var(--text-muted)"
+    }
+  }, label) : /*#__PURE__*/React.createElement("span", null), showPercent ? /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-xs)",
+      color: "var(--accent-text)",
+      fontWeight: 500
+    }
+  }, Math.round(v), "%") : null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: `${height}px`,
+      borderRadius: "var(--r-full)",
+      background: "var(--ob-700)",
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: `${v}%`,
+      height: "100%",
+      borderRadius: "var(--r-full)",
+      background: fills[tone] || fills.gold,
+      transition: "width var(--dur-slow) var(--ease-standard)"
+    }
+  })));
+}
+Object.assign(__ds_scope, { ProgressBar });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/ProgressBar.jsx", error: String((e && e.message) || e) }); }
+
+// components/SectionTitle.jsx
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+/**
+ * Host Leigh — SectionTitle
+ * Editorial section header: uppercase mono eyebrow over a serif title,
+ * with an optional gold rule that extends to fill the row.
+ */
+function SectionTitle({
+  eyebrow,
+  title,
+  rule = false,
+  align = "left",
+  style,
+  ...rest
+}) {
+  return /*#__PURE__*/React.createElement("div", _extends({
+    style: {
+      textAlign: align,
+      ...style
+    }
+  }, rest), eyebrow ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: "10px",
+      justifyContent: align === "center" ? "center" : "flex-start",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: "var(--fs-3xs)",
+      letterSpacing: "var(--tr-eyebrow)",
+      textTransform: "uppercase",
+      color: "var(--accent-text)",
+      marginBottom: "8px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: "24px",
+      height: "1px",
+      background: "var(--grad-gold)"
+    }
+  }), eyebrow) : null, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontFamily: "var(--font-display)",
+      fontSize: "var(--fs-h1)",
+      fontWeight: 600,
+      color: "var(--text-heading)",
+      lineHeight: 1.15,
+      letterSpacing: "0.2px"
+    }
+  }, title), rule ? /*#__PURE__*/React.createElement("div", {
+    style: {
+      height: "1px",
+      background: "var(--border-soft)",
+      marginTop: "14px"
+    }
+  }) : null);
+}
+Object.assign(__ds_scope, { SectionTitle });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "components/SectionTitle.jsx", error: String((e && e.message) || e) }); }
 
 // dashboard/app.jsx
 try { (() => {
@@ -1855,7 +2755,7 @@ function Overview({
     style: {
       position: "absolute",
       inset: 0,
-      background: "linear-gradient(95deg, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.55) 48%, rgba(10,10,20,0.12) 100%)",
+      background: "linear-gradient(95deg, rgba(22,18,33,0.88) 0%, rgba(22,18,33,0.5) 48%, rgba(22,18,33,0.1) 100%)",
       pointerEvents: "none"
     }
   }), /*#__PURE__*/React.createElement("div", {
@@ -3097,7 +3997,7 @@ function PortfolioView() {
     fit: 0.62,
     minRadius: 420,
     grayscale: false,
-    overlayBlurColor: "#0a0a14",
+    overlayBlurColor: "#161221",
     imageBorderRadius: "14px",
     openedImageBorderRadius: "16px",
     openedImageWidth: "340px",
@@ -4879,6 +5779,301 @@ Object.assign(window, {
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/ui.jsx", error: String((e && e.message) || e) }); }
 
+// galaxy-bg.js
+try { (() => {
+/* ============================================================
+   HOST LEIGH — Galaxy background (vanilla, auto-inject)
+   Brand-tuned port of React Bits "Galaxy" (WebGL via ogl).
+   Drops a fixed, full-viewport starfield BEHIND all page content
+   (z-index:-1, pointer-events:none — never blocks clicks).
+
+   Just include once per page:
+     <script type="module" src="<path>/galaxy-bg.js"></script>
+
+   Defaults are gold-hued and deliberately subtle so text stays
+   readable. Override per page before this loads:
+     window.GALAXY_OPTS = { density: 1.1, glowIntensity: 0.35, ... };
+   ============================================================ */
+// ogl is loaded at runtime via dynamic import (native browser ESM), so the
+// design-system bundler never tries to resolve it as an npm package.
+const OGL_URL = "https://esm.sh/ogl@1.0.11";
+const vertex = `
+attribute vec2 uv;
+attribute vec2 position;
+varying vec2 vUv;
+void main() { vUv = uv; gl_Position = vec4(position, 0, 1); }
+`;
+const fragment = `
+precision highp float;
+uniform float uTime;
+uniform vec3 uResolution;
+uniform vec2 uFocal;
+uniform vec2 uRotation;
+uniform float uStarSpeed;
+uniform float uDensity;
+uniform float uHueShift;
+uniform float uSpeed;
+uniform float uGlowIntensity;
+uniform float uSaturation;
+uniform float uTwinkleIntensity;
+uniform float uRotationSpeed;
+uniform float uAutoCenterRepulsion;
+uniform bool uTransparent;
+varying vec2 vUv;
+
+#define NUM_LAYER 4.0
+#define STAR_COLOR_CUTOFF 0.2
+#define MAT45 mat2(0.7071, -0.7071, 0.7071, 0.7071)
+#define PERIOD 3.0
+
+float Hash21(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
+float tri(float x) { return abs(fract(x) * 2.0 - 1.0); }
+float tris(float x) { float t = fract(x); return 1.0 - smoothstep(0.0, 1.0, abs(2.0 * t - 1.0)); }
+float trisn(float x) { float t = fract(x); return 2.0 * (1.0 - smoothstep(0.0, 1.0, abs(2.0 * t - 1.0))) - 1.0; }
+vec3 hsv2rgb(vec3 c) {
+  vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+  vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+  return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+float Star(vec2 uv, float flare) {
+  float d = length(uv);
+  float m = (0.05 * uGlowIntensity) / d;
+  float rays = smoothstep(0.0, 1.0, 1.0 - abs(uv.x * uv.y * 1000.0));
+  m += rays * flare * uGlowIntensity;
+  uv *= MAT45;
+  rays = smoothstep(0.0, 1.0, 1.0 - abs(uv.x * uv.y * 1000.0));
+  m += rays * 0.3 * flare * uGlowIntensity;
+  m *= smoothstep(1.0, 0.2, d);
+  return m;
+}
+vec3 StarLayer(vec2 uv) {
+  vec3 col = vec3(0.0);
+  vec2 gv = fract(uv) - 0.5;
+  vec2 id = floor(uv);
+  for (int y = -1; y <= 1; y++) {
+    for (int x = -1; x <= 1; x++) {
+      vec2 offset = vec2(float(x), float(y));
+      vec2 si = id + vec2(float(x), float(y));
+      float seed = Hash21(si);
+      float size = fract(seed * 345.32);
+      float glossLocal = tri(uStarSpeed / (PERIOD * seed + 1.0));
+      float flareSize = smoothstep(0.9, 1.0, size) * glossLocal;
+      float red = smoothstep(STAR_COLOR_CUTOFF, 1.0, Hash21(si + 1.0)) + STAR_COLOR_CUTOFF;
+      float blu = smoothstep(STAR_COLOR_CUTOFF, 1.0, Hash21(si + 3.0)) + STAR_COLOR_CUTOFF;
+      float grn = min(red, blu) * seed;
+      vec3 base = vec3(red, grn, blu);
+      float hue = atan(base.g - base.r, base.b - base.r) / (2.0 * 3.14159) + 0.5;
+      hue = fract(hue + uHueShift / 360.0);
+      float sat = length(base - vec3(dot(base, vec3(0.299, 0.587, 0.114)))) * uSaturation;
+      float val = max(max(base.r, base.g), base.b);
+      base = hsv2rgb(vec3(hue, sat, val));
+      vec2 pad = vec2(tris(seed * 34.0 + uTime * uSpeed / 10.0), tris(seed * 38.0 + uTime * uSpeed / 30.0)) - 0.5;
+      float star = Star(gv - offset - pad, flareSize);
+      vec3 color = base;
+      float twinkle = trisn(uTime * uSpeed + seed * 6.2831) * 0.5 + 1.0;
+      twinkle = mix(1.0, twinkle, uTwinkleIntensity);
+      star *= twinkle;
+      col += star * size * color;
+    }
+  }
+  return col;
+}
+void main() {
+  vec2 focalPx = uFocal * uResolution.xy;
+  vec2 uv = (vUv * uResolution.xy - focalPx) / uResolution.y;
+  if (uAutoCenterRepulsion > 0.0) {
+    vec2 centerUV = vec2(0.0, 0.0);
+    float centerDist = length(uv - centerUV);
+    vec2 repulsion = normalize(uv - centerUV) * (uAutoCenterRepulsion / (centerDist + 0.1));
+    uv += repulsion * 0.05;
+  }
+  float autoRotAngle = uTime * uRotationSpeed;
+  mat2 autoRot = mat2(cos(autoRotAngle), -sin(autoRotAngle), sin(autoRotAngle), cos(autoRotAngle));
+  uv = autoRot * uv;
+  uv = mat2(uRotation.x, -uRotation.y, uRotation.y, uRotation.x) * uv;
+  vec3 col = vec3(0.0);
+  for (float i = 0.0; i < 1.0; i += 1.0 / NUM_LAYER) {
+    float depth = fract(i + uStarSpeed * uSpeed);
+    float scale = mix(20.0 * uDensity, 0.5 * uDensity, depth);
+    float fade = depth * smoothstep(1.0, 0.9, depth);
+    col += StarLayer(uv * scale + i * 453.32) * fade;
+  }
+  if (uTransparent) {
+    float alpha = length(col);
+    alpha = smoothstep(0.0, 0.3, alpha);
+    alpha = min(alpha, 1.0);
+    gl_FragColor = vec4(col, alpha);
+  } else {
+    gl_FragColor = vec4(col, 1.0);
+  }
+}
+`;
+
+// Brand defaults — subtle gold starfield. Override via window.GALAXY_OPTS.
+const DEFAULTS = {
+  focal: [0.5, 0.5],
+  rotation: [1.0, 0.0],
+  starSpeed: 0.32,
+  density: 1.1,
+  hueShift: 42,
+  // gold
+  speed: 0.8,
+  glowIntensity: 0.5,
+  saturation: 0.5,
+  twinkleIntensity: 0.6,
+  rotationSpeed: 0.04,
+  autoCenterRepulsion: 0,
+  transparent: true
+};
+async function mount() {
+  if (document.getElementById("galaxy-bg")) return;
+  const opts = Object.assign({}, DEFAULTS, window.GALAXY_OPTS || {});
+  let Renderer, Program, Mesh, Color, Triangle;
+  try {
+    ({
+      Renderer,
+      Program,
+      Mesh,
+      Color,
+      Triangle
+    } = await import(/* @vite-ignore */OGL_URL));
+  } catch (e) {
+    console.warn("galaxy-bg: failed to load ogl —", e);
+    return;
+  }
+  const ctn = document.createElement("div");
+  ctn.id = "galaxy-bg";
+  ctn.setAttribute("aria-hidden", "true");
+  Object.assign(ctn.style, {
+    position: "fixed",
+    inset: "0",
+    zIndex: "-1",
+    pointerEvents: "none",
+    width: "100%",
+    height: "100%"
+  });
+  document.body.appendChild(ctn);
+  let renderer;
+  try {
+    renderer = new Renderer({
+      alpha: true,
+      premultipliedAlpha: false
+    });
+  } catch (e) {
+    console.warn("galaxy-bg: WebGL unavailable —", e);
+    ctn.remove();
+    return;
+  }
+  const gl = renderer.gl;
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+  gl.clearColor(0, 0, 0, 0);
+  Object.assign(gl.canvas.style, {
+    width: "100%",
+    height: "100%",
+    display: "block"
+  });
+  let program;
+  function resize() {
+    renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+    if (program) {
+      program.uniforms.uResolution.value = new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
+    }
+  }
+  window.addEventListener("resize", resize, false);
+  const geometry = new Triangle(gl);
+  program = new Program(gl, {
+    vertex,
+    fragment,
+    uniforms: {
+      uTime: {
+        value: 0
+      },
+      uResolution: {
+        value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+      },
+      uFocal: {
+        value: new Float32Array(opts.focal)
+      },
+      uRotation: {
+        value: new Float32Array(opts.rotation)
+      },
+      uStarSpeed: {
+        value: opts.starSpeed
+      },
+      uDensity: {
+        value: opts.density
+      },
+      uHueShift: {
+        value: opts.hueShift
+      },
+      uSpeed: {
+        value: opts.speed
+      },
+      uGlowIntensity: {
+        value: opts.glowIntensity
+      },
+      uSaturation: {
+        value: opts.saturation
+      },
+      uTwinkleIntensity: {
+        value: opts.twinkleIntensity
+      },
+      uRotationSpeed: {
+        value: opts.rotationSpeed
+      },
+      uAutoCenterRepulsion: {
+        value: opts.autoCenterRepulsion
+      },
+      uTransparent: {
+        value: opts.transparent
+      }
+    }
+  });
+  resize();
+  const mesh = new Mesh(gl, {
+    geometry,
+    program
+  });
+  ctn.appendChild(gl.canvas);
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let raf;
+  function update(t) {
+    raf = requestAnimationFrame(update);
+    if (!reduce) {
+      program.uniforms.uTime.value = t * 0.001;
+      program.uniforms.uStarSpeed.value = t * 0.001 * opts.starSpeed / 10.0;
+    }
+    renderer.render({
+      scene: mesh
+    });
+  }
+  raf = requestAnimationFrame(update);
+
+  // Pause when tab hidden to save GPU.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(raf);else raf = requestAnimationFrame(update);
+  });
+}
+if (document.readyState !== "loading") mount();else document.addEventListener("DOMContentLoaded", mount);
+})(); } catch (e) { __ds_ns.__errors.push({ path: "galaxy-bg.js", error: String((e && e.message) || e) }); }
+
+__ds_ns.Avatar = __ds_scope.Avatar;
+
+__ds_ns.Badge = __ds_scope.Badge;
+
+__ds_ns.BorderGlow = __ds_scope.BorderGlow;
+
 __ds_ns.Button = __ds_scope.Button;
+
+__ds_ns.Card = __ds_scope.Card;
+
+__ds_ns.GigCard = __ds_scope.GigCard;
+
+__ds_ns.KpiCard = __ds_scope.KpiCard;
+
+__ds_ns.ProgressBar = __ds_scope.ProgressBar;
+
+__ds_ns.SectionTitle = __ds_scope.SectionTitle;
 
 })();

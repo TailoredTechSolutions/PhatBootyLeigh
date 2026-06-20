@@ -11,17 +11,17 @@
   --font-mono-alt:"DM Mono", ui-monospace, monospace;        /* timestamps, counters, labels */
 
   /* ── TYPE SCALE (px) ── */
-  --fs-display:  32px;  /* hero / page hero headline */
-  --fs-h1:       28px;  /* section heading */
-  --fs-h2:       20px;  /* page title / card group title */
-  --fs-h3:       16px;  /* card title */
-  --fs-kpi:      26px;  /* mono KPI value */
-  --fs-body:     14px;  /* base body */
-  --fs-sm:       13px;  /* dense rows, table cells */
-  --fs-xs:       12px;  /* meta */
-  --fs-2xs:      11px;  /* sub-labels */
-  --fs-3xs:      10px;  /* uppercase eyebrows */
-  --fs-micro:    9px;   /* nav section labels, badges */
+  --fs-display:  34px;  /* hero / page hero headline */
+  --fs-h1:       30px;  /* section heading */
+  --fs-h2:       22px;  /* page title / card group title */
+  --fs-h3:       18px;  /* card title */
+  --fs-kpi:      28px;  /* mono KPI value */
+  --fs-body:     16px;  /* base body */
+  --fs-sm:       15px;  /* dense rows, table cells */
+  --fs-xs:       13px;  /* meta */
+  --fs-2xs:      12px;  /* sub-labels */
+  --fs-3xs:      11px;  /* uppercase eyebrows */
+  --fs-micro:    10px;   /* nav section labels, badges */
 
   /* ── WEIGHTS ── */
   --fw-light:    300; /* @kind font */

@@ -1,0 +1,112 @@
+<!-- @dsCard group="Components" name="Component Library" subtitle="Buttons · Badges · Cards · KPIs · Gigs" viewport="1180x980" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-app); color: var(--text-body); font-family: var(--font-body); padding: 40px; }
+  .sec { font-family: var(--font-mono-alt); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-text); margin: 34px 0 16px; display:flex;align-items:center;gap:10px;}
+  .sec:first-of-type{margin-top:0;}
+  .sec::after{content:"";flex:1;height:1px;background:var(--border-divider);}
+  .rowflex { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(260px,1fr)); gap: 16px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+</style>
+</head>
+<body>
+<a href="../index.html" style="position:fixed; top:18px; right:18px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<script>
+  const { Button, Badge, Card, KpiCard, ProgressBar, GigCard, Avatar, SectionTitle, BorderGlow } = window.HostLeighDesignSystem_02e8ee;
+  const e = React.createElement;
+  const sec = (t) => e("div", { className: "sec" }, t);
+
+  function Demo() {
+    return e(React.Fragment, null,
+      sec("Buttons"),
+      e("div", { className: "rowflex" },
+        e(Button, { variant: "primary" }, "Book Leigh"),
+        e(Button, { variant: "secondary" }, "View contract"),
+        e(Button, { variant: "ghost" }, "Cancel"),
+        e(Button, { variant: "danger" }, "Decline"),
+        e(Button, { variant: "primary", icon: "✦" }, "New gig"),
+        e(Button, { variant: "secondary", size: "sm" }, "Small"),
+      ),
+
+      sec("Badges & status pills"),
+      e("div", { className: "rowflex" },
+        e(Badge, { tone: "gold" }, "VIP"),
+        e(Badge, { tone: "success", dot: true }, "Live now"),
+        e(Badge, { tone: "warning" }, "Pending"),
+        e(Badge, { tone: "rose" }, "Sold out"),
+        e(Badge, { tone: "danger" }, "Cancelled"),
+        e(Badge, { tone: "neutral" }, "Draft"),
+        e(Badge, { tone: "gold", solid: true }, "Featured"),
+      ),
+
+      sec("KPI cards"),
+      e("div", { className: "grid4" },
+        e(KpiCard, { label: "Booked revenue", value: "24,800", prefix: "$", delta: 18, accent: "gold" }),
+        e(KpiCard, { label: "Gigs this month", value: "12", delta: 9, accent: "neutral" }),
+        e(KpiCard, { label: "Avg. fee", value: "2,066", prefix: "$", delta: -4, accent: "rose" }),
+        e(KpiCard, { label: "Repeat clients", value: "73", suffix: "%", delta: 6, accent: "success" }),
+      ),
+
+      sec("Cards & progress"),
+      e("div", { className: "grid2" },
+        e(Card, { eyebrow: "This quarter", title: "Tour readiness" },
+          e(ProgressBar, { label: "Contracts signed", value: 80, showPercent: true, style: { marginBottom: "14px" } }),
+          e(ProgressBar, { label: "Deposits cleared", value: 55, showPercent: true, tone: "rose", style: { marginBottom: "14px" } }),
+          e(ProgressBar, { label: "Riders confirmed", value: 95, showPercent: true, tone: "success" }),
+        ),
+        e(Card, { eyebrow: "Roster", title: "Team", action: e(Button, { size: "sm", variant: "ghost" }, "Manage") },
+          e("div", { className: "rowflex" },
+            e(Avatar, { name: "Leigh Monroe", size: "lg" }),
+            e(Avatar, { name: "Dee Park", size: "lg", ring: false }),
+            e(Avatar, { name: "Ray Cole", size: "lg" }),
+            e(Avatar, { name: "Joy Tan", size: "lg", ring: false }),
+          ),
+        ),
+      ),
+
+      sec("Gig cards"),
+      e("div", { className: "grid2" },
+        e(GigCard, { title: "Veeam Gala Night", client: "Veeam Software", date: "Mar 14", venue: "Grand Ballroom", fee: "$3,500", status: "confirmed" }),
+        e(GigCard, { title: "Jollibee Anniversary", client: "Jollibee Foods", date: "Apr 02", venue: "SMX Convention", fee: "$2,800", status: "pending" }),
+        e(GigCard, { title: "Corporate Awards", client: "TBD", date: "May 20", venue: "The Peninsula", fee: "$4,000", status: "inquiry" }),
+        e(GigCard, { title: "Wedding — R&J", client: "Private", date: "Feb 08", venue: "Tagaytay", fee: "$2,200", status: "completed" }),
+      ),
+
+      sec("Border glow — clickable / expandable boxes"),
+      e("div", { style: { fontSize: "12.5px", color: "var(--text-muted)", margin: "-6px 0 16px", maxWidth: "60ch" } },
+        "Wrap any box that opens or expands. Move the pointer toward an edge to reveal the directional gold glow."),
+      e("div", { className: "grid2" },
+        e(BorderGlow, { style: { cursor: "pointer" } },
+          e("div", { style: { padding: "26px" } },
+            e("div", { style: { fontFamily: "var(--font-mono-alt)", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--accent-text)", marginBottom: "6px" } }, "Press kit"),
+            e("h3", { style: { margin: "0 0 6px", fontFamily: "var(--font-display)", fontSize: "19px", fontWeight: 600, color: "var(--text-heading)" } }, "Open Leigh's portfolio"),
+            e("p", { style: { margin: 0, fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.5 } }, "Hover near an edge — the gold cone follows your pointer."),
+          ),
+        ),
+        e(BorderGlow, { animated: true, glowColor: "345 60 60", colors: ["#c94560", "#d4af37", "#f5f0e8"], style: { cursor: "pointer" } },
+          e("div", { style: { padding: "26px" } },
+            e("div", { style: { fontFamily: "var(--font-mono-alt)", fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--rose-400)", marginBottom: "6px" } }, "Animated · rose"),
+            e("h3", { style: { margin: "0 0 6px", fontFamily: "var(--font-display)", fontSize: "19px", fontWeight: 600, color: "var(--text-heading)" } }, "Intro sweep on mount"),
+            e("p", { style: { margin: 0, fontSize: "13px", color: "var(--text-muted)", lineHeight: 1.5 } }, "Set animated, glowColor and colors to retune the effect per box."),
+          ),
+        ),
+      ),
+
+      sec("Section title"),
+      e(SectionTitle, { eyebrow: "Featured Engagement", title: "An evening with Leigh", rule: true }),
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(e(Demo));
+</script>
+  <script type="module" src="../galaxy-bg.js"></script>
+</body>
+</html>

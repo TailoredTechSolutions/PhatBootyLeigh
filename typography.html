@@ -1,0 +1,39 @@
+<!-- @dsCard group="Type" name="Typography" subtitle="Cormorant · DM Sans · JetBrains Mono" viewport="1100x860" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-app); color: var(--text-body); font-family: var(--font-body); padding: 44px; }
+  .eyebrow { font-family: var(--font-mono-alt); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; display:flex; align-items:center; gap:10px;}
+  .eyebrow::before { content:""; width:24px; height:1px; background: var(--grad-gold); }
+  h1 { font-family: var(--font-display); font-weight: 600; font-size: 40px; color: var(--text-heading); margin: 0 0 40px; }
+  .block { border-top: 1px solid var(--border-divider); padding: 22px 0; display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: baseline; }
+  .label { font-family: var(--font-mono-alt); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-faint); }
+  .label span { display:block; color: var(--text-muted); margin-top:4px; font-size: 10px; letter-spacing:0.5px; text-transform:none;}
+  .specimen { color: var(--text-heading); }
+  .d1 { font-family: var(--font-display-alt); font-weight: 700; font-size: 44px; line-height: 1.05; }
+  .d2 { font-family: var(--font-display); font-weight: 600; font-size: 28px; }
+  .d3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+  .body { font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: var(--text-body); max-width: 60ch;}
+  .meta { font-family: var(--font-mono-alt); font-size: 12px; color: var(--text-muted); }
+  .kpi { font-family: var(--font-mono); font-weight: 600; font-size: 30px; color: var(--gd-300); }
+  .ey { font-family: var(--font-mono-alt); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-text); }
+</style>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed; top:18px; right:18px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+  <div class="eyebrow">Type System</div>
+  <h1>Editorial serif, humanist sans, mono numerics</h1>
+
+  <div class="block"><div class="label">Display / Playfair<span>700 · 44px</span></div><div class="specimen d1">Meet your host, Leigh</div></div>
+  <div class="block"><div class="label">Heading / Cormorant<span>600 · 28px</span></div><div class="specimen d2">The Empire Dashboard</div></div>
+  <div class="block"><div class="label">Card title / Cormorant<span>600 · 20px</span></div><div class="specimen d3">Upcoming bookings</div></div>
+  <div class="block"><div class="label">Body / DM Sans<span>400 · 14px / 1.6</span></div><div class="specimen body">Leigh hosts events end-to-end — from the first inquiry to the final encore. This dashboard tracks every gig, contract and payout in one place.</div></div>
+  <div class="block"><div class="label">Meta / DM Mono<span>400 · 12px</span></div><div class="specimen meta">Mar 14, 2026 · The Grand Ballroom · 7:30 PM</div></div>
+  <div class="block"><div class="label">KPI / JetBrains Mono<span>600 · 30px</span></div><div class="specimen kpi">$24,800</div></div>
+  <div class="block"><div class="label">Eyebrow / DM Mono<span>uppercase · 3px track</span></div><div class="specimen ey">Featured Engagement</div></div>
+  <script type="module" src="../galaxy-bg.js"></script>
+</body>
+</html>

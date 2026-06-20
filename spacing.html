@@ -1,0 +1,54 @@
+<!-- @dsCard group="Spacing" name="Spacing, Radius & Effects" subtitle="4px base · gold hairlines · deep shadows" viewport="1100x760" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--bg-app); color: var(--text-body); font-family: var(--font-body); padding: 44px; }
+  h2 { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: var(--text-heading); margin: 0 0 18px; }
+  .grp { font-family: var(--font-mono-alt); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-text); margin: 36px 0 16px; display:flex;align-items:center;gap:10px;}
+  .grp::after{content:"";flex:1;height:1px;background:var(--border-divider);}
+  .sp-row { display: flex; align-items: flex-end; gap: 22px; flex-wrap: wrap; }
+  .sp { text-align: center; }
+  .sp .bar { background: var(--grad-gold); border-radius: 2px; width: 22px; margin: 0 auto 8px; }
+  .sp .t { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+  .sp .v { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+  .rad-row, .fx-row { display: flex; gap: 18px; flex-wrap: wrap; }
+  .rad { width: 92px; height: 72px; background: var(--surface-raised); border: 1px solid var(--border-soft); display:flex; align-items:flex-end; justify-content:center; padding-bottom:8px; font-family: var(--font-mono); font-size:10px; color: var(--text-muted); }
+  .fx { width: 150px; height: 96px; border-radius: var(--r-lg); background: var(--surface-card); border: 1px solid var(--border-hair); display:flex; align-items:center; justify-content:center; font-family: var(--font-mono-alt); font-size: 10px; letter-spacing:1px; text-transform:uppercase; color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed; top:18px; right:18px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+  <h2>Spacing, Radius &amp; Effects</h2>
+
+  <div class="grp">Spacing scale — 4px base</div>
+  <div class="sp-row" id="sp"></div>
+
+  <div class="grp">Radii</div>
+  <div class="rad-row">
+    <div class="rad" style="border-radius:var(--r-sm)">sm · 6</div>
+    <div class="rad" style="border-radius:var(--r-md)">md · 10</div>
+    <div class="rad" style="border-radius:var(--r-lg)">lg · 14</div>
+    <div class="rad" style="border-radius:var(--r-xl)">xl · 20</div>
+    <div class="rad" style="border-radius:var(--r-pill)">pill · 20</div>
+  </div>
+
+  <div class="grp">Shadows &amp; surfaces</div>
+  <div class="fx-row">
+    <div class="fx" style="box-shadow:var(--shadow-card)">card</div>
+    <div class="fx" style="box-shadow:var(--shadow-deep)">deep</div>
+    <div class="fx" style="box-shadow:var(--shadow-frame)">frame</div>
+    <div class="fx" style="background:var(--grad-gold);color:var(--ob-950);font-weight:700;border:none">grad-gold</div>
+    <div class="fx" style="border:1px solid var(--border-strong);box-shadow:var(--glow-gold)">gold glow</div>
+  </div>
+
+<script>
+  const steps = [["1",4],["2",6],["3",8],["5",12],["6",14],["7",16],["8",20],["9",24],["10",28],["12",32],["16",48]];
+  document.getElementById("sp").innerHTML = steps.map(([n,px]) =>
+    `<div class="sp"><div class="bar" style="height:${px}px"></div><div class="t">sp-${n}</div><div class="v">${px}px</div></div>`).join("");
+</script>
+  <script type="module" src="../galaxy-bg.js"></script>
+</body>
+</html>

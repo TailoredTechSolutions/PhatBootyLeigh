@@ -30,7 +30,7 @@ function Overview({ go }) {
         <div style={{ position: "absolute", inset: 0 }}>
           <Lightfall colors={["#d4af37", "#e8ca6a", "#c94560", "#d96275"]} backgroundColor="#1a1a2e" speed={0.6} streakCount={8} streakWidth={1} streakLength={1.3} glow={1} density={1} twinkle={1} zoom={2} backgroundGlow={0.85} opacity={1} mouseInteraction={true} mouseStrength={1} mouseRadius={0.6} />
         </div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(95deg, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.55) 48%, rgba(10,10,20,0.12) 100%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(95deg, rgba(22,18,33,0.88) 0%, rgba(22,18,33,0.5) 48%, rgba(22,18,33,0.1) 100%)", pointerEvents: "none" }} />
         <div style={{ position: "relative", height: "100%", padding: "0 36px", display: "flex", flexDirection: "column", justifyContent: "center", pointerEvents: "none" }}>
           <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gd-300)", marginBottom: 8 }}>Welcome back, Boss ✦</div>
           <div style={{ fontFamily: "var(--font-display)", fontSize: 36, fontWeight: 700, color: "var(--ob-50)", lineHeight: 1.05 }}>The empire, at a glance.</div>
@@ -458,7 +458,7 @@ function PortfolioView() {
         </div>
       </div>
       <div style={{ position: "relative", height: "66vh", minHeight: 460, borderRadius: "var(--r-xl)", overflow: "hidden", border: "1px solid var(--border-soft)", background: "var(--ob-950)", boxShadow: "var(--shadow-card)" }}>
-        <DomeGallery images={PORTFOLIO_IMAGES} fit={0.62} minRadius={420} grayscale={false} overlayBlurColor="#0a0a14" imageBorderRadius="14px" openedImageBorderRadius="16px" openedImageWidth="340px" openedImageHeight="440px" />
+        <DomeGallery images={PORTFOLIO_IMAGES} fit={0.62} minRadius={420} grayscale={false} overlayBlurColor="#161221" imageBorderRadius="14px" openedImageBorderRadius="16px" openedImageWidth="340px" openedImageHeight="440px" />
       </div>
     </div>
   );

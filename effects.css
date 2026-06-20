@@ -16,14 +16,14 @@
   --glow-success: 0 0 6px var(--success);
 
   /* ── GRADIENTS ── */
-  --grad-gold:      linear-gradient(90deg, var(--gd-400), var(--gd-200));
-  --grad-gold-soft: linear-gradient(90deg, var(--gold), var(--gold-lt));
+  --grad-gold:      linear-gradient(90deg, var(--gd-400), var(--gd-200) 55%, var(--rose-400));
+  --grad-gold-soft: linear-gradient(90deg, var(--gold), var(--gold-lt) 60%, var(--rose-400));
   /* Vertical hairline used down timeline rails */
-  --grad-rail:      linear-gradient(180deg, var(--gd-400), rgba(212, 175, 55, 0.1));
+  --grad-rail:      linear-gradient(180deg, var(--gd-400), var(--rose-500) 60%, rgba(212, 175, 55, 0.1));
 
   /* ── BLUR (sticky topbar / glass) ── */
   --blur-glass: blur(12px); /* @kind other */
-  --glass-bg:   rgba(10, 10, 20, 0.92);
+  --glass-bg:   rgba(22, 18, 33, 0.90);
 
   /* ── MOTION ── */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */

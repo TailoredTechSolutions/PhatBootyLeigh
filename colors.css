@@ -3,18 +3,18 @@
    "Obsidian · Gold · Rose" — a dark, luxury event-host palette.
    ============================================================ */
 :root {
-  /* ── OBSIDIAN (neutral surfaces, dark → light) ── */
-  --ob-950: #0a0a14;   /* app background */
-  --ob-900: #12121f;   /* card / sidebar surface */
-  --ob-800: #1a1a2e;   /* raised surface, inputs */
-  --ob-700: #1e1e35;   /* hover surface, pills */
-  --ob-600: #25253e;
-  --ob-500: #2e2e4a;
-  --ob-400: #3d3d5c;   /* borders, dividers (strong) */
-  --ob-300: #5a5a7a;   /* tertiary text, icons */
-  --ob-200: #8888a8;   /* secondary text */
-  --ob-100: #b8b8cc;   /* primary body on dark */
-  --ob-50:  #eeeef5;   /* headings, high-emphasis text */
+  /* ── OBSIDIAN (neutral surfaces, dark → light) — warm plum, lifted ── */
+  --ob-950: #161221;   /* app background */
+  --ob-900: #211a30;   /* card / sidebar surface */
+  --ob-800: #2c2440;   /* raised surface, inputs */
+  --ob-700: #382e50;   /* hover surface, pills */
+  --ob-600: #443a60;
+  --ob-500: #524775;
+  --ob-400: #6a5d92;   /* borders, dividers (strong) */
+  --ob-300: #8a7eae;   /* tertiary text, icons */
+  --ob-200: #b3a8d0;   /* secondary text */
+  --ob-100: #ddd5ee;   /* primary body on dark */
+  --ob-50:  #f6f2ff;   /* headings, high-emphasis text */
 
   /* ── GOLD (brand accent — the signature) ── */
   --gd-500: #d4a017;   /* deep gold */
@@ -57,9 +57,9 @@
   --accent-text:   var(--gd-300);
   --accent-rose:   var(--rose-500);
 
-  /* Hairline borders are always gold at low alpha — the house signature */
-  --border-hair:   rgba(212, 175, 55, 0.10);
-  --border-soft:   rgba(212, 175, 55, 0.20);
-  --border-strong: rgba(212, 175, 55, 0.35);
-  --border-divider:rgba(255, 255, 255, 0.04);
+  /* Hairline borders are gold at higher alpha — the house signature, dialed up */
+  --border-hair:   rgba(212, 175, 55, 0.18);
+  --border-soft:   rgba(212, 175, 55, 0.32);
+  --border-strong: rgba(212, 175, 55, 0.48);
+  --border-divider:rgba(240, 217, 138, 0.10);
 }

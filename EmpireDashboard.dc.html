@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Empire Dashboard" description="Leigh's booking & ops dashboard — sidebar, KPI row, gig pipeline, payouts." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script type="module" src="../../galaxy-bg.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg-app); }
+  </style>
+</helmet>
+
+<a href="../../index.html" style="position:fixed; top:14px; right:16px; z-index:100; display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:var(--r-pill); background:var(--glass-bg); backdrop-filter:var(--blur-glass); border:1px solid var(--border-soft); color:var(--gd-300); font-family:var(--font-mono-alt); font-size:11px; letter-spacing:1px; text-decoration:none;">← Home</a>
+<div style="display:flex; min-height:100vh; background:transparent; font-family:var(--font-body); color:var(--text-body);">
+
+  <!-- ───────── SIDEBAR ───────── -->
+  <aside style="width:220px; flex-shrink:0; background:var(--surface-card); border-right:1px solid var(--border-hair); display:flex; flex-direction:column; padding:22px 0; position:sticky; top:0; height:100vh;">
+    <div style="padding:0 22px 24px; display:flex; align-items:center; gap:11px; border-bottom:1px solid var(--border-divider); margin-bottom:18px;">
+      <div style="width:38px; height:38px; border-radius:50%; border:2px solid var(--gd-400); box-shadow:var(--glow-gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--gd-300);">L</div>
+      <div>
+        <div style="font-family:var(--font-display); font-size:17px; font-weight:600; color:var(--text-heading); line-height:1;">Host Leigh</div>
+        <div style="font-family:var(--font-mono-alt); font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-faint); margin-top:3px;">Empire Dashboard</div>
+      </div>
+    </div>
+
+    <div style="padding:0 14px;">
+      <div style="font-family:var(--font-mono-alt); font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--text-faint); padding:0 8px 8px;">Manage</div>
+      <a href="#" style="display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:var(--r-sm); margin-bottom:2px; text-decoration:none; font-size:13px; color:var(--gd-300); background:rgba(212,175,55,0.08); border-left:2px solid var(--gd-400);">
+        <span style="font-size:14px; width:18px; text-align:center;">◆</span>Overview
+      </a>
+      <a href="#" style="display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:var(--r-sm); margin-bottom:2px; text-decoration:none; font-size:13px; color:var(--text-body); border-left:2px solid transparent;">
+        <span style="font-size:14px; width:18px; text-align:center;">▤</span>Bookings
+      </a>
+      <a href="#" style="display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:var(--r-sm); margin-bottom:2px; text-decoration:none; font-size:13px; color:var(--text-body); border-left:2px solid transparent;">
+        <span style="font-size:14px; width:18px; text-align:center;">✎</span>Contracts
+      </a>
+      <a href="#" style="display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:var(--r-sm); margin-bottom:2px; text-decoration:none; font-size:13px; color:var(--text-body); border-left:2px solid transparent;">
+        <span style="font-size:14px; width:18px; text-align:center;">$</span>Payouts
+      </a>
+      <a href="#" style="display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:var(--r-sm); margin-bottom:2px; text-decoration:none; font-size:13px; color:var(--text-body); border-left:2px solid transparent;">
+        <span style="font-size:14px; width:18px; text-align:center;">♛</span>Clients
+      </a>
+    </div>
+
+    <div style="margin-top:auto; padding:16px 22px 0; border-top:1px solid var(--border-divider); display:flex; align-items:center; gap:10px;">
+      <div style="width:34px; height:34px; border-radius:50%; border:2px solid var(--gd-400); background:center/cover; flex-shrink:0; background-image:url('../../assets/photos/leigh-veeam-portrait.jpeg');"></div>
+      <div style="min-width:0;">
+        <div style="font-size:12px; font-weight:600; color:var(--text-body); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Leigh Monroe</div>
+        <div style="font-family:var(--font-mono-alt); font-size:10px; color:var(--text-faint);">Owner · Host</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ───────── MAIN ───────── -->
+  <main style="flex:1; min-width:0; display:flex; flex-direction:column;">
+
+    <!-- topbar -->
+    <header style="height:57px; flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:0 28px; border-bottom:1px solid var(--border-hair); background:var(--glass-bg); backdrop-filter:var(--blur-glass); position:sticky; top:0; z-index:5;">
+      <div>
+        <div style="font-family:var(--font-mono-alt); font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent-text);">Friday · March 14</div>
+        <div style="font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-heading); line-height:1.1;">Good evening, Leigh</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Badge" tone="success" dot="{{ true }}" hint-size="90px,22px">2 events live</x-import>
+        <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="primary" icon="✦" hint-size="120px,34px">New booking</x-import>
+      </div>
+    </header>
+
+    <div style="padding:28px; display:flex; flex-direction:column; gap:24px;">
+
+      <!-- KPI row -->
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
+        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+          <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.KpiCard"
+            label="{{ k.label }}" value="{{ k.value }}" prefix="{{ k.prefix }}" suffix="{{ k.suffix }}" delta="{{ k.delta }}" accent="{{ k.accent }}"
+            hint-size="100%,118px"></x-import>
+        </sc-for>
+      </div>
+
+      <!-- two-column: pipeline + payouts -->
+      <div style="display:grid; grid-template-columns:1.6fr 1fr; gap:24px; align-items:start;">
+
+        <!-- gig pipeline -->
+        <section style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); padding:20px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+            <div>
+              <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent-text); margin-bottom:4px;">Pipeline</div>
+              <h2 style="margin:0; font-family:var(--font-display); font-size:20px; font-weight:600; color:var(--text-heading);">Upcoming bookings</h2>
+            </div>
+            <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="ghost" size="sm" hint-size="70px,28px">View all</x-import>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <sc-for list="{{ gigs }}" as="g" hint-placeholder-count="4">
+              <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.GigCard"
+                title="{{ g.title }}" client="{{ g.client }}" date="{{ g.date }}" venue="{{ g.venue }}" fee="{{ g.fee }}" status="{{ g.status }}"
+                hint-size="100%,86px"></x-import>
+            </sc-for>
+          </div>
+        </section>
+
+        <!-- right rail -->
+        <div style="display:flex; flex-direction:column; gap:24px;">
+
+          <!-- payouts -->
+          <section style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); padding:20px;">
+            <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent-text); margin-bottom:4px;">This quarter</div>
+            <h3 style="margin:0 0 18px; font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-heading);">Payout readiness</h3>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <sc-for list="{{ bars }}" as="b" hint-placeholder-count="3">
+                <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.ProgressBar"
+                  label="{{ b.label }}" value="{{ b.value }}" tone="{{ b.tone }}" showPercent="{{ true }}"
+                  hint-size="100%,30px"></x-import>
+              </sc-for>
+            </div>
+          </section>
+
+          <!-- next up -->
+          <section style="background:var(--surface-card); border:1px solid var(--border-hair); border-radius:var(--r-lg); box-shadow:var(--shadow-card); overflow:hidden;">
+            <div style="height:120px; background:center/cover; background-image:url('../../assets/photos/leigh-jollibee.jpeg');"></div>
+            <div style="padding:18px;">
+              <div style="font-family:var(--font-mono-alt); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent-text); margin-bottom:6px;">Next on stage · 2h</div>
+              <h3 style="margin:0 0 6px; font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-heading);">Veeam Gala Night</h3>
+              <p style="margin:0 0 14px; font-size:13px; color:var(--text-muted); line-height:1.5;">Grand Ballroom · 7:30 PM call time. Run sheet and rider confirmed.</p>
+              <x-import component-from-global-scope="HostLeighDesignSystem_02e8ee.Button" variant="secondary" fullWidth="{{ true }}" hint-size="100%,34px">Open run sheet</x-import>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      kpis: [
+        { label: "Booked revenue", value: "24,800", prefix: "$", suffix: "", delta: 18, accent: "gold" },
+        { label: "Gigs this month", value: "12", prefix: "", suffix: "", delta: 9, accent: "neutral" },
+        { label: "Avg. fee", value: "2,066", prefix: "$", suffix: "", delta: -4, accent: "rose" },
+        { label: "Repeat clients", value: "73", prefix: "", suffix: "%", delta: 6, accent: "success" },
+      ],
+      gigs: [
+        { title: "Veeam Gala Night", client: "Veeam Software", date: "Mar 14", venue: "Grand Ballroom", fee: "$3,500", status: "confirmed" },
+        { title: "Jollibee Anniversary", client: "Jollibee Foods", date: "Apr 02", venue: "SMX Convention", fee: "$2,800", status: "pending" },
+        { title: "Corporate Awards", client: "Inquiry — pending brief", date: "May 20", venue: "The Peninsula", fee: "$4,000", status: "inquiry" },
+        { title: "Wedding — R & J", client: "Private booking", date: "Feb 08", venue: "Tagaytay Highlands", fee: "$2,200", status: "completed" },
+      ],
+      bars: [
+        { label: "Contracts signed", value: 80, tone: "gold" },
+        { label: "Deposits cleared", value: 55, tone: "rose" },
+        { label: "Riders confirmed", value: 95, tone: "success" },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
