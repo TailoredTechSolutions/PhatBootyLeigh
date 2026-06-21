@@ -239,9 +239,38 @@ void main() {
         };
         if (mouseInteraction) canvas.addEventListener("pointermove", onPointerMove);
 
+        const liveStore = props.store;
+        let liveColorsKey = (colors || []).join("|");
         const loop = (t) => {
           rafRef.current = requestAnimationFrame(loop);
           uniforms.iTime.value = t * 0.001;
+          // Live tweak sync — read latest values from a shared store object
+          // each frame so the Background panel updates uniforms without a rebuild.
+          if (liveStore) {
+            const u = uniforms;
+            if (typeof liveStore.speed === "number") u.uSpeed.value = liveStore.speed;
+            if (typeof liveStore.density === "number") u.uDensity.value = liveStore.density;
+            if (typeof liveStore.glow === "number") u.uGlow.value = liveStore.glow;
+            if (typeof liveStore.twinkle === "number") u.uTwinkle.value = liveStore.twinkle;
+            if (typeof liveStore.streakCount === "number") u.uStreakCount.value = Math.max(1, Math.min(16, Math.round(liveStore.streakCount)));
+            if (typeof liveStore.streakWidth === "number") u.uStreakWidth.value = liveStore.streakWidth;
+            if (typeof liveStore.streakLength === "number") u.uStreakLength.value = liveStore.streakLength;
+            if (typeof liveStore.zoom === "number") u.uZoom.value = liveStore.zoom;
+            if (typeof liveStore.backgroundGlow === "number") u.uBgGlow.value = liveStore.backgroundGlow;
+            if (typeof liveStore.opacity === "number") u.uOpacity.value = liveStore.opacity;
+            if (typeof liveStore.mouseInteraction === "boolean") u.uMouseEnabled.value = liveStore.mouseInteraction ? 1 : 0;
+            if (Array.isArray(liveStore.colors)) {
+              const key = liveStore.colors.join("|") + "::" + (liveStore.backgroundColor || "");
+              if (key !== liveColorsKey) {
+                liveColorsKey = key;
+                const cc = prepColors(liveStore.colors);
+                u.uColor0.value = cc.arr[0]; u.uColor1.value = cc.arr[1]; u.uColor2.value = cc.arr[2]; u.uColor3.value = cc.arr[3];
+                u.uColor4.value = cc.arr[4]; u.uColor5.value = cc.arr[5]; u.uColor6.value = cc.arr[6]; u.uColor7.value = cc.arr[7];
+                u.uColorCount.value = cc.count; u.uMouseColor.value = cc.avg;
+                if (liveStore.backgroundColor) u.uBgColor.value = hexToRGB(liveStore.backgroundColor);
+              }
+            }
+          }
           if (mouseDampening > 0) {
             if (!lastTimeRef.current) lastTimeRef.current = t;
             const dt = (t - lastTimeRef.current) / 1000;

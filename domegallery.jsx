@@ -56,6 +56,8 @@
       segments = DEFAULTS.segments, dragDampening = 2,
       openedImageWidth = "300px", openedImageHeight = "400px",
       imageBorderRadius = "20px", openedImageBorderRadius = "20px", grayscale = false,
+      autoRotateSpeed = 0.018,   // deg per frame; set 0 to disable
+      randomReveal = true,        // periodically highlight a random tile
     } = props;
     const imgs = images && images.length ? images : [];
 
@@ -315,6 +317,45 @@
     }, [openItemFromElement]);
 
     useEffect(() => () => { document.body.classList.remove("dg-scroll-lock"); }, []);
+
+    // ── Auto-rotate (slow continuous spin) ──
+    useEffect(() => {
+      if (!autoRotateSpeed) return;
+      let raf;
+      const spin = () => {
+        if (!draggingRef.current && !focusedElRef.current && !inertiaRAF.current) {
+          const nextY = wrapAngleSigned(rotationRef.current.y + autoRotateSpeed);
+          rotationRef.current = { x: rotationRef.current.x, y: nextY };
+          applyTransform(rotationRef.current.x, nextY);
+        }
+        raf = requestAnimationFrame(spin);
+      };
+      raf = requestAnimationFrame(spin);
+      return () => cancelAnimationFrame(raf);
+    }, [autoRotateSpeed]);
+
+    // ── Random photo pop-up (pulse a tile every few seconds) ──
+    useEffect(() => {
+      if (!randomReveal) return;
+      const interval = setInterval(() => {
+        if (focusedElRef.current || openingRef.current) return;
+        const sphere = sphereRef.current;
+        if (!sphere) return;
+        const tiles = sphere.querySelectorAll(".item__image img");
+        if (!tiles.length) return;
+        const tile = tiles[Math.floor(Math.random() * tiles.length)];
+        tile.style.transition = "transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.45s ease";
+        tile.style.transform = "scale(1.18)";
+        tile.style.boxShadow = "0 0 24px rgba(212,175,55,0.6)";
+        tile.style.zIndex = "10";
+        setTimeout(() => {
+          tile.style.transform = "";
+          tile.style.boxShadow = "";
+          tile.style.zIndex = "";
+        }, 900);
+      }, 1800);
+      return () => clearInterval(interval);
+    }, [randomReveal]);
 
     return (
       <div ref={rootRef} className="sphere-root" style={{

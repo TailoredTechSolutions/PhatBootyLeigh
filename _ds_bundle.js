@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"HostLeighDesignSystem_02e8ee","components":[{"name":"Avatar","sourcePath":"components/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge.jsx"},{"name":"BorderGlow","sourcePath":"components/BorderGlow.jsx"},{"name":"Button","sourcePath":"components/Button.jsx"},{"name":"Card","sourcePath":"components/Card.jsx"},{"name":"GigCard","sourcePath":"components/GigCard.jsx"},{"name":"KpiCard","sourcePath":"components/KpiCard.jsx"},{"name":"ProgressBar","sourcePath":"components/ProgressBar.jsx"},{"name":"SectionTitle","sourcePath":"components/SectionTitle.jsx"}],"sourceHashes":{"border-glow.js":"7972577213b3","components/Avatar.jsx":"154b5a577478","components/Badge.jsx":"4e70703ae530","components/BorderGlow.jsx":"32773fb265c3","components/Button.jsx":"0e7925572a7e","components/Card.jsx":"255ff3004f53","components/GigCard.jsx":"f6730fe293d1","components/KpiCard.jsx":"db0a52eb0e4b","components/ProgressBar.jsx":"80c0ed4f9b0a","components/SectionTitle.jsx":"332bf9b90ccd","dashboard/app.jsx":"5efaa6538c05","dashboard/borderglow.jsx":"53e645b1b5db","dashboard/data.js":"b1135e12eeda","dashboard/domegallery.jsx":"ce692b983acf","dashboard/host.jsx":"8d53516486ec","dashboard/lightfall.jsx":"d10981f9e26a","dashboard/portals.jsx":"24027b356f87","dashboard/ui.jsx":"bd1ba96f514c","galaxy-bg.js":"faacc3fb6387"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"HostLeighDesignSystem_02e8ee","components":[{"name":"Avatar","sourcePath":"components/Avatar.jsx"},{"name":"Badge","sourcePath":"components/Badge.jsx"},{"name":"BorderGlow","sourcePath":"components/BorderGlow.jsx"},{"name":"Button","sourcePath":"components/Button.jsx"},{"name":"Card","sourcePath":"components/Card.jsx"},{"name":"GigCard","sourcePath":"components/GigCard.jsx"},{"name":"KpiCard","sourcePath":"components/KpiCard.jsx"},{"name":"ProgressBar","sourcePath":"components/ProgressBar.jsx"},{"name":"SectionTitle","sourcePath":"components/SectionTitle.jsx"}],"sourceHashes":{"border-glow.js":"7972577213b3","components/Avatar.jsx":"154b5a577478","components/Badge.jsx":"4e70703ae530","components/BorderGlow.jsx":"32773fb265c3","components/Button.jsx":"0e7925572a7e","components/Card.jsx":"255ff3004f53","components/GigCard.jsx":"f6730fe293d1","components/KpiCard.jsx":"db0a52eb0e4b","components/ProgressBar.jsx":"80c0ed4f9b0a","components/SectionTitle.jsx":"332bf9b90ccd","dashboard/app.jsx":"5c19ac9de623","dashboard/bg-tweaks.jsx":"9b7c7a8c5f1a","dashboard/borderglow.jsx":"53e645b1b5db","dashboard/data.js":"b1135e12eeda","dashboard/domegallery.jsx":"e0ae276d3a4e","dashboard/host-sa.jsx":"d781a47c5c7c","dashboard/host.jsx":"ed684b888e33","dashboard/lightfall.jsx":"14acbce8a723","dashboard/portals.jsx":"21dd2130b33c","dashboard/ui.jsx":"9154ced6fa4d","galaxy-bg.js":"faacc3fb6387"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -1057,9 +1057,9 @@ const NAV = [{
   label: "Calendar",
   icon: "calendar"
 }, {
-  id: "portfolio",
-  label: "Portfolio",
-  icon: "portfolio"
+  id: "meet",
+  label: "Meet Leigh",
+  icon: "user"
 }, {
   sec: "Operations"
 }, {
@@ -1103,7 +1103,9 @@ function Sidebar({
       left: 0,
       width: "var(--sidebar-w)",
       height: "100vh",
-      background: "var(--surface-card)",
+      background: "rgba(18,18,31,0.82)",
+      backdropFilter: "var(--blur-glass)",
+      WebkitBackdropFilter: "var(--blur-glass)",
       borderRight: "1px solid var(--border-soft)",
       display: "flex",
       flexDirection: "column",
@@ -1120,30 +1122,35 @@ function Sidebar({
       height: 44,
       borderRadius: "50%",
       border: "1.5px solid var(--gd-400)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontFamily: "var(--font-display)",
-      fontSize: 16,
-      fontWeight: 600,
-      color: "var(--gd-400)",
-      marginBottom: 10
+      overflow: "hidden",
+      marginBottom: 10,
+      flexShrink: 0
     }
-  }, H.monogram), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/photos/leigh-portrait.jpeg",
+    alt: "Leigh",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center 15%"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "var(--font-display)",
-      fontSize: 17,
+      fontSize: 15,
       fontWeight: 600,
       color: "var(--ob-50)",
-      letterSpacing: "0.5px"
+      letterSpacing: "0.3px"
     }
   }, "Host Leigh"), /*#__PURE__*/React.createElement("div", {
+    className: "hl-sparkle-gold",
     style: {
-      fontSize: 10,
-      color: "var(--ob-200)",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 9,
       letterSpacing: "2px",
       textTransform: "uppercase",
-      marginTop: 2
+      marginTop: 3
     }
   }, "Empire Dashboard")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1155,10 +1162,11 @@ function Sidebar({
     key: i,
     style: {
       fontSize: 9,
-      color: "var(--ob-300)",
-      letterSpacing: "2.5px",
+      color: "var(--ob-400)",
+      letterSpacing: "1.5px",
       textTransform: "uppercase",
-      padding: "14px 20px 5px"
+      padding: "20px 20px 6px",
+      fontFamily: "var(--font-mono-alt)"
     }
   }, n.sec) : /*#__PURE__*/React.createElement("button", {
     key: n.id,
@@ -1175,7 +1183,7 @@ function Sidebar({
       border: "none",
       borderLeft: `2px solid ${page === n.id ? "var(--gd-400)" : "transparent"}`,
       fontFamily: "var(--font-body)",
-      fontSize: 13,
+      fontSize: 12.5,
       textAlign: "left",
       transition: "var(--tr-all)"
     },
@@ -1222,9 +1230,10 @@ function Sidebar({
     }
   }), /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 10,
-      color: "var(--ob-300)",
-      letterSpacing: "1px"
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 9.5,
+      color: "var(--ob-400)",
+      letterSpacing: "0.5px"
     }
   }, "BIR-registered \xB7 2026")));
 }
@@ -1279,13 +1288,37 @@ function Topbar({
     calendar: "Calendar",
     suppliers: "Supplier Firewall",
     escrow: "Escrow Tracker",
-    discount: "Discount Engine"
+    discount: "Discount Engine",
+    meet: "Meet Leigh"
   };
   const crumb = {
     host: "Host · Command Center",
     client: "Viewing as Client",
     supplier: "Viewing as Supplier"
   }[role];
+  const [notifOpen, setNotifOpen] = React.useState(false);
+  const [notifs, setNotifs] = React.useState([{
+    tone: "danger",
+    title: "Catering overdue — KIA Launch",
+    meta: "Red Ribbon Catering · expected yesterday"
+  }, {
+    tone: "warning",
+    title: "50% balance uncollected — PIEPCO",
+    meta: "Due Jul 5 · ₱57,000"
+  }, {
+    tone: "success",
+    title: "AV testing scheduled — KIA Makati",
+    meta: "Today 3:00 PM · all suppliers briefed"
+  }]);
+  const clearNotifs = () => {
+    setNotifs([]);
+    setNotifOpen(false);
+  };
+  const dotColor = {
+    danger: "var(--danger)",
+    warning: "var(--warning)",
+    success: "var(--success)"
+  };
   return /*#__PURE__*/React.createElement("div", {
     style: {
       position: "sticky",
@@ -1302,17 +1335,19 @@ function Topbar({
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "var(--font-display)",
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 600,
-      color: "var(--ob-50)"
+      color: "var(--ob-50)",
+      lineHeight: 1.1
     }
   }, role === "host" ? titles[page] || "Portfolio" : role === "client" ? "Client Portal" : "Supplier Portal"), /*#__PURE__*/React.createElement("div", {
+    className: "hl-sparkle-pink",
     style: {
-      fontSize: 10.5,
-      color: "var(--ob-300)",
-      letterSpacing: "1px",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 24,
+      letterSpacing: "1.5px",
       textTransform: "uppercase",
-      marginTop: 1
+      marginTop: 3
     }
   }, crumb)), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1323,10 +1358,14 @@ function Topbar({
   }, /*#__PURE__*/React.createElement(RoleSwitcher, {
     role: role,
     setRole: setRole
-  }), /*#__PURE__*/React.createElement("button", {
-    onClick: () => window.hlToast("3 new notifications"),
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "none",
+      position: "relative"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => setNotifOpen(o => !o),
+    style: {
+      background: notifOpen ? "rgba(212,175,55,0.08)" : "none",
       border: "1px solid var(--border-soft)",
       color: "var(--ob-100)",
       width: 34,
@@ -1341,7 +1380,7 @@ function Topbar({
   }, /*#__PURE__*/React.createElement(Icon, {
     name: "bell",
     size: 16
-  }), /*#__PURE__*/React.createElement("span", {
+  }), notifs.length > 0 && /*#__PURE__*/React.createElement("span", {
     style: {
       position: "absolute",
       top: 6,
@@ -1351,7 +1390,111 @@ function Topbar({
       borderRadius: "50%",
       background: "var(--rose-500)"
     }
-  })), role === "host" && /*#__PURE__*/React.createElement(Btn, {
+  })), notifOpen && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: "calc(100% + 8px)",
+      right: 0,
+      width: 320,
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-strong)",
+      borderRadius: "var(--r-lg)",
+      boxShadow: "var(--shadow-deep)",
+      zIndex: 200,
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "14px 16px",
+      borderBottom: "1px solid var(--border-divider)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ob-50)"
+    }
+  }, "Notifications"), notifs.length > 0 && /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      color: "var(--rose-400)",
+      fontFamily: "var(--font-mono)",
+      letterSpacing: "1px"
+    }
+  }, notifs.length, " NEW")), notifs.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "28px 16px",
+      textAlign: "center",
+      color: "var(--ob-300)",
+      fontSize: 13
+    }
+  }, "All caught up \u2713"), notifs.map((n, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: "flex",
+      gap: 12,
+      padding: "13px 16px",
+      borderBottom: i < notifs.length - 1 ? "1px solid var(--border-divider)" : "none",
+      cursor: "pointer",
+      transition: "background 0.15s"
+    },
+    onMouseEnter: e => e.currentTarget.style.background = "rgba(212,175,55,0.04)",
+    onMouseLeave: e => e.currentTarget.style.background = "transparent"
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 7,
+      height: 7,
+      borderRadius: "50%",
+      background: dotColor[n.tone],
+      boxShadow: `0 0 6px ${dotColor[n.tone]}`,
+      flexShrink: 0,
+      marginTop: 5
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      fontWeight: 600,
+      color: "var(--ob-50)",
+      lineHeight: 1.3
+    }
+  }, n.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ob-300)",
+      marginTop: 3
+    }
+  }, n.meta)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "10px 16px",
+      textAlign: "center",
+      borderTop: "1px solid var(--border-divider)"
+    }
+  }, notifs.length > 0 && /*#__PURE__*/React.createElement("button", {
+    onClick: clearNotifs,
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 11,
+      color: "var(--gd-300)",
+      cursor: "pointer",
+      fontFamily: "var(--font-body)",
+      letterSpacing: "0.3px"
+    }
+  }, "Mark all as read"), notifs.length === 0 && /*#__PURE__*/React.createElement("button", {
+    onClick: () => setNotifOpen(false),
+    style: {
+      background: "none",
+      border: "none",
+      fontSize: 11,
+      color: "var(--ob-300)",
+      cursor: "pointer",
+      fontFamily: "var(--font-body)"
+    }
+  }, "Close")))), role === "host" && /*#__PURE__*/React.createElement(Btn, {
     variant: "primary",
     icon: "plus",
     onClick: () => window.hlToast("New gig — opening intake form…")
@@ -1388,7 +1531,8 @@ function App() {
     setGigId: setClientGig
   });else if (role === "supplier") body = /*#__PURE__*/React.createElement(SupplierPortal, {
     supplierId: supplierId,
-    setSupplierId: setSupplierId
+    setSupplierId: setSupplierId,
+    onBack: () => setRole("host")
   });else {
     body = {
       overview: /*#__PURE__*/React.createElement(Overview, {
@@ -1400,7 +1544,7 @@ function App() {
       calendar: /*#__PURE__*/React.createElement(CalendarView, {
         openGig: openGig
       }),
-      portfolio: /*#__PURE__*/React.createElement(PortfolioView, null),
+      meet: /*#__PURE__*/React.createElement(MeetLeigh, null),
       suppliers: /*#__PURE__*/React.createElement(Suppliers, {
         gigId: supGig,
         setGigId: setSupGig,
@@ -1415,11 +1559,37 @@ function App() {
       go: go
     });
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, role === "host" && /*#__PURE__*/React.createElement(Sidebar, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: "none"
+    }
+  }, /*#__PURE__*/React.createElement(Lightfall, {
+    store: window.HL_BG,
+    colors: window.HL_BG && window.HL_BG.colors || ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
+    backgroundColor: window.HL_BG && window.HL_BG.backgroundColor || "#1a1a2e",
+    speed: 0.6,
+    streakCount: 8,
+    streakWidth: 1,
+    streakLength: 1.3,
+    glow: 1,
+    density: 1,
+    twinkle: 1,
+    zoom: 2,
+    backgroundGlow: 0.85,
+    opacity: 0.72,
+    mouseInteraction: false,
+    mouseStrength: 0,
+    mouseRadius: 0.6
+  })), role === "host" && /*#__PURE__*/React.createElement(Sidebar, {
     page: page,
     go: go
   }), /*#__PURE__*/React.createElement("div", {
     style: {
+      position: "relative",
+      zIndex: 1,
       marginLeft: role === "host" ? "var(--sidebar-w)" : 0,
       minHeight: "100vh",
       display: "flex",
@@ -1432,7 +1602,7 @@ function App() {
     page: page
   }), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: 28,
+      padding: "24px 28px",
       flex: 1
     }
   }, body)), role === "host" && /*#__PURE__*/React.createElement(GigDrawer, {
@@ -1443,6 +1613,405 @@ function App() {
 }
 ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
 })(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/app.jsx", error: String((e && e.message) || e) }); }
+
+// dashboard/bg-tweaks.jsx
+try { (() => {
+/* ============================================================
+   HOST LEIGH — Background Tweaks (live controls for the
+   Lightfall / Galaxy hero). Mutates window.HL_BG in place so the
+   shader picks up changes each frame (no rebuild). Persists to
+   localStorage. Exposes window.BgTweaksPanel + window.HL_BG.
+   ============================================================ */
+(function () {
+  const {
+    useState
+  } = React;
+  const KEY = "hl_bg";
+  const DEFAULTS = {
+    speed: 0.6,
+    density: 1,
+    glow: 1,
+    twinkle: 1,
+    streakCount: 8,
+    streakWidth: 1,
+    streakLength: 1.3,
+    zoom: 2,
+    backgroundGlow: 0.85,
+    opacity: 1,
+    mouseInteraction: true,
+    colors: ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
+    backgroundColor: "#1a1a2e"
+  };
+  const PALETTES = [{
+    id: "gold",
+    name: "Gold",
+    bg: "#1a1a2e",
+    colors: ["#d4af37", "#e8ca6a", "#c94560", "#d96275"]
+  }, {
+    id: "rose",
+    name: "Rose",
+    bg: "#1a1015",
+    colors: ["#c94560", "#d96275", "#f2b0bc", "#e8ca6a"]
+  }, {
+    id: "aurora",
+    name: "Aurora",
+    bg: "#0a1029",
+    colors: ["#a6c8ff", "#5227ff", "#ff9ffc"]
+  }, {
+    id: "emerald",
+    name: "Emerald",
+    bg: "#0a1f16",
+    colors: ["#22c55e", "#4ade80", "#d4af37"]
+  }];
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY));
+      if (s) return Object.assign({}, DEFAULTS, s);
+    } catch (e) {}
+    return Object.assign({}, DEFAULTS);
+  }
+  window.HL_BG = window.HL_BG || load();
+  const persist = () => {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(window.HL_BG));
+    } catch (e) {}
+  };
+  const e = React.createElement;
+  function Row({
+    label,
+    value,
+    min,
+    max,
+    step,
+    fmt,
+    onChange
+  }) {
+    return e("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, e("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        marginBottom: 5
+      }
+    }, e("span", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-200)",
+        letterSpacing: "0.4px"
+      }
+    }, label), e("span", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 11,
+        color: "var(--gd-300)"
+      }
+    }, fmt ? fmt(value) : value)), e("input", {
+      type: "range",
+      min,
+      max,
+      step,
+      value,
+      onChange: ev => onChange(parseFloat(ev.target.value)),
+      style: {
+        width: "100%",
+        cursor: "pointer",
+        accentColor: "var(--gd-400)"
+      }
+    }));
+  }
+  function Toggle({
+    label,
+    value,
+    onChange
+  }) {
+    return e("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 14
+      }
+    }, e("span", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-200)",
+        letterSpacing: "0.4px"
+      }
+    }, label), e("button", {
+      onClick: () => onChange(!value),
+      style: {
+        width: 38,
+        height: 22,
+        borderRadius: 11,
+        border: "1px solid var(--border-soft)",
+        cursor: "pointer",
+        background: value ? "var(--gd-400)" : "var(--ob-700)",
+        position: "relative",
+        transition: "var(--tr-all)",
+        padding: 0
+      }
+    }, e("span", {
+      style: {
+        position: "absolute",
+        top: 2,
+        left: value ? 18 : 2,
+        width: 16,
+        height: 16,
+        borderRadius: "50%",
+        background: value ? "var(--ob-950)" : "var(--ob-300)",
+        transition: "var(--tr-all)"
+      }
+    })));
+  }
+  function Label(t) {
+    return e("div", {
+      style: {
+        fontFamily: "var(--font-mono-alt)",
+        fontSize: 9,
+        letterSpacing: "2px",
+        textTransform: "uppercase",
+        color: "var(--gd-300)",
+        margin: "18px 0 10px",
+        paddingBottom: 6,
+        borderBottom: "1px solid var(--border-divider)"
+      }
+    }, t);
+  }
+  function BgTweaksPanel() {
+    const [open, setOpen] = useState(false);
+    const [, force] = useState(0);
+    const s = window.HL_BG;
+    const set = (k, v) => {
+      window.HL_BG[k] = v;
+      persist();
+      force(x => x + 1);
+    };
+    const applyPalette = p => {
+      window.HL_BG.colors = p.colors.slice();
+      window.HL_BG.backgroundColor = p.bg;
+      persist();
+      force(x => x + 1);
+    };
+    const reset = () => {
+      Object.assign(window.HL_BG, JSON.parse(JSON.stringify(DEFAULTS)));
+      persist();
+      force(x => x + 1);
+    };
+    const activeId = (PALETTES.find(p => p.colors.join() === (s.colors || []).join()) || {}).id;
+    if (!open) {
+      return e("button", {
+        onClick: () => setOpen(true),
+        title: "Background controls",
+        style: {
+          position: "fixed",
+          left: 20,
+          bottom: 20,
+          zIndex: 200,
+          width: 46,
+          height: 46,
+          borderRadius: "50%",
+          background: "var(--surface-card)",
+          border: "1px solid var(--border-strong)",
+          color: "var(--gd-300)",
+          cursor: "pointer",
+          boxShadow: "var(--shadow-pop), 0 0 14px rgba(212,175,55,0.25)",
+          fontSize: 19,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }
+      }, "✦");
+    }
+    return e("div", {
+      style: {
+        position: "fixed",
+        left: 20,
+        bottom: 20,
+        zIndex: 200,
+        width: 284,
+        maxHeight: "84vh",
+        overflowY: "auto",
+        background: "var(--glass-bg)",
+        backdropFilter: "var(--blur-glass)",
+        WebkitBackdropFilter: "var(--blur-glass)",
+        border: "1px solid var(--border-strong)",
+        borderRadius: "var(--r-lg)",
+        boxShadow: "var(--shadow-deep)",
+        padding: 18
+      }
+    }, e("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, e("div", {
+      style: {
+        fontFamily: "var(--font-display)",
+        fontSize: 18,
+        fontWeight: 600,
+        color: "var(--ob-50)"
+      }
+    }, "Background"), e("button", {
+      onClick: () => setOpen(false),
+      style: {
+        background: "none",
+        border: "none",
+        color: "var(--ob-300)",
+        fontSize: 20,
+        cursor: "pointer",
+        lineHeight: 1
+      }
+    }, "×")), e("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)",
+        marginTop: 2
+      }
+    }, "Live galaxy controls"), Label("Palette"), e("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8
+      }
+    }, PALETTES.map(p => e("button", {
+      key: p.id,
+      onClick: () => applyPalette(p),
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "7px 9px",
+        cursor: "pointer",
+        borderRadius: "var(--r-sm)",
+        background: activeId === p.id ? "rgba(212,175,55,0.12)" : "var(--ob-800)",
+        border: "1px solid " + (activeId === p.id ? "var(--gd-400)" : "var(--border-hair)")
+      }
+    }, e("span", {
+      style: {
+        display: "flex",
+        borderRadius: 3,
+        overflow: "hidden",
+        flexShrink: 0
+      }
+    }, p.colors.slice(0, 4).map((c, i) => e("span", {
+      key: i,
+      style: {
+        width: 7,
+        height: 16,
+        background: c
+      }
+    }))), e("span", {
+      style: {
+        fontSize: 11,
+        color: activeId === p.id ? "var(--gd-300)" : "var(--ob-100)"
+      }
+    }, p.name)))), Label("Motion"), e(Row, {
+      label: "Speed",
+      value: s.speed,
+      min: 0,
+      max: 2.5,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("speed", v)
+    }), e(Row, {
+      label: "Streak count",
+      value: s.streakCount,
+      min: 1,
+      max: 16,
+      step: 1,
+      onChange: v => set("streakCount", v)
+    }), e(Row, {
+      label: "Streak length",
+      value: s.streakLength,
+      min: 0.3,
+      max: 3,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("streakLength", v)
+    }), e(Row, {
+      label: "Streak width",
+      value: s.streakWidth,
+      min: 0.3,
+      max: 3,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("streakWidth", v)
+    }), Label("Look"), e(Row, {
+      label: "Density",
+      value: s.density,
+      min: 0.2,
+      max: 3,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("density", v)
+    }), e(Row, {
+      label: "Glow",
+      value: s.glow,
+      min: 0.2,
+      max: 2.5,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("glow", v)
+    }), e(Row, {
+      label: "Twinkle",
+      value: s.twinkle,
+      min: 0,
+      max: 1,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("twinkle", v)
+    }), e(Row, {
+      label: "Background glow",
+      value: s.backgroundGlow,
+      min: 0,
+      max: 2,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("backgroundGlow", v)
+    }), e(Row, {
+      label: "Zoom",
+      value: s.zoom,
+      min: 1,
+      max: 5,
+      step: 0.1,
+      fmt: v => v.toFixed(1),
+      onChange: v => set("zoom", v)
+    }), e(Row, {
+      label: "Opacity",
+      value: s.opacity,
+      min: 0.2,
+      max: 1,
+      step: 0.05,
+      fmt: v => v.toFixed(2),
+      onChange: v => set("opacity", v)
+    }), Label("Interaction"), e(Toggle, {
+      label: "Mouse interaction",
+      value: s.mouseInteraction,
+      onChange: v => set("mouseInteraction", v)
+    }), e("button", {
+      onClick: reset,
+      style: {
+        width: "100%",
+        marginTop: 6,
+        padding: "8px 0",
+        cursor: "pointer",
+        borderRadius: "var(--r-sm)",
+        background: "transparent",
+        border: "1px solid var(--border-soft)",
+        color: "var(--ob-200)",
+        fontFamily: "var(--font-body)",
+        fontSize: 12,
+        letterSpacing: "0.5px"
+      }
+    }, "Reset to default"));
+  }
+  window.BgTweaksPanel = BgTweaksPanel;
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/bg-tweaks.jsx", error: String((e && e.message) || e) }); }
 
 // dashboard/borderglow.jsx
 try { (() => {
@@ -2183,7 +2752,10 @@ try { (() => {
       openedImageHeight = "400px",
       imageBorderRadius = "20px",
       openedImageBorderRadius = "20px",
-      grayscale = false
+      grayscale = false,
+      autoRotateSpeed = 0.018,
+      // deg per frame; set 0 to disable
+      randomReveal = true // periodically highlight a random tile
     } = props;
     const imgs = images && images.length ? images : [];
     const rootRef = useRef(null),
@@ -2602,6 +3174,48 @@ try { (() => {
     useEffect(() => () => {
       document.body.classList.remove("dg-scroll-lock");
     }, []);
+
+    // ── Auto-rotate (slow continuous spin) ──
+    useEffect(() => {
+      if (!autoRotateSpeed) return;
+      let raf;
+      const spin = () => {
+        if (!draggingRef.current && !focusedElRef.current && !inertiaRAF.current) {
+          const nextY = wrapAngleSigned(rotationRef.current.y + autoRotateSpeed);
+          rotationRef.current = {
+            x: rotationRef.current.x,
+            y: nextY
+          };
+          applyTransform(rotationRef.current.x, nextY);
+        }
+        raf = requestAnimationFrame(spin);
+      };
+      raf = requestAnimationFrame(spin);
+      return () => cancelAnimationFrame(raf);
+    }, [autoRotateSpeed]);
+
+    // ── Random photo pop-up (pulse a tile every few seconds) ──
+    useEffect(() => {
+      if (!randomReveal) return;
+      const interval = setInterval(() => {
+        if (focusedElRef.current || openingRef.current) return;
+        const sphere = sphereRef.current;
+        if (!sphere) return;
+        const tiles = sphere.querySelectorAll(".item__image img");
+        if (!tiles.length) return;
+        const tile = tiles[Math.floor(Math.random() * tiles.length)];
+        tile.style.transition = "transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.45s ease";
+        tile.style.transform = "scale(1.18)";
+        tile.style.boxShadow = "0 0 24px rgba(212,175,55,0.6)";
+        tile.style.zIndex = "10";
+        setTimeout(() => {
+          tile.style.transform = "";
+          tile.style.boxShadow = "";
+          tile.style.zIndex = "";
+        }, 900);
+      }, 1800);
+      return () => clearInterval(interval);
+    }, [randomReveal]);
     return /*#__PURE__*/React.createElement("div", {
       ref: rootRef,
       className: "sphere-root",
@@ -2668,7 +3282,7 @@ try { (() => {
 })();
 })(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/domegallery.jsx", error: String((e && e.message) || e) }); }
 
-// dashboard/host.jsx
+// dashboard/host-sa.jsx
 try { (() => {
 /* ============================================================
    HOST LEIGH — HOST VIEWS
@@ -2736,8 +3350,9 @@ function Overview({
       inset: 0
     }
   }, /*#__PURE__*/React.createElement(Lightfall, {
-    colors: ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
-    backgroundColor: "#1a1a2e",
+    store: window.HL_BG,
+    colors: window.HL_BG && window.HL_BG.colors || ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
+    backgroundColor: window.HL_BG && window.HL_BG.backgroundColor || "#1a1a2e",
     speed: 0.6,
     streakCount: 8,
     streakWidth: 1,
@@ -3907,6 +4522,2830 @@ function CalendarView({
 
 // ───────────────────────── PORTFOLIO (DomeGallery) ─────────────────────────
 const PORTFOLIO_IMAGES = [{
+  src: window.__resources && window.__resources.imgOffice || "assets/photos/leigh-office.jpeg",
+  alt: "Corporate portrait"
+}, {
+  src: window.__resources && window.__resources.imgVeeam || "assets/photos/leigh-veeam.jpeg",
+  alt: "Veeam — Safe AI at Scale"
+}, {
+  src: window.__resources && window.__resources.imgJollibee || "assets/photos/leigh-jollibee.jpeg",
+  alt: "Jollibee Joy event"
+}, {
+  src: window.__resources && window.__resources.imgGala || "assets/photos/leigh-gala.jpeg",
+  alt: "Le French Gala"
+}, {
+  src: window.__resources && window.__resources.imgSpeakers || "assets/photos/leigh-speakerscon.jpeg",
+  alt: "SpeakersCon PH"
+}, {
+  src: window.__resources && window.__resources.imgPifpo || "assets/photos/leigh-pifpo.jpeg",
+  alt: "PiFPO NCR Conference"
+}, {
+  src: window.__resources && window.__resources.imgParis || "assets/photos/leigh-paris.jpeg",
+  alt: "Editorial portrait"
+}, {
+  src: window.__resources && window.__resources.imgPortrait || "assets/photos/leigh-portrait.jpeg",
+  alt: "Beauty portrait"
+}, {
+  src: window.__resources && window.__resources.imgEvent || "assets/photos/leigh-event.jpeg",
+  alt: "VIP party host"
+}, {
+  src: window.__resources && window.__resources.imgWorking || "assets/photos/leigh-working.jpeg",
+  alt: "Behind the scenes"
+}, {
+  src: window.__resources && window.__resources.imgSelfie || "assets/photos/leigh-selfie.jpeg",
+  alt: "On-site selfie"
+}];
+function PortfolioView() {
+  const HL = window.HL;
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "space-between",
+      marginBottom: 20,
+      flexWrap: "wrap",
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Portfolio",
+    title: "Thirteen rooms she's owned.",
+    sub: "Drag to rotate the dome \xB7 click any frame to enlarge. Real corporate stages across Metro Manila and beyond."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 20,
+      paddingBottom: 6
+    }
+  }, [["8.2K", "Followers"], ["14+", "Years"], ["100%", "Recommend"]].map(([n, l]) => /*#__PURE__*/React.createElement("div", {
+    key: l,
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 20,
+      color: "var(--gd-300)",
+      lineHeight: 1
+    }
+  }, n), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      marginTop: 5
+    }
+  }, l))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      height: "66vh",
+      minHeight: 460,
+      borderRadius: "var(--r-xl)",
+      overflow: "hidden",
+      border: "1px solid var(--border-soft)",
+      background: "var(--ob-950)",
+      boxShadow: "var(--shadow-card)"
+    }
+  }, /*#__PURE__*/React.createElement(DomeGallery, {
+    images: PORTFOLIO_IMAGES,
+    fit: 0.62,
+    minRadius: 420,
+    grayscale: false,
+    overlayBlurColor: "#161221",
+    imageBorderRadius: "14px",
+    openedImageBorderRadius: "16px",
+    openedImageWidth: "340px",
+    openedImageHeight: "440px"
+  })));
+}
+
+// ───────────────────────── MEET LEIGH ─────────────────────────
+function MeetLeigh() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 20,
+      marginBottom: 20,
+      alignItems: "stretch"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-hair)",
+      borderRadius: "var(--r-lg)",
+      padding: "32px 36px",
+      boxShadow: "var(--shadow-card)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 14,
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 22,
+      height: 1,
+      background: "var(--grad-gold)"
+    }
+  }), "Meet your host"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display-alt)",
+      fontWeight: 700,
+      fontSize: 58,
+      lineHeight: 0.96,
+      color: "var(--ob-50)",
+      marginBottom: 10
+    }
+  }, "Leigh."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontWeight: 500,
+      fontSize: 19,
+      fontStyle: "italic",
+      color: "var(--gd-300)",
+      marginBottom: 20,
+      lineHeight: 1.25
+    }
+  }, "The voice that holds the room."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13.5,
+      lineHeight: 1.75,
+      color: "var(--ob-200)",
+      margin: "0 0 10px",
+      maxWidth: "50ch"
+    }
+  }, "Leigh is a professional event host and emcee who turns programs into experiences \u2014 galas, product launches, conferences and weddings. She reads a room in seconds and keeps a run sheet on rails."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13.5,
+      lineHeight: 1.75,
+      color: "var(--ob-300)",
+      margin: "0 0 24px",
+      maxWidth: "50ch"
+    }
+  }, "From the first inquiry to the final encore, she hosts the whole arc: warm, precise, and impossible to look away from."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    variant: "primary",
+    onClick: () => window.hlToast("Opening booking form…")
+  }, "\u2726 Book Leigh"), /*#__PURE__*/React.createElement(Btn, {
+    variant: "secondary",
+    onClick: () => window.hlToast("Scrolling to gallery…")
+  }, "See the portfolio"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-lg)",
+      overflow: "hidden",
+      border: "1px solid var(--border-soft)",
+      minHeight: 380
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%",
+      height: "100%",
+      minHeight: 380,
+      background: "center 22%/cover url('" + (window.__resources && window.__resources.imgPortrait || 'assets/photos/leigh-portrait.jpeg') + "')"
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gap: 16,
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Years Hosting",
+    value: "8+",
+    sub: {
+      text: "Since 2016",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Events Hosted",
+    value: "200+",
+    sub: {
+      text: "Galas · launches · weddings",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Cities on Call",
+    value: "4",
+    sub: {
+      text: "Metro Manila + beyond",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Client Satisfaction",
+    value: "100%",
+    tone: "success",
+    sub: {
+      text: "↑ all reviews",
+      tone: "up"
+    }
+  })), /*#__PURE__*/React.createElement(Card, {
+    title: "What She's About",
+    icon: "spark",
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 14
+    }
+  }, [["01", "Presence", "Calm, magnetic stage presence that anchors a program from the first cue to the last applause."], ["02", "Precision", "Run sheets, cues and timings handled to the second — the night never drifts and nobody waits."], ["03", "Warmth", "Every guest, sponsor and couple treated like the reason the room exists in the first place."]].map(([num, title, desc]) => /*#__PURE__*/React.createElement("div", {
+    key: num,
+    style: {
+      padding: "20px 22px",
+      background: "var(--surface-raised)",
+      border: "1px solid var(--border-divider)",
+      borderRadius: "var(--r-md)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 30,
+      color: "var(--gd-300)",
+      marginBottom: 10,
+      lineHeight: 1
+    }
+  }, num), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ob-50)",
+      marginBottom: 7,
+      fontFamily: "var(--font-display)"
+    }
+  }, title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      color: "var(--ob-300)",
+      lineHeight: 1.65
+    }
+  }, desc)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18,
+      padding: "14px 20px",
+      background: "rgba(212,175,55,0.04)",
+      border: "1px solid var(--border-soft)",
+      borderRadius: "var(--r-md)",
+      fontFamily: "var(--font-display)",
+      fontStyle: "italic",
+      fontSize: 15.5,
+      color: "var(--ob-200)",
+      lineHeight: 1.5
+    }
+  }, "\"She didn't just run the program \u2014 she made it unforgettable.\"")), /*#__PURE__*/React.createElement(Card, {
+    title: "On Stage & On the Carpet",
+    icon: "portfolio",
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gridAutoRows: "150px",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridRow: "span 2",
+      borderRadius: "var(--r-md)",
+      background: "center/cover url('" + (window.__resources && window.__resources.imgGala || 'assets/photos/leigh-gala.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      gridColumn: "span 2",
+      borderRadius: "var(--r-md)",
+      background: "center 30%/cover url('" + (window.__resources && window.__resources.imgVeeam || 'assets/photos/leigh-veeam.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-md)",
+      background: "center/cover url('" + (window.__resources && window.__resources.imgSpeakers || 'assets/photos/leigh-speakerscon.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-md)",
+      background: "center/cover url('" + (window.__resources && window.__resources.imgPifpo || 'assets/photos/leigh-pifpo.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-md)",
+      background: "center/cover url('" + (window.__resources && window.__resources.imgJollibee || 'assets/photos/leigh-jollibee.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-md)",
+      background: "center/cover url('" + (window.__resources && window.__resources.imgParis || 'assets/photos/leigh-paris.jpeg') + "')",
+      border: "1px solid var(--border-soft)"
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "40px 32px",
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-soft)",
+      borderRadius: "var(--r-lg)",
+      boxShadow: "var(--shadow-card)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display-alt)",
+      fontWeight: 700,
+      fontSize: 32,
+      color: "var(--ob-50)",
+      marginBottom: 10,
+      lineHeight: 1.05
+    }
+  }, "Have a night that deserves a host?"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 auto 22px",
+      fontSize: 14,
+      color: "var(--ob-300)",
+      maxWidth: "44ch",
+      lineHeight: 1.6
+    }
+  }, "Tell Leigh the date, the room and the feeling you're after \u2014 she'll take it from there."), /*#__PURE__*/React.createElement(Btn, {
+    variant: "primary",
+    onClick: () => window.hlToast("Opening booking inquiry…")
+  }, "\u2726 Check her availability")));
+}
+Object.assign(window, {
+  Overview,
+  Pipeline,
+  Suppliers,
+  Escrow,
+  DiscountEngine,
+  CalendarView,
+  PortfolioView,
+  MeetLeigh
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/host-sa.jsx", error: String((e && e.message) || e) }); }
+
+// dashboard/host.jsx
+try { (() => {
+/* ============================================================
+   HOST LEIGH — HOST VIEWS
+   Overview · Pipeline · Suppliers(firewall) · Escrow ·
+   Discount Engine · Calendar. Exported to window.
+   ============================================================ */
+
+// ───────────────────────── KPI MODALS ─────────────────────────
+function ActiveGigsPanel({
+  gigs,
+  HL,
+  onClose,
+  go
+}) {
+  const stageColor = {
+    confirmed: "var(--gd-400)",
+    prep: "var(--warning)"
+  };
+  const stageLabel = {
+    confirmed: "Confirmed",
+    prep: "In Prep"
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 28
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 6
+    }
+  }, "Active Gigs"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 28,
+      fontWeight: 700,
+      color: "var(--ob-50)"
+    }
+  }, gigs.length, " events on the books")), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: {
+      background: "none",
+      border: "1px solid var(--border-soft)",
+      color: "var(--ob-200)",
+      width: 32,
+      height: 32,
+      borderRadius: "var(--r-sm)",
+      cursor: "pointer",
+      fontSize: 18,
+      lineHeight: 1
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 14
+    }
+  }, gigs.map(g => {
+    const cv = g.suppliers && g.suppliers.length ? HL.contractValue(g) : null;
+    const clickable = g.suppliers && g.suppliers.length > 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      onClick: () => {
+        if (clickable) {
+          onClose();
+          go("suppliers", g.id);
+        }
+      },
+      onMouseEnter: e => {
+        e.currentTarget.style.borderColor = clickable ? "var(--gd-400)" : "var(--border-hair)";
+        e.currentTarget.style.transform = clickable ? "translateY(-2px)" : "none";
+      },
+      onMouseLeave: e => {
+        e.currentTarget.style.borderColor = "var(--border-hair)";
+        e.currentTarget.style.transform = "none";
+      },
+      style: {
+        background: "var(--surface-raised)",
+        border: "1px solid var(--border-hair)",
+        borderRadius: "var(--r-lg)",
+        padding: 20,
+        cursor: clickable ? "pointer" : "default",
+        transition: "var(--tr-all)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 10,
+        color: stageColor[g.stage] || "var(--ob-300)",
+        fontFamily: "var(--font-mono)",
+        letterSpacing: "1px",
+        textTransform: "uppercase"
+      }
+    }, "\u25C6 ", stageLabel[g.stage] || g.stage), /*#__PURE__*/React.createElement(Tag, null, g.type)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 17,
+        fontWeight: 700,
+        color: "var(--ob-50)",
+        marginBottom: 4,
+        lineHeight: 1.2
+      }
+    }, g.client), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12.5,
+        color: "var(--ob-200)",
+        marginBottom: 10
+      }
+    }, g.event), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)",
+        marginBottom: 4
+      }
+    }, g.date, g.time ? ` · ${g.time}` : ""), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)",
+        marginBottom: cv ? 14 : 0
+      }
+    }, g.venue), cv && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 20,
+        color: "var(--gd-300)",
+        fontWeight: 500
+      }
+    }, HL.pesoK(cv)));
+  })));
+}
+function CollectedPanel({
+  gigs,
+  HL,
+  onClose
+}) {
+  const total = gigs.reduce((s, g) => s + HL.contractValue(g), 0);
+  const collected = gigs.reduce((s, g) => s + HL.contractValue(g) * (g.clientPaidPct / 100), 0);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 28
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--success-text)",
+      marginBottom: 6
+    }
+  }, "Collected"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 28,
+      fontWeight: 700,
+      color: "var(--ob-50)"
+    }
+  }, HL.pesoK(collected), " received to date")), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: {
+      background: "none",
+      border: "1px solid var(--border-soft)",
+      color: "var(--ob-200)",
+      width: 32,
+      height: 32,
+      borderRadius: "var(--r-sm)",
+      cursor: "pointer",
+      fontSize: 18,
+      lineHeight: 1
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: 14,
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Total Contracted",
+    value: HL.pesoK(total)
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Collected",
+    value: HL.pesoK(collected),
+    tone: "success",
+    sub: {
+      text: Math.round(collected / total * 100) + "% of total",
+      tone: "up"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Still Owed",
+    value: HL.pesoK(total - collected),
+    tone: "warning"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, gigs.map((g, i) => {
+    const cv = HL.contractValue(g);
+    const paid = cv * g.clientPaidPct / 100;
+    const fullyPaid = g.clientPaidPct >= 100;
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      style: {
+        padding: "18px 0",
+        borderBottom: i < gigs.length - 1 ? "1px solid var(--border-divider)" : "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 700,
+        color: "var(--ob-50)",
+        marginBottom: 3
+      }
+    }, g.client), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--ob-300)"
+      }
+    }, g.event, " \xB7 ", g.date)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 22,
+        color: "var(--success-text)",
+        lineHeight: 1
+      }
+    }, HL.peso(paid)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)",
+        marginTop: 4
+      }
+    }, "of ", HL.peso(cv))), fullyPaid && /*#__PURE__*/React.createElement(Tag, {
+      tone: "green"
+    }, "\u2713 Paid in full")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement(Bar, {
+      pct: g.clientPaidPct,
+      color: "var(--success)"
+    })), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 12,
+        color: "var(--success-text)",
+        flexShrink: 0
+      }
+    }, g.clientPaidPct, "%")));
+  })));
+}
+function OutstandingPanel({
+  gigs,
+  HL,
+  onClose
+}) {
+  const outstanding = gigs.filter(g => g.clientPaidPct < 100);
+  const totalOut = outstanding.reduce((s, g) => s + HL.contractValue(g) * ((100 - g.clientPaidPct) / 100), 0);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 28
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--warning-text)",
+      marginBottom: 6
+    }
+  }, "Outstanding"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 28,
+      fontWeight: 700,
+      color: "var(--ob-50)"
+    }
+  }, HL.pesoK(totalOut), " uncollected")), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: {
+      background: "none",
+      border: "1px solid var(--border-soft)",
+      color: "var(--ob-200)",
+      width: 32,
+      height: 32,
+      borderRadius: "var(--r-sm)",
+      cursor: "pointer",
+      fontSize: 18,
+      lineHeight: 1
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 14
+    }
+  }, outstanding.map(g => {
+    const cv = HL.contractValue(g);
+    const paid = cv * g.clientPaidPct / 100;
+    const owed = cv - paid;
+    const overdue = g.clientPaidPct === 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      style: {
+        background: overdue ? "rgba(239,68,68,0.05)" : "var(--surface-raised)",
+        border: `1px solid ${overdue ? "rgba(239,68,68,0.2)" : "var(--border-hair)"}`,
+        borderRadius: "var(--r-lg)",
+        padding: 20
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 16,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        marginBottom: 4
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 15,
+        fontWeight: 700,
+        color: "var(--ob-50)"
+      }
+    }, g.client), overdue && /*#__PURE__*/React.createElement(Tag, {
+      tone: "rose"
+    }, "\u26A0 Overdue")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--ob-300)"
+      }
+    }, g.event, " \xB7 ", g.date)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 24,
+        color: overdue ? "var(--danger-text)" : "var(--warning-text)",
+        lineHeight: 1
+      }
+    }, HL.peso(owed)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)",
+        marginTop: 4
+      }
+    }, g.clientPaidPct, "% paid \xB7 ", HL.peso(cv), " total"))), /*#__PURE__*/React.createElement(Bar, {
+      pct: g.clientPaidPct,
+      color: overdue ? "var(--danger)" : "var(--warning)"
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 14,
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement(Btn, {
+      size: "sm",
+      variant: overdue ? "danger" : "secondary",
+      icon: "message",
+      onClick: () => window.hlToast(`Payment reminder sent to ${g.client} ✓`)
+    }, "Send reminder"), /*#__PURE__*/React.createElement(Btn, {
+      size: "sm",
+      variant: "ghost",
+      icon: "phone",
+      onClick: () => window.open("https://wa.me/63", "_blank")
+    }, "Call client")));
+  })));
+}
+function ContractedPanel({
+  gigs,
+  HL,
+  onClose
+}) {
+  const total = gigs.reduce((s, g) => s + HL.contractValue(g), 0);
+  const collected = gigs.reduce((s, g) => s + HL.contractValue(g) * (g.clientPaidPct / 100), 0);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 28
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 6
+    }
+  }, "Contracted"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 28,
+      fontWeight: 700,
+      color: "var(--ob-50)"
+    }
+  }, HL.pesoK(total), " across ", gigs.length, " gigs")), /*#__PURE__*/React.createElement("button", {
+    onClick: onClose,
+    style: {
+      background: "none",
+      border: "1px solid var(--border-soft)",
+      color: "var(--ob-200)",
+      width: 32,
+      height: 32,
+      borderRadius: "var(--r-sm)",
+      cursor: "pointer",
+      fontSize: 18,
+      lineHeight: 1
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3,1fr)",
+      gap: 14,
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Total Contracted",
+    value: HL.pesoK(total)
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Collected",
+    value: HL.pesoK(collected),
+    tone: "success",
+    sub: {
+      text: Math.round(collected / total * 100) + "% of total",
+      tone: "up"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Outstanding",
+    value: HL.pesoK(total - collected),
+    tone: "warning"
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, gigs.map((g, i) => {
+    const cv = HL.contractValue(g);
+    const paid = cv * g.clientPaidPct / 100;
+    const overdue = g.clientPaidPct === 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      style: {
+        padding: "18px 0",
+        borderBottom: i < gigs.length - 1 ? "1px solid var(--border-divider)" : "none"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 15,
+        fontWeight: 700,
+        color: "var(--ob-50)",
+        marginBottom: 3
+      }
+    }, g.client), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--ob-300)"
+      }
+    }, g.event, " \xB7 ", g.date)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right",
+        flexShrink: 0
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 22,
+        color: "var(--gd-300)",
+        lineHeight: 1
+      }
+    }, HL.peso(cv)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: overdue ? "var(--danger-text)" : "var(--ob-300)",
+        marginTop: 4
+      }
+    }, overdue ? "⚠ Awaiting downpayment" : `${g.clientPaidPct}% paid · ${HL.peso(paid)}`))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, /*#__PURE__*/React.createElement(Bar, {
+      pct: g.clientPaidPct,
+      color: overdue ? "var(--danger)" : "var(--grad-gold)"
+    })));
+  })));
+}
+
+// ───────────────────────── OVERVIEW ─────────────────────────
+function Overview({
+  go
+}) {
+  const HL = window.HL;
+  const active = HL.activeGigs;
+  const fin = HL.financeGigs;
+  const contracted = fin.reduce((s, g) => s + HL.contractValue(g), 0);
+  const collected = fin.reduce((s, g) => s + HL.contractValue(g) * (g.clientPaidPct / 100), 0);
+  const outstanding = contracted - collected;
+  const next = HL.gigById("kia");
+  const [modal, setModal] = React.useState(null);
+  const alerts = [{
+    tone: "success",
+    title: "★ 9th Nation Builders & MosLiv Award — Int'l Female Host for Advocacy",
+    meta: "Alongside Gov. Vilma Santos-Recto & Mayor Vico Sotto · Okada Manila Grand Ballroom · Nov 27, 2025",
+    cta: null
+  }, {
+    tone: "warning",
+    title: "🌏 New Role: COO for Asia — Andre Norman (Ambassador of Hope)",
+    meta: "Appointed May 29, 2026 · Bringing hope & transformation across the Asia region",
+    cta: null
+  }, {
+    tone: "success",
+    title: "👑 Historic: First Lady of the Philippines in audience — NWMC 2026",
+    meta: "National Women's Month Congress · March 9, 2026 · Highest-profile audience possible in PH",
+    cta: null
+  }];
+  const toneBg = {
+    danger: "rgba(239,68,68,0.06)",
+    warning: "rgba(245,158,11,0.06)",
+    success: "rgba(34,197,94,0.06)"
+  };
+  const toneBd = {
+    danger: "rgba(239,68,68,0.18)",
+    warning: "rgba(245,158,11,0.18)",
+    success: "rgba(34,197,94,0.15)"
+  };
+  const toneDot = {
+    danger: "var(--danger)",
+    warning: "var(--warning)",
+    success: "var(--success)"
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      zIndex: 1
+    }
+  }, modal && /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal(null),
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.72)",
+      backdropFilter: "blur(8px)",
+      zIndex: 400,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 32
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 920,
+      maxHeight: "82vh",
+      overflowY: "auto",
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-strong)",
+      borderRadius: "var(--r-xl)",
+      boxShadow: "var(--shadow-deep)"
+    }
+  }, modal === "active" && /*#__PURE__*/React.createElement(ActiveGigsPanel, {
+    gigs: active,
+    HL: HL,
+    onClose: () => setModal(null),
+    go: go
+  }), modal === "contracted" && /*#__PURE__*/React.createElement(ContractedPanel, {
+    gigs: fin,
+    HL: HL,
+    onClose: () => setModal(null)
+  }), modal === "collected" && /*#__PURE__*/React.createElement(CollectedPanel, {
+    gigs: fin,
+    HL: HL,
+    onClose: () => setModal(null)
+  }), modal === "outstanding" && /*#__PURE__*/React.createElement(OutstandingPanel, {
+    gigs: fin,
+    HL: HL,
+    onClose: () => setModal(null)
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      height: 196,
+      borderRadius: "var(--r-lg)",
+      overflow: "hidden",
+      marginBottom: 24,
+      border: "1px solid var(--border-strong)",
+      boxShadow: "var(--shadow-card)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      background: "linear-gradient(95deg, rgba(10,10,20,0.72) 0%, rgba(10,10,20,0.38) 55%, rgba(10,10,20,0.08) 100%)",
+      backdropFilter: "blur(0px)",
+      pointerEvents: "none"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      height: "100%",
+      padding: "0 36px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      pointerEvents: "none"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 11,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 8
+    }
+  }, "Welcome back, Boss \u2726"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 36,
+      fontWeight: 700,
+      color: "var(--ob-50)",
+      lineHeight: 1.05
+    }
+  }, "The empire, at a glance."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      color: "var(--ob-200)",
+      marginTop: 8
+    }
+  }, "14+ years \xB7 100+ events in 2025 \xB7 ", active.length, " active gigs \xB7 next up ", next.client, ", ", next.date))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: 16,
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 42,
+    glowColor: "40 65 55",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 26,
+    glowIntensity: 1.3,
+    coneSpread: 28,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("active"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "View all active gigs"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Active Gigs",
+    value: active.length,
+    sub: {
+      text: "↑ +2 this month · tap to expand",
+      tone: "up"
+    }
+  }))), /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 42,
+    glowColor: "40 65 55",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 26,
+    glowIntensity: 1.3,
+    coneSpread: 28,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("contracted"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "View all contracted gigs"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Contracted",
+    value: HL.pesoK(contracted),
+    sub: {
+      text: "across active events · tap to expand",
+      tone: "muted"
+    }
+  }))), /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 42,
+    glowColor: "40 65 55",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 26,
+    glowIntensity: 1.3,
+    coneSpread: 28,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("collected"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "View collection breakdown"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Collected",
+    value: HL.pesoK(collected),
+    tone: "success",
+    sub: {
+      text: Math.round(collected / contracted * 100) + "% of contracted · tap",
+      tone: "up"
+    }
+  }))), /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 42,
+    glowColor: "40 65 55",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 26,
+    glowIntensity: 1.3,
+    coneSpread: 28,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("outstanding"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "View outstanding invoices"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Outstanding",
+    value: HL.pesoK(outstanding),
+    tone: "warning",
+    sub: {
+      text: "1 overdue · tap to review",
+      tone: "warn"
+    }
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 40,
+    glowColor: "30 10 10",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 28,
+    glowIntensity: 1.4,
+    coneSpread: 32,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement(Card, {
+    title: "Today's Alerts",
+    icon: "bolt",
+    style: {
+      background: "transparent",
+      border: "none",
+      boxShadow: "none"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10
+    }
+  }, alerts.map((a, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: 12,
+      background: toneBg[a.tone],
+      border: `1px solid ${toneBd[a.tone]}`,
+      borderRadius: "var(--r-md)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: toneDot[a.tone],
+      boxShadow: `0 0 6px ${toneDot[a.tone]}`,
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "var(--ob-50)"
+    }
+  }, a.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ob-300)",
+      marginTop: 2
+    }
+  }, a.meta)), a.cta && /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: "auto"
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    variant: a.tone === "danger" ? "danger" : "secondary",
+    onClick: a.act
+  }, a.cta)))))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement(BorderGlow, {
+    animated: true,
+    edgeSensitivity: 38,
+    glowColor: "45 65 60",
+    backgroundColor: "var(--surface-card)",
+    borderRadius: 14,
+    glowRadius: 26,
+    glowIntensity: 1.3,
+    coneSpread: 29,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      marginBottom: 16,
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--gd-400)",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "calendar",
+    size: 17
+  })), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 16,
+      fontWeight: 600,
+      color: "var(--ob-50)"
+    }
+  }, "Next Confirmed Event")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "var(--surface-raised)",
+      borderRadius: "var(--r-md)",
+      padding: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 10,
+      color: "var(--gd-400)",
+      letterSpacing: "1px",
+      marginBottom: 6
+    }
+  }, next.date.toUpperCase(), " \xB7 ", next.time), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 16,
+      fontWeight: 600,
+      color: "var(--ob-50)",
+      marginBottom: 4
+    }
+  }, next.client, " \u2014 ", next.event), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ob-300)",
+      marginBottom: 12
+    }
+  }, next.venue, " \xB7 ~", next.pax, " guests"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement(Tag, {
+    tone: "gold"
+  }, next.type), /*#__PURE__*/React.createElement(Tag, {
+    tone: "green"
+  }, "Confirmed"), /*#__PURE__*/React.createElement(Tag, null, HL.pesoK(HL.contractValue(next))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      display: "flex",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    fullWidth: true,
+    onClick: () => go("suppliers")
+  }, "View suppliers"), /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    fullWidth: true,
+    onClick: () => go("escrow")
+  }, "Payment status")))), /*#__PURE__*/React.createElement(Card, {
+    title: "Quick Actions",
+    icon: "spark"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, [["kanban", "View the full gig pipeline", "pipeline"], ["suppliers", "Check supplier firewall & statuses", "suppliers"], ["escrow", "Escrow & payment tracker", "escrow"], ["discount", "Run the discount & margin engine", "discount"]].map(([ic, lbl, pg]) => /*#__PURE__*/React.createElement(BorderGlow, {
+    key: pg,
+    animated: true,
+    edgeSensitivity: 52,
+    glowColor: "45 55 50",
+    backgroundColor: "var(--surface-raised)",
+    borderRadius: 8,
+    glowRadius: 22,
+    glowIntensity: 1.25,
+    coneSpread: 28,
+    colors: ["#d4af37", "#c94560", "#e8ca6a"]
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => go(pg),
+    style: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      textAlign: "left",
+      padding: "12px 14px",
+      background: "transparent",
+      border: "none",
+      borderRadius: "var(--r-md)",
+      color: "var(--ob-100)",
+      cursor: "pointer",
+      fontFamily: "var(--font-body)",
+      fontSize: 13,
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.color = "var(--ob-100)";
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--gd-400)",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: ic,
+    size: 16
+  })), lbl, /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: "auto",
+      color: "var(--ob-300)",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "arrow",
+    size: 15
+  }))))))))));
+}
+
+// ───────────────────────── PIPELINE ─────────────────────────
+function Pipeline({
+  openGig
+}) {
+  const HL = window.HL;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "24px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Gig Pipeline",
+    title: "Every deal, every stage.",
+    sub: "Drag-free kanban of the whole book. Click any card to open its firewall, escrow and run-of-show."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: 14
+    }
+  }, HL.STAGES.map(st => {
+    const cards = HL.GIGS.filter(g => g.stage === st.key);
+    return /*#__PURE__*/React.createElement("div", {
+      key: st.key
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 600,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: st.color
+      }
+    }, st.glyph, " ", st.label), /*#__PURE__*/React.createElement("span", {
+      style: {
+        background: "var(--ob-700)",
+        color: "var(--ob-200)",
+        fontSize: 10,
+        padding: "2px 7px",
+        borderRadius: 20,
+        fontFamily: "var(--font-mono)"
+      }
+    }, cards.length)), cards.map(g => {
+      const clickable = g.suppliers.length > 0;
+      return /*#__PURE__*/React.createElement("div", {
+        key: g.id,
+        onClick: () => clickable && openGig(g.id),
+        style: {
+          background: "var(--surface-raised)",
+          border: "1px solid var(--border-hair)",
+          borderRadius: "var(--r-md)",
+          padding: 14,
+          marginBottom: 10,
+          cursor: clickable ? "pointer" : "default",
+          opacity: g.stage === "done" ? 0.55 : 1,
+          transition: "var(--tr-all)"
+        },
+        onMouseEnter: e => {
+          if (clickable) {
+            e.currentTarget.style.borderColor = "var(--border-strong)";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }
+        },
+        onMouseLeave: e => {
+          e.currentTarget.style.borderColor = "var(--border-hair)";
+          e.currentTarget.style.transform = "none";
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 600,
+          color: "var(--ob-50)",
+          marginBottom: 4
+        }
+      }, g.client), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: "var(--ob-200)",
+          marginBottom: 8
+        }
+      }, g.event), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 6,
+          flexWrap: "wrap"
+        }
+      }, g.stage === "confirmed" && /*#__PURE__*/React.createElement(Tag, {
+        tone: "gold"
+      }, HL.pesoK(HL.contractValue(g))), g.note && /*#__PURE__*/React.createElement(Tag, {
+        tone: "rose"
+      }, g.note), g.paid ? /*#__PURE__*/React.createElement(Tag, {
+        tone: "green"
+      }, "Paid \u2713") : /*#__PURE__*/React.createElement(Tag, null, g.date)));
+    }));
+  })));
+}
+
+// ───────────────────── SUPPLIERS / FIREWALL ─────────────────────
+function Suppliers({
+  gigId,
+  setGigId,
+  openSupplier
+}) {
+  const HL = window.HL;
+  const gigs = HL.GIGS.filter(g => g.suppliers.length);
+  const gig = HL.gigById(gigId) || gigs[0];
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      zIndex: 1,
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "24px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Supplier Firewall",
+    title: "They work for you. They never see each other."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 14,
+      marginBottom: 16,
+      padding: "12px 16px",
+      background: "rgba(212,175,55,0.05)",
+      border: "1px solid var(--border-soft)",
+      borderRadius: "var(--r-md)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--gd-400)",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "shield",
+    size: 20
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      color: "var(--ob-100)",
+      lineHeight: 1.5
+    }
+  }, /*#__PURE__*/React.createElement("b", {
+    style: {
+      color: "var(--gd-300)"
+    }
+  }, "Firewall active."), " Each supplier has a private channel and sees only their own scope \u2014 never the client's identity, your margin, or the other suppliers. Open a row to view their isolated portal.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      marginBottom: 16,
+      flexWrap: "wrap"
+    }
+  }, gigs.map(g => /*#__PURE__*/React.createElement("button", {
+    key: g.id,
+    onClick: () => setGigId(g.id),
+    style: {
+      padding: "7px 14px",
+      borderRadius: "var(--r-pill)",
+      fontFamily: "var(--font-body)",
+      fontSize: 12,
+      cursor: "pointer",
+      border: "1px solid",
+      transition: "var(--tr-all)",
+      ...(g.id === gig.id ? {
+        background: "var(--gd-400)",
+        borderColor: "var(--gd-400)",
+        color: "var(--ob-950)",
+        fontWeight: 600
+      } : {
+        background: "none",
+        borderColor: "var(--border-soft)",
+        color: "var(--ob-200)"
+      })
+    }
+  }, g.client))), /*#__PURE__*/React.createElement(Card, {
+    title: `${gig.client} — ${gig.event}`,
+    icon: "suppliers",
+    action: /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 11,
+        color: "var(--ob-300)"
+      }
+    }, gig.date, " \xB7 ", gig.suppliers.length, " suppliers")
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, ["Supplier", "Category", "Private channel", "Cue", "Status", ""].map((h, i) => /*#__PURE__*/React.createElement("th", {
+    key: i,
+    style: {
+      fontSize: 10,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      textAlign: i === 5 ? "right" : "left",
+      padding: "0 12px 10px",
+      borderBottom: "1px solid var(--border-soft)",
+      fontWeight: 600
+    }
+  }, h)))), /*#__PURE__*/React.createElement("tbody", null, gig.suppliers.map(s => /*#__PURE__*/React.createElement("tr", {
+    key: s.id,
+    onClick: () => openSupplier(s.id),
+    style: {
+      cursor: "pointer"
+    },
+    onMouseEnter: e => e.currentTarget.style.background = "rgba(212,175,55,0.04)",
+    onMouseLeave: e => e.currentTarget.style.background = "transparent"
+  }, /*#__PURE__*/React.createElement("td", {
+    style: tdS
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 600,
+      color: "var(--ob-50)"
+    }
+  }, s.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ob-300)"
+    }
+  }, s.scope)), /*#__PURE__*/React.createElement("td", {
+    style: tdS
+  }, /*#__PURE__*/React.createElement(Tag, null, s.cat)), /*#__PURE__*/React.createElement("td", {
+    style: {
+      ...tdS,
+      fontFamily: "var(--font-mono)",
+      fontSize: 11,
+      color: "var(--ob-200)"
+    }
+  }, s.contact), /*#__PURE__*/React.createElement("td", {
+    style: {
+      ...tdS,
+      fontSize: 11,
+      color: "var(--ob-200)"
+    }
+  }, s.cue), /*#__PURE__*/React.createElement("td", {
+    style: tdS
+  }, /*#__PURE__*/React.createElement(StatusPill, {
+    status: s.status
+  })), /*#__PURE__*/React.createElement("td", {
+    style: {
+      ...tdS,
+      textAlign: "right"
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    variant: s.status === "late" ? "danger" : "secondary",
+    icon: "phone",
+    onClick: e => {
+      e.stopPropagation();
+      const raw = (s.contact || "").replace(/\D/g, "");
+      const intl = raw.startsWith("0") ? "63" + raw.slice(1) : raw;
+      window.open("https://wa.me/" + intl, "_blank");
+    }
+  }, s.status === "late" ? "Call now" : "Call")))))))));
+}
+const tdS = {
+  padding: "13px 12px",
+  borderBottom: "1px solid var(--border-divider)",
+  fontSize: 13,
+  color: "var(--ob-100)",
+  verticalAlign: "middle"
+};
+
+// ───────────────────────── ESCROW ─────────────────────────
+function Escrow() {
+  const HL = window.HL;
+  const gigs = HL.financeGigs;
+  const [modal, setModal] = React.useState(null); // "contracted" | "collected" | "escrow" | "overdue"
+  const totals = gigs.reduce((a, g) => {
+    const cv = HL.contractValue(g);
+    const paid = cv * (g.clientPaidPct / 100);
+    const supCost = HL.supplierTotal(g, false);
+    const released = g.suppliers.reduce((s, x) => s + x.quote * (x.paidPct / 100), 0);
+    a.contracted += cv;
+    a.collected += paid;
+    a.supCost += supCost;
+    a.released += released;
+    if (g.clientPaidPct === 0) a.overdue += cv;
+    return a;
+  }, {
+    contracted: 0,
+    collected: 0,
+    supCost: 0,
+    released: 0,
+    overdue: 0
+  });
+  const MODALS = {
+    contracted: {
+      title: "Contracted Work",
+      sub: "All confirmed event contracts and their full value breakdown.",
+      rows: gigs.map(g => {
+        const cv = HL.contractValue(g);
+        const supCost = HL.supplierTotal(g, false);
+        return {
+          client: g.client,
+          event: g.event,
+          date: g.date,
+          contract: HL.peso(cv),
+          suppliers: HL.peso(supCost),
+          fee: HL.peso(g.hostingFee),
+          margin: HL.peso(cv - supCost - g.hostingFee)
+        };
+      }),
+      cols: ["Client", "Event", "Date", "Contract Value", "Supplier Cost", "Hosting Fee", "Margin"],
+      keys: ["client", "event", "date", "contract", "suppliers", "fee", "margin"]
+    },
+    collected: {
+      title: "Collected Payments",
+      sub: "What clients have paid so far versus total contracted.",
+      rows: gigs.map(g => {
+        const cv = HL.contractValue(g);
+        const paid = cv * (g.clientPaidPct / 100);
+        return {
+          client: g.client,
+          event: g.event,
+          contract: HL.peso(cv),
+          collected: HL.peso(paid),
+          pct: g.clientPaidPct + "%",
+          balance: HL.peso(cv - paid),
+          status: g.clientPaidPct === 0 ? "⚠ Overdue" : g.clientPaidPct === 100 ? "✓ Paid" : "Partial"
+        };
+      }),
+      cols: ["Client", "Event", "Total", "Collected", "% Paid", "Balance", "Status"],
+      keys: ["client", "event", "contract", "collected", "pct", "balance", "status"]
+    },
+    escrow: {
+      title: "Held in Escrow",
+      sub: "Collected funds not yet released to suppliers — your float.",
+      rows: gigs.map(g => {
+        const cv = HL.contractValue(g);
+        const paid = cv * (g.clientPaidPct / 100);
+        const released = g.suppliers.reduce((s, x) => s + x.quote * (x.paidPct / 100), 0);
+        return {
+          client: g.client,
+          event: g.event,
+          collected: HL.peso(paid),
+          released: HL.peso(released),
+          held: HL.peso(paid - released)
+        };
+      }),
+      cols: ["Client", "Event", "Collected", "Released", "Held"],
+      keys: ["client", "event", "collected", "released", "held"]
+    },
+    overdue: {
+      title: "Overdue Balances",
+      sub: "Clients with zero or late payment — action required.",
+      rows: gigs.filter(g => g.clientPaidPct < 100).map(g => {
+        const cv = HL.contractValue(g);
+        const paid = cv * (g.clientPaidPct / 100);
+        return {
+          client: g.client,
+          event: g.event,
+          date: g.date,
+          contract: HL.peso(cv),
+          paid: HL.peso(paid),
+          outstanding: HL.peso(cv - paid),
+          pct: g.clientPaidPct + "% paid"
+        };
+      }),
+      cols: ["Client", "Event", "Date", "Contract", "Paid", "Outstanding", "Progress"],
+      keys: ["client", "event", "date", "contract", "paid", "outstanding", "pct"]
+    }
+  };
+  const m = modal && MODALS[modal];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "24px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, m && /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal(null),
+    style: {
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.78)",
+      backdropFilter: "blur(10px)",
+      zIndex: 500,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 32
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxWidth: 960,
+      maxHeight: "86vh",
+      overflowY: "auto",
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-strong)",
+      borderRadius: "var(--r-xl)",
+      boxShadow: "var(--shadow-deep)",
+      padding: "32px 36px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 10,
+      letterSpacing: "2.5px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 6
+    }
+  }, "Escrow \xB7 ", m.title), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontFamily: "var(--font-display)",
+      fontSize: 26,
+      fontWeight: 600,
+      color: "var(--ob-50)"
+    }
+  }, m.title), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "6px 0 0",
+      fontSize: 13,
+      color: "var(--ob-300)"
+    }
+  }, m.sub)), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setModal(null),
+    style: {
+      background: "none",
+      border: "none",
+      color: "var(--ob-300)",
+      fontSize: 22,
+      cursor: "pointer",
+      lineHeight: 1,
+      marginTop: 2
+    }
+  }, "\xD7")), /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, m.cols.map(c => /*#__PURE__*/React.createElement("th", {
+    key: c,
+    style: {
+      padding: "8px 12px",
+      textAlign: "left",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 10,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      borderBottom: "1px solid var(--border-soft)"
+    }
+  }, c)))), /*#__PURE__*/React.createElement("tbody", null, m.rows.map((row, i) => /*#__PURE__*/React.createElement("tr", {
+    key: i,
+    style: {
+      borderBottom: "1px solid var(--border-divider)"
+    },
+    onMouseEnter: e => e.currentTarget.style.background = "rgba(212,175,55,0.04)",
+    onMouseLeave: e => e.currentTarget.style.background = "transparent"
+  }, m.keys.map(k => /*#__PURE__*/React.createElement("td", {
+    key: k,
+    style: {
+      padding: "13px 12px",
+      fontSize: 13,
+      color: k === "client" ? "var(--ob-50)" : k.includes("margin") || k === "held" ? "var(--success-text)" : k === "outstanding" ? "var(--warning-text)" : "var(--ob-100)",
+      fontFamily: k === "contract" || k === "suppliers" || k === "fee" || k === "margin" || k === "collected" || k === "balance" || k === "paid" || k === "released" || k === "held" ? "var(--font-mono)" : "var(--font-body)",
+      fontWeight: k === "client" ? 600 : 400
+    }
+  }, row[k])))))))), /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Escrow Tracker",
+    title: "Client pays you. You release suppliers.",
+    sub: "Money sits with you between collection and event sign-off \u2014 your leverage, your float, your protection."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: 16,
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("contracted"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "Click for full breakdown"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Contracted",
+    value: HL.pesoK(totals.contracted)
+  })), /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("collected"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "Click for full breakdown"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Collected",
+    value: HL.pesoK(totals.collected),
+    tone: "success"
+  })), /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("escrow"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "Click for full breakdown"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Held in escrow",
+    value: HL.pesoK(totals.collected - totals.released),
+    tone: "default",
+    sub: {
+      text: "not yet released · tap to expand",
+      tone: "muted"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    onClick: () => setModal("overdue"),
+    style: {
+      cursor: "pointer"
+    },
+    title: "Click for full breakdown"
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Overdue",
+    value: HL.pesoK(totals.overdue),
+    tone: "danger",
+    sub: {
+      text: "1 client · tap to expand",
+      tone: "down"
+    }
+  }))), /*#__PURE__*/React.createElement(Card, {
+    title: "Per-Event Escrow Flow",
+    icon: "escrow"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, gigs.map(g => {
+    const cv = HL.contractValue(g);
+    const paid = cv * (g.clientPaidPct / 100);
+    const supCost = HL.supplierTotal(g, false);
+    const released = g.suppliers.reduce((s, x) => s + x.quote * (x.paidPct / 100), 0);
+    const margin = cv - supCost - g.hostingFee;
+    const overdue = g.clientPaidPct === 0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.id,
+      style: {
+        padding: "16px 0",
+        borderBottom: "1px solid var(--border-divider)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "baseline",
+        justifyContent: "space-between",
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: "var(--ob-50)"
+      }
+    }, g.client), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "var(--ob-300)"
+      }
+    }, g.event, " \xB7 ", g.date)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 15,
+        color: "var(--ob-50)"
+      }
+    }, HL.peso(cv)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: overdue ? "var(--warning-text)" : "var(--ob-300)"
+      }
+    }, overdue ? "Awaiting downpayment — OVERDUE" : `${g.clientPaidPct}% collected`))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 16
+      }
+    }, /*#__PURE__*/React.createElement(EscrowStage, {
+      label: "Client \u2192 You",
+      amt: HL.peso(paid),
+      of: HL.peso(cv),
+      pct: g.clientPaidPct,
+      color: overdue ? "var(--danger)" : "var(--grad-gold)"
+    }), /*#__PURE__*/React.createElement(EscrowStage, {
+      label: "You \u2192 Suppliers",
+      amt: HL.peso(released),
+      of: HL.peso(supCost),
+      pct: Math.round(released / supCost * 100),
+      color: "var(--ob-300)"
+    }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: "var(--ob-300)",
+        marginBottom: 6
+      }
+    }, "Your margin"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 15,
+        color: "var(--success-text)",
+        marginBottom: 6
+      }
+    }, HL.peso(margin)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "var(--ob-300)"
+      }
+    }, "incl. \u20B1", g.hostingFee / 1000, "K hosting fee"))));
+  }))));
+}
+function EscrowStage({
+  label,
+  amt,
+  of,
+  pct,
+  color
+}) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      marginBottom: 6
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "baseline",
+      gap: 6,
+      marginBottom: 6
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 15,
+      color: "var(--ob-50)"
+    }
+  }, amt), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 11,
+      color: "var(--ob-300)"
+    }
+  }, "/ ", of)), /*#__PURE__*/React.createElement(Bar, {
+    pct: pct || 0,
+    color: color
+  }));
+}
+
+// ───────────────────── DISCOUNT / MARGIN ENGINE ─────────────────────
+function DiscountEngine({
+  gigId,
+  setGigId
+}) {
+  const HL = window.HL;
+  const gigs = HL.GIGS.filter(g => g.suppliers.length);
+  const gig = HL.gigById(gigId) || gigs[0];
+  const floor = HL.supplierTotal(gig, true);
+  const quoted = HL.supplierTotal(gig, false);
+  const [markup, setMarkup] = React.useState(gig.markupPct);
+  const [hosting, setHosting] = React.useState(gig.hostingFee);
+  const [discount, setDiscount] = React.useState(0); // % off client price
+  React.useEffect(() => {
+    setMarkup(gig.markupPct);
+    setHosting(gig.hostingFee);
+    setDiscount(0);
+  }, [gig.id]);
+  const baseClient = quoted * (1 + markup / 100) + hosting;
+  const clientPrice = baseClient * (1 - discount / 100);
+  const margin = clientPrice - quoted; // what you keep after paying supplier quotes
+  const marginPct = clientPrice ? margin / clientPrice * 100 : 0;
+  const protectedFloor = clientPrice - floor; // cushion above true supplier floor
+  const danger = clientPrice < quoted;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "24px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Discount & Margin Engine",
+    title: "Give the number. Keep the margin.",
+    sub: "Discounts come off your markup \u2014 never the supplier floor. Simulate before you commit on the call."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      marginBottom: 16,
+      flexWrap: "wrap"
+    }
+  }, gigs.map(g => /*#__PURE__*/React.createElement("button", {
+    key: g.id,
+    onClick: () => setGigId(g.id),
+    style: {
+      padding: "7px 14px",
+      borderRadius: "var(--r-pill)",
+      fontFamily: "var(--font-body)",
+      fontSize: 12,
+      cursor: "pointer",
+      border: "1px solid",
+      transition: "var(--tr-all)",
+      ...(g.id === gig.id ? {
+        background: "var(--gd-400)",
+        borderColor: "var(--gd-400)",
+        color: "var(--ob-950)",
+        fontWeight: 600
+      } : {
+        background: "none",
+        borderColor: "var(--border-soft)",
+        color: "var(--ob-200)"
+      })
+    }
+  }, g.client))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1.1fr 1fr",
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    title: "Simulator",
+    icon: "discount"
+  }, /*#__PURE__*/React.createElement(Slider, {
+    label: "Coordination markup",
+    value: markup,
+    min: 15,
+    max: 45,
+    step: 1,
+    unit: "%",
+    onChange: setMarkup,
+    hint: "House rule: 25\u201340% covers follow-ups, day-of stress, contingency."
+  }), /*#__PURE__*/React.createElement(Slider, {
+    label: "Hosting fee",
+    value: hosting,
+    min: 0,
+    max: 120000,
+    step: 1000,
+    unit: "\u20B1",
+    fmt: HL.peso,
+    onChange: setHosting,
+    hint: "Your on-mic talent fee, separate from supplier coordination."
+  }), /*#__PURE__*/React.createElement(Slider, {
+    label: "Client discount",
+    value: discount,
+    min: 0,
+    max: 25,
+    step: 1,
+    unit: "%",
+    onChange: setDiscount,
+    hint: "\u201CSuki na tayo, pwede pa bumaba?\u201D \u2014 give it off the markup.",
+    accent: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 16,
+      paddingTop: 16,
+      borderTop: "1px solid var(--border-divider)",
+      display: "flex",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    onClick: () => setDiscount(d => Math.min(25, d + 5))
+  }, "+5% off"), /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    onClick: () => {
+      setDiscount(10);
+      window.hlToast("Loyalty scenario: 10% off the markup");
+    }
+  }, "Repeat-client loyalty"), /*#__PURE__*/React.createElement(Btn, {
+    size: "sm",
+    variant: "ghost",
+    onClick: () => {
+      setMarkup(gig.markupPct);
+      setHosting(gig.hostingFee);
+      setDiscount(0);
+    }
+  }, "Reset"))), /*#__PURE__*/React.createElement(Card, {
+    title: "Quote Breakdown",
+    icon: "card",
+    style: danger ? {
+      borderColor: "var(--danger)"
+    } : null
+  }, /*#__PURE__*/React.createElement(Row, {
+    k: "Supplier floor (true cost)",
+    v: HL.peso(floor),
+    mono: true,
+    dim: true
+  }), /*#__PURE__*/React.createElement(Row, {
+    k: "Supplier quotes (what you pay)",
+    v: HL.peso(quoted),
+    mono: true
+  }), /*#__PURE__*/React.createElement(Row, {
+    k: `+ Coordination markup (${markup}%)`,
+    v: HL.peso(quoted * markup / 100),
+    mono: true
+  }), /*#__PURE__*/React.createElement(Row, {
+    k: "+ Hosting fee",
+    v: HL.peso(hosting),
+    mono: true
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: "1px solid var(--border-divider)",
+      margin: "8px 0"
+    }
+  }), /*#__PURE__*/React.createElement(Row, {
+    k: "List package price",
+    v: HL.peso(baseClient),
+    mono: true
+  }), discount > 0 && /*#__PURE__*/React.createElement(Row, {
+    k: `− Client discount (${discount}%)`,
+    v: "− " + HL.peso(baseClient - clientPrice),
+    mono: true,
+    tone: "rose"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 14,
+      padding: 16,
+      background: "var(--surface-raised)",
+      borderRadius: "var(--r-md)",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      letterSpacing: "2px",
+      textTransform: "uppercase",
+      color: "var(--ob-200)",
+      marginBottom: 6
+    }
+  }, "Client pays"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 30,
+      fontWeight: 500,
+      color: "var(--gd-300)",
+      lineHeight: 1
+    }
+  }, HL.peso(clientPrice))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 10,
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement(Mini, {
+    label: "Your margin",
+    value: HL.peso(margin),
+    pct: `${marginPct.toFixed(0)}% of price`,
+    tone: danger ? "danger" : "success"
+  }), /*#__PURE__*/React.createElement(Mini, {
+    label: "Floor cushion",
+    value: HL.peso(protectedFloor),
+    pct: "above true cost",
+    tone: protectedFloor < 0 ? "danger" : "default"
+  })), danger && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 12,
+      fontSize: 11.5,
+      color: "var(--danger-text)",
+      textAlign: "center"
+    }
+  }, "\u26A0 Below your supplier quotes \u2014 you'd be paying to work. Pull back the discount."))));
+}
+function Slider({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  fmt,
+  onChange,
+  hint,
+  accent
+}) {
+  const disp = fmt ? fmt(value) : unit === "%" ? value + "%" : value;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 18
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      marginBottom: 7
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: "var(--ob-100)",
+      fontWeight: 500
+    }
+  }, label), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 14,
+      color: accent ? "var(--rose-400)" : "var(--gd-300)"
+    }
+  }, disp)), /*#__PURE__*/React.createElement("input", {
+    type: "range",
+    min: min,
+    max: max,
+    step: step,
+    value: value,
+    onChange: e => onChange(Number(e.target.value)),
+    style: {
+      width: "100%",
+      accentColor: accent ? "var(--rose-500)" : "var(--gd-400)",
+      cursor: "pointer"
+    }
+  }), hint && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10.5,
+      color: "var(--ob-300)",
+      marginTop: 5,
+      lineHeight: 1.4
+    }
+  }, hint));
+}
+function Row({
+  k,
+  v,
+  mono,
+  dim,
+  tone
+}) {
+  const c = tone === "rose" ? "var(--rose-400)" : dim ? "var(--ob-300)" : "var(--ob-100)";
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      padding: "5px 0"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12.5,
+      color: dim ? "var(--ob-300)" : "var(--ob-200)"
+    }
+  }, k), /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontFamily: mono ? "var(--font-mono)" : "inherit",
+      fontSize: 13,
+      color: c
+    }
+  }, v));
+}
+function Mini({
+  label,
+  value,
+  pct,
+  tone
+}) {
+  const c = {
+    success: "var(--success-text)",
+    danger: "var(--danger-text)",
+    default: "var(--gd-300)"
+  }[tone];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 12,
+      background: "var(--surface-raised)",
+      borderRadius: "var(--r-md)",
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      marginBottom: 5
+    }
+  }, label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 18,
+      color: c,
+      lineHeight: 1
+    }
+  }, value), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9.5,
+      color: "var(--ob-300)",
+      marginTop: 4
+    }
+  }, pct));
+}
+
+// ───────────────────────── CALENDAR ─────────────────────────
+function CalendarView({
+  openGig
+}) {
+  const HL = window.HL;
+  // July 2025 — starts on Tuesday (index 2)
+  const events = {
+    12: "kia",
+    18: "jollibee",
+    19: "piepco"
+  };
+  const first = 2,
+    days = 31;
+  const cells = [];
+  for (let i = 0; i < first; i++) cells.push(null);
+  for (let d = 1; d <= days; d++) cells.push(d);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      height: "calc(100vh - 118px)",
+      gap: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "18px 24px",
+      border: "1px solid var(--border-hair)",
+      flexShrink: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 20,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Event Calendar",
+    title: "July 2025",
+    sub: "The booked month. Gold marks a confirmed event \u2014 click to open it."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const url = "https://calendar.google.com/calendar/r/eventedit?text=Host+Leigh+Events&dates=20250712T100000/20250712T220000&details=Sync+your+Host+Leigh+bookings+with+Google+Calendar.";
+      window.open(url, "_blank");
+    },
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 9,
+      padding: "9px 18px",
+      cursor: "pointer",
+      borderRadius: "var(--r-sm)",
+      border: "1px solid var(--border-soft)",
+      background: "var(--surface-raised)",
+      fontFamily: "var(--font-body)",
+      fontSize: 13,
+      color: "var(--ob-100)",
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.borderColor = "var(--gd-400)";
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.borderColor = "var(--border-soft)";
+      e.currentTarget.style.color = "var(--ob-100)";
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "3",
+    y: "4",
+    width: "18",
+    height: "18",
+    rx: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "16",
+    y1: "2",
+    x2: "16",
+    y2: "6"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "8",
+    y1: "2",
+    x2: "8",
+    y2: "6"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "3",
+    y1: "10",
+    x2: "21",
+    y2: "10"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"
+  })), "Google Calendar"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Host Leigh//EN", "BEGIN:VEVENT", "DTSTART:20250712T100000Z", "DTEND:20250712T220000Z", "SUMMARY:Host Leigh — Empire Events", "DESCRIPTION:Sync your Host Leigh bookings with Apple Calendar.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+      const blob = new Blob([ics], {
+        type: "text/calendar"
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "host-leigh-events.ics";
+      a.click();
+    },
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 9,
+      padding: "9px 18px",
+      cursor: "pointer",
+      borderRadius: "var(--r-sm)",
+      border: "1px solid var(--border-soft)",
+      background: "var(--surface-raised)",
+      fontFamily: "var(--font-body)",
+      fontSize: 13,
+      color: "var(--ob-100)",
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.borderColor = "var(--gd-400)";
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.borderColor = "var(--border-soft)";
+      e.currentTarget.style.color = "var(--ob-100)";
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M12 6v6l4 2"
+  })), "Apple Calendar"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      padding: 4,
+      display: "flex",
+      flexDirection: "column",
+      minHeight: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(7,1fr)",
+      gap: 6,
+      marginBottom: 6
+    }
+  }, ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => /*#__PURE__*/React.createElement("div", {
+    key: d,
+    className: "hl-sparkle-gold",
+    style: {
+      fontSize: 24,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      textAlign: "center",
+      padding: "6px 0",
+      fontFamily: "var(--font-display)",
+      fontWeight: 700
+    }
+  }, d))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      display: "grid",
+      gridTemplateColumns: "repeat(7,1fr)",
+      gridTemplateRows: "repeat(5,1fr)",
+      gap: 6
+    }
+  }, cells.map((d, i) => {
+    const ev = d && events[d];
+    const g = ev && HL.gigById(ev);
+    return /*#__PURE__*/React.createElement("div", {
+      key: i,
+      onClick: () => g && openGig(g.id),
+      style: {
+        borderRadius: "var(--r-sm)",
+        padding: 12,
+        border: "1px solid var(--border-divider)",
+        background: d ? "var(--surface-raised)" : "transparent",
+        cursor: g ? "pointer" : "default",
+        opacity: d ? 1 : 0,
+        transition: "var(--tr-all)",
+        minHeight: 0,
+        ...(ev ? {
+          borderColor: "var(--border-strong)"
+        } : null)
+      },
+      onMouseEnter: e => {
+        if (g) e.currentTarget.style.borderColor = "var(--gd-400)";
+      },
+      onMouseLeave: e => {
+        if (g) e.currentTarget.style.borderColor = "var(--border-strong)";
+      }
+    }, d && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-mono)",
+        fontSize: 14,
+        color: ev ? "var(--gd-300)" : "var(--ob-300)"
+      }
+    }, d), g && /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 600,
+        color: "var(--ob-50)",
+        lineHeight: 1.3
+      }
+    }, g.client), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "var(--gd-400)",
+        marginTop: 5,
+        fontFamily: "var(--font-mono)"
+      }
+    }, g.time)));
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "none"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 160
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "var(--ob-100)",
+      marginBottom: 3
+    }
+  }, "Sync with your calendar"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "var(--ob-400)",
+      lineHeight: 1.5
+    }
+  }, "Export your confirmed bookings to Apple or Google Calendar")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10,
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const url = "https://calendar.google.com/calendar/r/eventedit?text=Host+Leigh+Events&dates=20250712T100000/20250712T220000&details=Sync+your+Host+Leigh+bookings+with+Google+Calendar.";
+      window.open(url, "_blank");
+    },
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 9,
+      padding: "9px 18px",
+      cursor: "pointer",
+      borderRadius: "var(--r-sm)",
+      border: "1px solid var(--border-soft)",
+      background: "var(--surface-raised)",
+      fontFamily: "var(--font-body)",
+      fontSize: 13,
+      color: "var(--ob-100)",
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.borderColor = "var(--gd-400)";
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.borderColor = "var(--border-soft)";
+      e.currentTarget.style.color = "var(--ob-100)";
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("rect", {
+    x: "3",
+    y: "4",
+    width: "18",
+    height: "18",
+    rx: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "16",
+    y1: "2",
+    x2: "16",
+    y2: "6"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "8",
+    y1: "2",
+    x2: "8",
+    y2: "6"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "3",
+    y1: "10",
+    x2: "21",
+    y2: "10"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"
+  })), "Google Calendar"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Host Leigh//EN", "BEGIN:VEVENT", "DTSTART:20250712T100000Z", "DTEND:20250712T220000Z", "SUMMARY:Host Leigh — Empire Events", "DESCRIPTION:Sync your Host Leigh bookings with Apple Calendar.", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+      const blob = new Blob([ics], {
+        type: "text/calendar"
+      });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "host-leigh-events.ics";
+      a.click();
+    },
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 9,
+      padding: "9px 18px",
+      cursor: "pointer",
+      borderRadius: "var(--r-sm)",
+      border: "1px solid var(--border-soft)",
+      background: "var(--surface-raised)",
+      fontFamily: "var(--font-body)",
+      fontSize: 13,
+      color: "var(--ob-100)",
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.borderColor = "var(--gd-400)";
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.borderColor = "var(--border-soft)";
+      e.currentTarget.style.color = "var(--ob-100)";
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M12 6v6l4 2"
+  })), "Apple Calendar"))));
+}
+
+// ───────────────────────── PORTFOLIO (DomeGallery) ─────────────────────────
+const PORTFOLIO_IMAGES = [{
   src: "assets/photos/leigh-office.jpeg",
   alt: "Corporate portrait"
 }, {
@@ -4004,6 +7443,328 @@ function PortfolioView() {
     openedImageHeight: "440px"
   })));
 }
+
+// ───────────────────────── MEET LEIGH (+ Portfolio dome) ─────────────────────────
+function MeetLeigh() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-end",
+      justifyContent: "space-between",
+      marginBottom: 20,
+      flexWrap: "wrap",
+      gap: 12,
+      background: "rgba(10,10,20,0.32)",
+      backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)",
+      borderRadius: "var(--r-lg)",
+      padding: "16px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, /*#__PURE__*/React.createElement(PageHero, {
+    eyebrow: "Portfolio",
+    title: "Thirteen rooms she's owned.",
+    sub: "Drag to rotate the dome \xB7 click any frame to enlarge. Real stages across Metro Manila and beyond."
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 20,
+      paddingBottom: 6
+    }
+  }, [["8.2K", "Followers"], ["14+", "Years"], ["100%", "Recommend"]].map(([n, l]) => /*#__PURE__*/React.createElement("div", {
+    key: l,
+    style: {
+      textAlign: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono)",
+      fontSize: 20,
+      color: "var(--gd-300)",
+      lineHeight: 1
+    }
+  }, n), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      letterSpacing: "1.5px",
+      textTransform: "uppercase",
+      color: "var(--ob-300)",
+      marginTop: 5
+    }
+  }, l))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "relative",
+      height: "66vh",
+      minHeight: 460,
+      borderRadius: "var(--r-xl)",
+      overflow: "hidden",
+      border: "1px solid var(--border-soft)",
+      background: "var(--ob-950)",
+      boxShadow: "var(--shadow-card)"
+    }
+  }, /*#__PURE__*/React.createElement(DomeGallery, {
+    images: PORTFOLIO_IMAGES,
+    fit: 0.62,
+    minRadius: 420,
+    grayscale: false,
+    overlayBlurColor: "#161221",
+    imageBorderRadius: "14px",
+    openedImageBorderRadius: "16px",
+    openedImageWidth: "340px",
+    openedImageHeight: "440px"
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "rgba(10,10,20,0.45)",
+      backdropFilter: "blur(14px)",
+      WebkitBackdropFilter: "blur(14px)",
+      borderRadius: "var(--r-xl)",
+      padding: "24px 20px",
+      border: "1px solid var(--border-hair)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 20,
+      marginBottom: 20,
+      alignItems: "stretch"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-hair)",
+      borderRadius: "var(--r-lg)",
+      padding: "32px 36px",
+      boxShadow: "var(--shadow-card)",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 10,
+      letterSpacing: "3px",
+      textTransform: "uppercase",
+      color: "var(--gd-300)",
+      marginBottom: 14,
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      width: 22,
+      height: 1,
+      background: "var(--grad-gold)"
+    }
+  }), "Meet your host"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display-alt)",
+      fontWeight: 700,
+      fontSize: 58,
+      lineHeight: 0.96,
+      color: "var(--ob-50)",
+      marginBottom: 10
+    }
+  }, "Leigh."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontWeight: 500,
+      fontSize: 19,
+      fontStyle: "italic",
+      color: "var(--gd-300)",
+      marginBottom: 20,
+      lineHeight: 1.25
+    }
+  }, "The voice that holds the room."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13.5,
+      lineHeight: 1.75,
+      color: "var(--ob-200)",
+      margin: "0 0 10px",
+      maxWidth: "50ch"
+    }
+  }, "Leighza Mir J. Estella \u2014 14+ years on stage since 2012. BA Communications, ABS-CBN trained, and completing a HarvardX Rhetoric certification. Over 100 events hosted in 2025 alone across 14 sectors \u2014 from intimate brand activations to a 12,000-person music festival. In May 2026 she was appointed COO for Asia under Andre Norman (Ambassador of Hope)."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: 13.5,
+      lineHeight: 1.75,
+      color: "var(--ob-300)",
+      margin: "0 0 24px",
+      maxWidth: "50ch"
+    }
+  }, "She has hosted at Okada Manila's Grand Ballroom alongside Gov. Vilma Santos-Recto and Mayor Vico Sotto \u2014 and in March 2026, the First Lady of the Philippines was in her audience. Every client who has left a review would book again: 100% recommend rate across 7 verified reviews."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    variant: "primary",
+    onClick: () => window.hlToast("Opening booking form…")
+  }, "\u2726 Book Leigh"), /*#__PURE__*/React.createElement(Btn, {
+    variant: "secondary",
+    onClick: () => window.hlToast("Scrolling to gallery…")
+  }, "See the portfolio"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderRadius: "var(--r-lg)",
+      overflow: "hidden",
+      border: "1px solid var(--border-soft)",
+      minHeight: 380
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%",
+      height: "100%",
+      minHeight: 380,
+      background: "center 22%/cover url('assets/photos/leigh-portrait.jpeg')"
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gap: 16,
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement(KPI, {
+    label: "Years Hosting",
+    value: "14+",
+    sub: {
+      text: "Active since 2012",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Events in 2025",
+    value: "100+",
+    sub: {
+      text: "Self-confirmed · still counting",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Largest Crowd",
+    value: "12,000",
+    sub: {
+      text: "Neon Music Fest · SM City Fairview",
+      tone: "muted"
+    }
+  }), /*#__PURE__*/React.createElement(KPI, {
+    label: "Recommend Rate",
+    value: "100%",
+    tone: "success",
+    sub: {
+      text: "↑ 7 verified client reviews",
+      tone: "up"
+    }
+  })), /*#__PURE__*/React.createElement(Card, {
+    title: "What She's About",
+    icon: "spark",
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 14
+    }
+  }, [["01", "Presence", "Calm, magnetic stage presence that anchors a program from the first cue to the last applause."], ["02", "Precision", "Run sheets, cues and timings handled to the second — the night never drifts and nobody waits."], ["03", "Warmth", "Every guest, sponsor and couple treated like the reason the room exists in the first place."]].map(([num, title, desc]) => /*#__PURE__*/React.createElement("div", {
+    key: num,
+    style: {
+      padding: "20px 22px",
+      background: "var(--surface-raised)",
+      border: "1px solid var(--border-divider)",
+      borderRadius: "var(--r-md)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 30,
+      color: "var(--gd-300)",
+      marginBottom: 10,
+      lineHeight: 1
+    }
+  }, num), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ob-50)",
+      marginBottom: 7,
+      fontFamily: "var(--font-display)"
+    }
+  }, title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12.5,
+      color: "var(--ob-300)",
+      lineHeight: 1.65
+    }
+  }, desc)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 18,
+      padding: "14px 20px",
+      background: "rgba(212,175,55,0.04)",
+      border: "1px solid var(--border-soft)",
+      borderRadius: "var(--r-md)",
+      fontFamily: "var(--font-display)",
+      fontStyle: "italic",
+      fontSize: 15.5,
+      color: "var(--ob-200)",
+      lineHeight: 1.5
+    }
+  }, "\"She didn't just run the program \u2014 she made it unforgettable.\"")), /*#__PURE__*/React.createElement(Card, {
+    title: "On Stage & On the Carpet",
+    icon: "portfolio",
+    style: {
+      marginBottom: 20
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+      gridAutoRows: "200px",
+      gap: 8
+    }
+  }, ["uploads/IMG_1305-6ff24187.JPG", "uploads/IMG_1306-bceef42a.JPG", "uploads/IMG_1307-b068fff7.JPG", "uploads/IMG_1308-78232945.JPG", "uploads/IMG_1309-f5edab79.JPG", "uploads/IMG_1310-e667480c.JPG", "uploads/IMG_1311-6beecea4.JPG", "uploads/IMG_1312-5d84b3f9.JPG", "uploads/IMG_1313-4f6023e0.JPG", "uploads/IMG_1314-d9f431fa.JPG", "uploads/IMG_1315-fd12fd1f.JPG", "uploads/IMG_1316-e59acebb.JPG", "uploads/IMG_1317-7f9ee48e.JPG", "uploads/IMG_1318-53c8fc46.JPG", "uploads/IMG_1319-2679714b.JPG", "uploads/IMG_1320-6d251b17.JPG", "uploads/IMG_1321-90fd8c45.JPG", "uploads/IMG_1322-60f94129.JPG", "uploads/IMG_1323-dda6d0b2.JPG", "uploads/IMG_1324-6ce3dcb9.JPG", "uploads/IMG_1325-cacb9d88.JPG", "uploads/IMG_1326-a9e5d340.JPG", "uploads/IMG_1327-86c630dc.JPG", "uploads/IMG_1328-67adcfa9.JPG", "uploads/IMG_1329-877f67c6.JPG", "uploads/IMG_1330-4f17fc1b.JPG", "uploads/IMG_1331-4289b06d.JPG", "uploads/IMG_1332-3fcc8f12.JPG", "uploads/IMG_1333-7288b39f.JPG", "uploads/IMG_1334-513cb657.JPG", "uploads/IMG_1335-d41270e6.JPG", "uploads/IMG_1336-bc6515e9.JPG", "uploads/IMG_1337-586d72f5.JPG", "uploads/IMG_1338-fbd1904c.JPG", "uploads/IMG_1339-0717a7a6.JPG", "uploads/IMG_1340-a8f3f2b6.JPG", "uploads/IMG_1341-bf09db4a.JPG", "uploads/IMG_1342-87efff6c.JPG", "uploads/IMG_1343-550b7565.JPG", "uploads/IMG_1344-0227615a.JPG", "uploads/IMG_1345-b2aeeadf.JPG", "uploads/IMG_1346-aba8a661.JPG", "uploads/IMG_1347-e24560bd.JPG", "uploads/IMG_1348-cece6270.JPG"].map((src, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      borderRadius: "var(--r-md)",
+      background: `center/cover url('${src}')`,
+      border: "1px solid var(--border-soft)",
+      backgroundSize: "cover"
+    }
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: "center",
+      padding: "40px 32px",
+      background: "var(--surface-card)",
+      border: "1px solid var(--border-soft)",
+      borderRadius: "var(--r-lg)",
+      boxShadow: "var(--shadow-card)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display-alt)",
+      fontWeight: 700,
+      fontSize: 32,
+      color: "var(--ob-50)",
+      marginBottom: 10,
+      lineHeight: 1.05
+    }
+  }, "Have a night that deserves a host?"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: "0 auto 22px",
+      fontSize: 14,
+      color: "var(--ob-300)",
+      maxWidth: "44ch",
+      lineHeight: 1.6
+    }
+  }, "Tell Leigh the date, the room and the feeling you're after \u2014 she'll take it from there."), /*#__PURE__*/React.createElement(Btn, {
+    variant: "primary",
+    onClick: () => window.hlToast("Opening booking inquiry…")
+  }, "\u2726 Check her availability"))));
+}
 Object.assign(window, {
   Overview,
   Pipeline,
@@ -4011,7 +7772,8 @@ Object.assign(window, {
   Escrow,
   DiscountEngine,
   CalendarView,
-  PortfolioView
+  PortfolioView,
+  MeetLeigh
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "dashboard/host.jsx", error: String((e && e.message) || e) }); }
 
@@ -4352,9 +8114,45 @@ void main() {
           if (mouseDampening <= 0) uniforms.iMouse.value = [x, y];
         };
         if (mouseInteraction) canvas.addEventListener("pointermove", onPointerMove);
+        const liveStore = props.store;
+        let liveColorsKey = (colors || []).join("|");
         const loop = t => {
           rafRef.current = requestAnimationFrame(loop);
           uniforms.iTime.value = t * 0.001;
+          // Live tweak sync — read latest values from a shared store object
+          // each frame so the Background panel updates uniforms without a rebuild.
+          if (liveStore) {
+            const u = uniforms;
+            if (typeof liveStore.speed === "number") u.uSpeed.value = liveStore.speed;
+            if (typeof liveStore.density === "number") u.uDensity.value = liveStore.density;
+            if (typeof liveStore.glow === "number") u.uGlow.value = liveStore.glow;
+            if (typeof liveStore.twinkle === "number") u.uTwinkle.value = liveStore.twinkle;
+            if (typeof liveStore.streakCount === "number") u.uStreakCount.value = Math.max(1, Math.min(16, Math.round(liveStore.streakCount)));
+            if (typeof liveStore.streakWidth === "number") u.uStreakWidth.value = liveStore.streakWidth;
+            if (typeof liveStore.streakLength === "number") u.uStreakLength.value = liveStore.streakLength;
+            if (typeof liveStore.zoom === "number") u.uZoom.value = liveStore.zoom;
+            if (typeof liveStore.backgroundGlow === "number") u.uBgGlow.value = liveStore.backgroundGlow;
+            if (typeof liveStore.opacity === "number") u.uOpacity.value = liveStore.opacity;
+            if (typeof liveStore.mouseInteraction === "boolean") u.uMouseEnabled.value = liveStore.mouseInteraction ? 1 : 0;
+            if (Array.isArray(liveStore.colors)) {
+              const key = liveStore.colors.join("|") + "::" + (liveStore.backgroundColor || "");
+              if (key !== liveColorsKey) {
+                liveColorsKey = key;
+                const cc = prepColors(liveStore.colors);
+                u.uColor0.value = cc.arr[0];
+                u.uColor1.value = cc.arr[1];
+                u.uColor2.value = cc.arr[2];
+                u.uColor3.value = cc.arr[3];
+                u.uColor4.value = cc.arr[4];
+                u.uColor5.value = cc.arr[5];
+                u.uColor6.value = cc.arr[6];
+                u.uColor7.value = cc.arr[7];
+                u.uColorCount.value = cc.count;
+                u.uMouseColor.value = cc.avg;
+                if (liveStore.backgroundColor) u.uBgColor.value = hexToRGB(liveStore.backgroundColor);
+              }
+            }
+          }
           if (mouseDampening > 0) {
             if (!lastTimeRef.current) lastTimeRef.current = t;
             const dt = (t - lastTimeRef.current) / 1000;
@@ -4512,6 +8310,154 @@ function FakeComposer({
 }
 
 // ════════════════════ CLIENT PORTAL ════════════════════
+// ─── Run-of-Show data per gig ───
+const ROS_DATA = {
+  kia: [{
+    time: "17:00",
+    activity: "Pre-event phase — AV & lighting final check",
+    type: "phase"
+  }, {
+    time: "17:30",
+    activity: "Supplier arrival window closes",
+    note: "All caterers, AV, and florist confirmed on-site",
+    type: "critical"
+  }, {
+    time: "18:00",
+    activity: "Guest registration opens · cocktail hour begins",
+    type: "normal"
+  }, {
+    time: "18:30",
+    activity: "VIP guests arrive — dedicated reception lane",
+    type: "vip"
+  }, {
+    time: "18:50",
+    activity: "90-min Metro Manila buffer (EDSA / CBD routes)",
+    note: "Auto-applied for all VIP transport",
+    type: "buffer"
+  }, {
+    time: "19:00",
+    activity: "Host Leigh opens the program",
+    type: "normal"
+  }, {
+    time: "19:10",
+    activity: "KIA brand film screening",
+    type: "normal"
+  }, {
+    time: "19:30",
+    activity: "Keynote address — KIA Philippines General Manager",
+    type: "vip"
+  }, {
+    time: "20:00",
+    activity: "Main program phase — dinner service begins",
+    type: "phase"
+  }, {
+    time: "20:30",
+    activity: "Live entertainment — band set 1",
+    type: "normal"
+  }, {
+    time: "21:00",
+    activity: "Main product reveal · KIA EV9",
+    type: "vip"
+  }, {
+    time: "21:30",
+    activity: "Photo opportunities · VIP table",
+    type: "normal"
+  }, {
+    time: "21:45",
+    activity: "Closing remarks by Host Leigh",
+    type: "normal"
+  }, {
+    time: "22:00",
+    activity: "Program ends · guests may continue networking",
+    type: "buffer"
+  }],
+  piepco: [{
+    time: "08:00",
+    activity: "Pre-event phase — registration setup",
+    type: "phase"
+  }, {
+    time: "08:30",
+    activity: "Delegate registration opens",
+    type: "normal"
+  }, {
+    time: "09:00",
+    activity: "Opening ceremony — Host Leigh welcomes delegates",
+    type: "normal"
+  }, {
+    time: "09:15",
+    activity: "Keynote address — PIEPCO Board Chair",
+    type: "vip"
+  }, {
+    time: "10:00",
+    activity: "Morning sessions begin",
+    type: "phase"
+  }, {
+    time: "12:00",
+    activity: "Lunch break · networking",
+    type: "buffer"
+  }, {
+    time: "13:00",
+    activity: "Afternoon sessions resume",
+    type: "phase"
+  }, {
+    time: "15:30",
+    activity: "Panel discussion — industry leaders",
+    type: "vip"
+  }, {
+    time: "16:30",
+    activity: "Closing plenary — Host Leigh",
+    type: "normal"
+  }, {
+    time: "17:00",
+    activity: "Convention ends · certificate distribution",
+    type: "buffer"
+  }]
+};
+const DEFAULT_ROS = [{
+  time: "17:30",
+  activity: "Venue doors open — supplier final check",
+  type: "phase"
+}, {
+  time: "18:00",
+  activity: "Guest registration · cocktail hour",
+  type: "normal"
+}, {
+  time: "18:45",
+  activity: "VIP arrivals — dedicated lane",
+  type: "vip"
+}, {
+  time: "19:00",
+  activity: "Host Leigh opens the program",
+  type: "normal"
+}, {
+  time: "19:30",
+  activity: "Main program begins",
+  type: "phase"
+}, {
+  time: "20:00",
+  activity: "Dinner service",
+  type: "normal"
+}, {
+  time: "21:00",
+  activity: "Entertainment / awards segment",
+  type: "vip"
+}, {
+  time: "21:45",
+  activity: "Closing remarks",
+  type: "normal"
+}, {
+  time: "22:00",
+  activity: "Program ends",
+  type: "buffer"
+}];
+function fmtTime(t) {
+  if (!t) return "—";
+  const [h, m] = t.split(":").map(Number);
+  const ampm = h >= 12 ? "PM" : "AM";
+  const h12 = h % 12 || 12;
+  return h12 + ":" + String(m).padStart(2, "0") + " " + ampm;
+}
+
 // Client sees: their event, ONE package price (never itemized),
 // payment milestones, contract status, thread with host. No suppliers.
 function ClientPortal({
@@ -4539,10 +8485,33 @@ function ClientPortal({
     done: gig.clientPaidPct >= 100
   }];
   const paid = cv * gig.clientPaidPct / 100;
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: "none"
+    }
+  }, /*#__PURE__*/React.createElement(Lightfall, {
+    colors: ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
+    backgroundColor: "#0d0b14",
+    speed: 0.35,
+    streakCount: 5,
+    streakWidth: 0.8,
+    streakLength: 1.1,
+    glow: 0.9,
+    density: 0.7,
+    twinkle: 1,
+    zoom: 2.5,
+    backgroundGlow: 0.55,
+    opacity: 0.5,
+    mouseInteraction: false
+  })), /*#__PURE__*/React.createElement("div", {
     style: {
       maxWidth: 880,
-      margin: "0 auto"
+      margin: "0 auto",
+      position: "relative",
+      zIndex: 1
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -4764,7 +8733,189 @@ function ClientPortal({
     meSide: "client"
   }), /*#__PURE__*/React.createElement(FakeComposer, {
     placeholder: "Message your host\u2026"
-  }))));
+  }))), (() => {
+    const rosItems = ROS_DATA[gig.id] || DEFAULT_ROS;
+    const badgeMap = {
+      vip: {
+        bg: "rgba(212,175,55,0.12)",
+        color: "var(--gd-300)",
+        border: "rgba(212,175,55,0.3)",
+        text: "VIP"
+      },
+      critical: {
+        bg: "rgba(220,60,60,0.10)",
+        color: "#ff8070",
+        border: "rgba(220,60,60,0.28)",
+        text: "⚠ Critical"
+      },
+      buffer: {
+        bg: "rgba(78,205,196,0.08)",
+        color: "#4ECDC4",
+        border: "rgba(78,205,196,0.25)",
+        text: "Buffer"
+      }
+    };
+    const accentBorder = {
+      vip: "rgba(212,175,55,0.55)",
+      critical: "#ff6b6b",
+      buffer: "rgba(78,205,196,0.4)",
+      phase: "var(--gd-400)",
+      normal: "var(--border-soft)"
+    };
+    return /*#__PURE__*/React.createElement(Card, {
+      title: "Event Run of Show",
+      icon: "calendar",
+      style: {
+        marginTop: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 12,
+        padding: "12px 16px",
+        background: "rgba(255,107,107,0.05)",
+        border: "1px solid rgba(255,107,107,0.18)",
+        borderRadius: "var(--r-md)",
+        marginBottom: 28
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 18,
+        flexShrink: 0,
+        lineHeight: 1
+      }
+    }, "\uD83D\uDEA6"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,170,140,0.9)",
+        lineHeight: 1.65
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "#ff9a7a"
+      }
+    }, "Metro Manila Traffic Advisory (Auto-Applied):"), " All supplier arrivals include a 45-min buffer. VIP transport includes a 90-min EDSA / CBD buffer. Evening events (5\u20138 PM) add 30-min contingency.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "relative",
+        paddingLeft: 52
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        left: 20,
+        top: 8,
+        bottom: 8,
+        width: 2,
+        background: "linear-gradient(to bottom, var(--gd-400) 0%, rgba(212,175,55,0.06) 100%)",
+        borderRadius: 2
+      }
+    }), rosItems.map((item, i) => {
+      const isPhase = item.type === "phase";
+      const badge = badgeMap[item.type];
+      const dotFilled = isPhase || item.type === "vip";
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          position: "relative",
+          marginBottom: i < rosItems.length - 1 ? isPhase ? 20 : 8 : 0,
+          marginTop: isPhase && i > 0 ? 20 : 0,
+          padding: isPhase ? "9px 14px" : "12px 16px",
+          background: isPhase ? "rgba(212,175,55,0.05)" : "var(--surface-raised)",
+          border: "1px solid " + (isPhase ? "rgba(212,175,55,0.15)" : "rgba(255,255,255,0.04)"),
+          borderLeft: "3px solid " + (accentBorder[item.type] || "var(--border-soft)"),
+          borderRadius: "0 var(--r-sm) var(--r-sm) 0"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          position: "absolute",
+          left: -43,
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: 10,
+          height: 10,
+          borderRadius: "50%",
+          background: dotFilled ? "var(--gd-400)" : "var(--surface-card)",
+          border: "2px solid " + (item.type === "critical" ? "#ff6b6b" : item.type === "buffer" ? "#4ECDC4" : "var(--gd-400)"),
+          boxShadow: dotFilled ? "0 0 8px rgba(212,175,55,0.45)" : "none"
+        }
+      }), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 14
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontFamily: "var(--font-mono)",
+          fontSize: 13,
+          fontWeight: 700,
+          color: "var(--gd-300)",
+          minWidth: 74,
+          letterSpacing: "0.3px",
+          paddingTop: 1,
+          flexShrink: 0
+        }
+      }, fmtTime(item.time)), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: isPhase ? 11 : 13.5,
+          fontWeight: isPhase ? 700 : 600,
+          color: isPhase ? "var(--gd-400)" : "var(--ob-50)",
+          letterSpacing: isPhase ? "0.9px" : 0,
+          textTransform: isPhase ? "uppercase" : "none",
+          lineHeight: 1.3
+        }
+      }, item.activity), item.note && /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: "var(--ob-300)",
+          marginTop: 4,
+          lineHeight: 1.55
+        }
+      }, item.note)), badge && /*#__PURE__*/React.createElement("span", {
+        style: {
+          padding: "2px 9px",
+          borderRadius: "var(--r-pill)",
+          fontSize: 10,
+          fontWeight: 700,
+          letterSpacing: "0.5px",
+          textTransform: "uppercase",
+          flexShrink: 0,
+          marginTop: 2,
+          background: badge.bg,
+          color: badge.color,
+          border: "1px solid " + badge.border
+        }
+      }, badge.text)));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10,
+        marginTop: 28,
+        paddingTop: 20,
+        borderTop: "1px solid var(--border-divider)",
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement(Btn, {
+      icon: "calendar",
+      onClick: () => window.print()
+    }, "Print / Save PDF"), /*#__PURE__*/React.createElement(Btn, {
+      icon: "message",
+      onClick: () => {
+        const text = encodeURIComponent("Hi Leigh! Quick question about the run of show for " + gig.event + " on " + gig.date + "...");
+        window.open("https://api.whatsapp.com/send?text=" + text, "_blank");
+      }
+    }, "WhatsApp Leigh"), /*#__PURE__*/React.createElement(Btn, {
+      variant: "primary",
+      icon: "card",
+      onClick: () => window.hlToast("Opening change request thread with Leigh…")
+    }, "Request a Change")));
+  })()));
 }
 
 // ════════════════════ SUPPLIER PORTAL ════════════════════
@@ -4772,7 +8923,8 @@ function ClientPortal({
 // status, cue time, thread with host. Client masked. No peers.
 function SupplierPortal({
   supplierId,
-  setSupplierId
+  setSupplierId,
+  onBack
 }) {
   const HL = window.HL;
   const all = [];
@@ -4784,43 +8936,98 @@ function SupplierPortal({
   const g = cur.gig;
   const down = cur.quote * 0.5;
   const paidAmt = cur.quote * cur.paidPct / 100;
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      maxWidth: 820,
-      margin: "0 auto"
+      position: "fixed",
+      inset: 0,
+      zIndex: 0,
+      pointerEvents: "none"
+    }
+  }, /*#__PURE__*/React.createElement(Lightfall, {
+    colors: ["#d4af37", "#e8ca6a", "#c94560", "#d96275"],
+    backgroundColor: "#0d0b14",
+    speed: 0.3,
+    streakCount: 6,
+    streakWidth: 0.7,
+    streakLength: 1.1,
+    glow: 0.8,
+    density: 0.6,
+    twinkle: 0.9,
+    zoom: 2.8,
+    backgroundGlow: 0.5,
+    opacity: 0.45,
+    mouseInteraction: false
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      height: "calc(100vh - 118px)",
+      position: "relative",
+      zIndex: 1
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 18,
+      marginBottom: 16,
       flexWrap: "wrap",
       gap: 12
     }
-  }, /*#__PURE__*/React.createElement(PageHero, {
-    eyebrow: `Supplier Portal · ${cur.name}`,
-    title: "Your engagement."
-  }), /*#__PURE__*/React.createElement("select", {
-    value: cur.id,
-    onChange: e => setSupplierId(e.target.value),
+  }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "var(--surface-raised)",
+      display: "flex",
+      alignItems: "center",
+      gap: 14
+    }
+  }, onBack && /*#__PURE__*/React.createElement("button", {
+    onClick: onBack,
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 7,
+      padding: "7px 12px",
+      background: "none",
       border: "1px solid var(--border-soft)",
-      color: "var(--ob-100)",
-      borderRadius: "var(--r-sm)",
-      padding: "8px 12px",
+      borderRadius: "var(--r-pill)",
+      color: "var(--ob-200)",
+      fontSize: 12,
       fontFamily: "var(--font-body)",
-      fontSize: 12.5,
-      cursor: "pointer"
+      cursor: "pointer",
+      transition: "var(--tr-all)"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.borderColor = "var(--gd-400)";
+      e.currentTarget.style.color = "var(--gd-300)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.borderColor = "var(--border-soft)";
+      e.currentTarget.style.color = "var(--ob-200)";
     }
-  }, all.map(s => /*#__PURE__*/React.createElement("option", {
-    key: s.id,
-    value: s.id,
+  }, /*#__PURE__*/React.createElement(Icon, {
+    name: "arrow",
+    size: 13,
     style: {
-      background: "var(--ob-900)"
+      transform: "rotate(180deg)"
     }
-  }, s.name, " \u2014 ", s.cat)))), /*#__PURE__*/React.createElement("div", {
+  }), "Back"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 10,
+      letterSpacing: "2px",
+      textTransform: "uppercase",
+      color: "var(--gd-400)",
+      marginBottom: 6
+    }
+  }, `Supplier Portal · ${cur.name}`), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "var(--font-display)",
+      fontSize: 22,
+      fontWeight: 700,
+      color: "var(--ob-50)",
+      lineHeight: 1.1
+    }
+  }, "Your engagement.")))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -4849,8 +9056,9 @@ function SupplierPortal({
       color: "var(--gd-300)"
     }
   }, "Host Leigh Productions"), ". The end client and other suppliers are confidential \u2014 all coordination runs through Leigh.")), /*#__PURE__*/React.createElement(Card, {
+    title: `${cur.name} — ${cur.cat}`,
     style: {
-      marginBottom: 16
+      marginBottom: 14
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -4966,7 +9174,98 @@ function SupplierPortal({
     meSide: "supplier"
   }), /*#__PURE__*/React.createElement(FakeComposer, {
     placeholder: "Reply to Host Leigh\u2026"
-  }))));
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: "1px solid var(--border-soft)",
+      paddingTop: 16,
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 9,
+      color: "var(--ob-300)",
+      letterSpacing: "2.5px",
+      textTransform: "uppercase",
+      marginBottom: 10
+    }
+  }, "Switch supplier"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: `repeat(${Math.min(all.length, 6)}, 1fr)`,
+      gap: 8
+    }
+  }, all.map(s => {
+    const active = s.id === cur.id;
+    const statusColors = {
+      confirmed: "var(--success)",
+      pending: "var(--warning)",
+      late: "var(--danger)",
+      tbd: "var(--ob-400)"
+    };
+    return /*#__PURE__*/React.createElement("button", {
+      key: s.id,
+      onClick: () => setSupplierId(s.id),
+      style: {
+        padding: "12px 10px",
+        borderRadius: "var(--r-md)",
+        cursor: "pointer",
+        textAlign: "left",
+        background: active ? "rgba(212,175,55,0.10)" : "var(--surface-raised)",
+        border: `1px solid ${active ? "var(--gd-400)" : "var(--border-hair)"}`,
+        transition: "var(--tr-all)",
+        fontFamily: "var(--font-body)"
+      },
+      onMouseEnter: e => {
+        if (!active) {
+          e.currentTarget.style.borderColor = "var(--border-strong)";
+          e.currentTarget.style.background = "rgba(212,175,55,0.04)";
+        }
+      },
+      onMouseLeave: e => {
+        if (!active) {
+          e.currentTarget.style.borderColor = "var(--border-hair)";
+          e.currentTarget.style.background = "var(--surface-raised)";
+        }
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: statusColors[s.status] || "var(--ob-400)",
+        flexShrink: 0
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 9,
+        color: active ? "var(--gd-300)" : "var(--ob-300)",
+        letterSpacing: "1px",
+        textTransform: "uppercase",
+        fontFamily: "var(--font-mono)"
+      }
+    }, s.cat)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 600,
+        color: active ? "var(--gd-300)" : "var(--ob-50)",
+        lineHeight: 1.3,
+        marginBottom: 3
+      }
+    }, s.name), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "var(--ob-300)",
+        lineHeight: 1.3
+      }
+    }, s.cue));
+  })))));
 }
 function Field({
   label,
@@ -5446,26 +9745,16 @@ function KPI({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      height: 2,
-      background: "var(--grad-gold)",
-      opacity: 0.6
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
       fontSize: 10,
-      color: "var(--ob-200)",
-      letterSpacing: "2px",
+      color: "var(--ob-300)",
+      letterSpacing: "1.5px",
       textTransform: "uppercase",
-      marginBottom: 8
+      marginBottom: 10
     }
   }, label), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "var(--font-mono)",
-      fontSize: 26,
+      fontSize: 24,
       fontWeight: 500,
       color: toneColor,
       lineHeight: 1
@@ -5718,9 +10007,9 @@ function PageHero({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontFamily: "var(--font-display)",
-      fontSize: 11,
-      letterSpacing: "3px",
+      fontFamily: "var(--font-mono-alt)",
+      fontSize: 10,
+      letterSpacing: "2px",
       textTransform: "uppercase",
       color: "var(--gd-400)",
       marginBottom: 6
@@ -5728,7 +10017,7 @@ function PageHero({
   }, eyebrow), /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "var(--font-display)",
-      fontSize: 32,
+      fontSize: 26,
       fontWeight: 700,
       color: "var(--ob-50)",
       lineHeight: 1.1

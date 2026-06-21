@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Host Leigh · Empire Dashboard</title>
+
+<!-- ── ext-resource-dependency: photos referenced in JSX code ── -->
+<meta name="ext-resource-dependency" content="assets/photos/leigh-office.jpeg"      data-resource-id="imgOffice" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-veeam.jpeg"       data-resource-id="imgVeeam" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-jollibee.jpeg"    data-resource-id="imgJollibee" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-gala.jpeg"        data-resource-id="imgGala" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-speakerscon.jpeg" data-resource-id="imgSpeakers" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-pifpo.jpeg"       data-resource-id="imgPifpo" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-paris.jpeg"       data-resource-id="imgParis" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-portrait.jpeg"    data-resource-id="imgPortrait" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-event.jpeg"       data-resource-id="imgEvent" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-working.jpeg"     data-resource-id="imgWorking" />
+<meta name="ext-resource-dependency" content="assets/photos/leigh-selfie.jpeg"      data-resource-id="imgSelfie" />
+
+<!-- ── bundler splash thumbnail ── -->
+<template id="__bundler_thumbnail" data-bg-color="#0d0b14">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- obsidian bg -->
+    <rect width="1200" height="800" fill="#0d0b14"/>
+    <!-- sidebar strip -->
+    <rect x="180" y="100" width="160" height="600" rx="12" fill="#16131f"/>
+    <!-- sidebar items -->
+    <rect x="204" y="160" width="112" height="10" rx="5" fill="#2a2440"/>
+    <rect x="204" y="188" width="90"  height="10" rx="5" fill="#d4af37" opacity=".9"/>
+    <rect x="204" y="216" width="100" height="10" rx="5" fill="#2a2440"/>
+    <rect x="204" y="244" width="80"  height="10" rx="5" fill="#2a2440"/>
+    <!-- main hero card -->
+    <rect x="380" y="100" width="640" height="160" rx="14" fill="#1a1730"/>
+    <rect x="380" y="100" width="640" height="160" rx="14" fill="url(#heroGrad)"/>
+    <!-- gold accent line top -->
+    <rect x="380" y="100" width="640" height="3"   rx="2" fill="#d4af37" opacity=".7"/>
+    <!-- KPI cards -->
+    <rect x="380" y="288" width="148" height="90" rx="10" fill="#16131f"/>
+    <rect x="380" y="288" width="148" height="3"  rx="2" fill="#d4af37" opacity=".6"/>
+    <rect x="542" y="288" width="148" height="90" rx="10" fill="#16131f"/>
+    <rect x="542" y="288" width="148" height="3"  rx="2" fill="#d4af37" opacity=".6"/>
+    <rect x="704" y="288" width="148" height="90" rx="10" fill="#16131f"/>
+    <rect x="704" y="288" width="148" height="3"  rx="2" fill="#d4af37" opacity=".6"/>
+    <rect x="866" y="288" width="154" height="90" rx="10" fill="#16131f"/>
+    <rect x="866" y="288" width="154" height="3"  rx="2" fill="#d4af37" opacity=".6"/>
+    <!-- bottom cards -->
+    <rect x="380" y="402" width="314" height="200" rx="12" fill="#16131f"/>
+    <rect x="706" y="402" width="314" height="200" rx="12" fill="#16131f"/>
+    <!-- L monogram -->
+    <circle cx="240" cy="128" r="22" fill="none" stroke="#d4af37" stroke-width="1.5" opacity=".8"/>
+    <text x="240" y="134" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#d4af37">L</text>
+    <defs>
+      <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#1a1a2e" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#0d0b14" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</template>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="dashboard/reactbits.css">
+<link rel="stylesheet" href="dashboard/domegallery.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scrollbar-gutter: stable; }
+  body {
+    background: var(--bg-app);
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { min-height: 100vh; }
+  ::selection { background: rgba(212,175,55,0.25); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--ob-950); }
+  ::-webkit-scrollbar-thumb { background: var(--ob-600); border-radius: 6px; border: 2px solid var(--ob-950); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ob-500); }
+  button { font-family: var(--font-body); }
+  @keyframes hlSlideIn { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  input[type="range"] { height: 4px; border-radius: 3px; background: var(--ob-700); -webkit-appearance: none; appearance: none; }
+  input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--gd-400); cursor: pointer; box-shadow: 0 0 8px rgba(212,175,55,0.4); }
+  input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; border: none; border-radius: 50%; background: var(--gd-400); cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="dashboard/data.js"></script>
+<script type="module">
+  import * as ogl from 'https://cdn.jsdelivr.net/npm/ogl@1.0.11/+esm';
+  window.ogl = ogl;
+  window.dispatchEvent(new Event('ogl-ready'));
+</script>
+<script type="text/babel" src="dashboard/ui.jsx"></script>
+<script type="text/babel" src="dashboard/lightfall.jsx"></script>
+<script type="text/babel" src="dashboard/bg-tweaks.jsx"></script>
+<script type="text/babel" src="dashboard/borderglow.jsx"></script>
+<script type="text/babel" src="dashboard/domegallery.jsx"></script>
+<script type="text/babel" src="dashboard/host-sa.jsx"></script>
+<script type="text/babel" src="dashboard/portals.jsx"></script>
+<script type="text/babel" src="dashboard/app.jsx"></script>
+</body>
+</html>

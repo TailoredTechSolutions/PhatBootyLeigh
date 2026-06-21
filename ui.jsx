@@ -66,9 +66,8 @@ function KPI({ label, value, sub, tone = "default" }) {
       background: "var(--surface-card)", border: "1px solid var(--border-hair)",
       borderRadius: "var(--r-lg)", padding: "18px 20px", position: "relative", overflow: "hidden",
     }}>
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "var(--grad-gold)", opacity: 0.6 }} />
-      <div style={{ fontSize: 10, color: "var(--ob-200)", letterSpacing: "2px", textTransform: "uppercase", marginBottom: 8 }}>{label}</div>
-      <div style={{ fontFamily: "var(--font-mono)", fontSize: 26, fontWeight: 500, color: toneColor, lineHeight: 1 }}>{value}</div>
+      <div style={{ fontSize: 10, color: "var(--ob-300)", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 10 }}>{label}</div>
+      <div style={{ fontFamily: "var(--font-mono)", fontSize: 24, fontWeight: 500, color: toneColor, lineHeight: 1 }}>{value}</div>
       {sub && <div style={{ fontSize: 11, marginTop: 7, color: subColor[sub.tone] || "var(--ob-300)" }}>{sub.text}</div>}
     </div>
   );
@@ -169,8 +168,8 @@ function ToastHost() {
 function PageHero({ eyebrow, title, sub }) {
   return (
     <div style={{ marginBottom: 24 }}>
-      <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gd-400)", marginBottom: 6 }}>{eyebrow}</div>
-      <div style={{ fontFamily: "var(--font-display)", fontSize: 32, fontWeight: 700, color: "var(--ob-50)", lineHeight: 1.1 }}>{title}</div>
+      <div style={{ fontFamily: "var(--font-mono-alt)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--gd-400)", marginBottom: 6 }}>{eyebrow}</div>
+      <div style={{ fontFamily: "var(--font-display)", fontSize: 26, fontWeight: 700, color: "var(--ob-50)", lineHeight: 1.1 }}>{title}</div>
       {sub && <div style={{ fontSize: 13, color: "var(--ob-300)", marginTop: 8, maxWidth: 560 }}>{sub}</div>}
     </div>
   );

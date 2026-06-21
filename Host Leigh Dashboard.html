@@ -27,12 +27,29 @@
   ::-webkit-scrollbar-thumb:hover { background: var(--ob-500); }
   button { font-family: var(--font-body); }
   @keyframes hlSlideIn { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  @keyframes hlGoldSparkle { 0% { background-position: -250% center; } 100% { background-position: 250% center; } }
+  .hl-sparkle-gold {
+    background: linear-gradient(90deg, #8B7320 0%, #D4AF37 25%, #F5E27A 45%, #fff8dc 50%, #F5E27A 55%, #D4AF37 75%, #8B7320 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hlGoldSparkle 3s linear infinite;
+  }
+  .hl-sparkle-pink {
+    background: linear-gradient(90deg, #a0245a 0%, #e0559a 25%, #ffadd6 45%, #ffe0f0 50%, #ffadd6 55%, #e0559a 75%, #a0245a 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hlGoldSparkle 3s linear infinite;
+  }
   input[type="range"] { height: 4px; border-radius: 3px; background: var(--ob-700); -webkit-appearance: none; appearance: none; }
   input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--gd-400); cursor: pointer; box-shadow: 0 0 8px rgba(212,175,55,0.4); }
   input[type="range"]::-moz-range-thumb { width: 16px; height: 16px; border: none; border-radius: 50%; background: var(--gd-400); cursor: pointer; }
 </style>
 </head>
-<body style="font-size: 20px; font-family: Verdana; background-color: rgb(29, 28, 1)">
+<body>
 <div id="root"></div>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -48,10 +65,23 @@
 </script>
 <script type="text/babel" src="dashboard/ui.jsx"></script>
 <script type="text/babel" src="dashboard/lightfall.jsx"></script>
+<script type="text/babel" src="dashboard/bg-tweaks.jsx"></script>
 <script type="text/babel" src="dashboard/borderglow.jsx"></script>
 <script type="text/babel" src="dashboard/domegallery.jsx"></script>
 <script type="text/babel" src="dashboard/host.jsx"></script>
 <script type="text/babel" src="dashboard/portals.jsx"></script>
 <script type="text/babel" src="dashboard/app.jsx"></script>
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 56">
+    <rect width="80" height="56" fill="#0d0b14"/>
+    <rect x="6" y="8" width="20" height="14" rx="2" fill="#d4af37" opacity="0.8"/>
+    <rect x="30" y="8" width="20" height="14" rx="2" fill="#c94560" opacity="0.7"/>
+    <rect x="54" y="8" width="20" height="14" rx="2" fill="#d4af37" opacity="0.5"/>
+    <rect x="6" y="26" width="68" height="4" rx="1" fill="#ffffff" opacity="0.08"/>
+    <rect x="6" y="34" width="68" height="4" rx="1" fill="#ffffff" opacity="0.06"/>
+    <rect x="6" y="42" width="44" height="4" rx="1" fill="#ffffff" opacity="0.06"/>
+    <text x="16" y="18" font-family="serif" font-size="6" fill="#0d0b14" font-weight="bold">HL</text>
+  </svg>
+</template>
 </body>
 </html>
